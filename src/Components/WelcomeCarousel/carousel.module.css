@@ -1,0 +1,26 @@
+.carouselImg{
+   width: 100%;
+   height: 86vh;
+   margin-left: auto;
+   margin-right: auto;
+   background-color: black;
+}
+
+.carousel{
+   text-align: center;
+   background-color: black;
+   overflow-x: hidden;
+}
+.paper{
+   background-color: black!important;
+}
+
+@media only screen and (max-width: 600px) {
+   .carouselImg {
+      /* padding-top: 20%;
+      padding-bottom: 20%; */
+      /* height: 60vh; */
+      width: 100%;
+      /* zoom: 0.7; */
+   }
+ }

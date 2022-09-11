@@ -1,0 +1,55 @@
+body{
+   background-color: black;
+}
+.mainAppDiv{
+     background-color: black;
+}
+
+/* FAST ADD Styles to entire app */
+form{
+    padding:20px 20px 0px 15px;
+    background-color: #0a1929;
+    border-radius: 15px 0px 15px 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    box-shadow :20px 20px 50px black ;
+    
+}
+
+form input,select {
+     background-color: black;
+     height: 30px;
+     font-size: 18px;
+     border: none;
+     outline: none;
+     padding-left: 12px;
+     padding-right: 12px;   
+}
+textarea {
+     font-size: 18px;
+     padding: 18px;
+     background-color: black;
+     outline-color: rgb(19, 218, 45);
+     color: lime;
+     
+}
+button{
+     margin: auto;
+     margin-bottom: 22px;
+     width: fit-content;
+     padding:4px 8px 4px 8px;
+     background-color: rgb(53, 142, 230);
+     height: fit-content;
+     font-size: 18px;
+}
+button:hover{
+     background-color: rgb(19, 121, 223);
+     cursor: pointer;
+}
+
+@media only screen and (max-width: 610px) {
+     form {
+       zoom: 0.8;
+       margin: auto;
+     }
+   }
