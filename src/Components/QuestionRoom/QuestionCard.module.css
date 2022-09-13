@@ -1,0 +1,74 @@
+.mainContainer{
+   width: 600px;
+   display: flex;
+   flex-direction: row;
+   border: 2px solid rgb(181, 181, 63);
+   height: 400px;
+   overflow: hidden;
+   border-radius: 10px;
+   position: relative;
+
+   box-shadow: -10px -10px  15px #888888;
+}
+
+.bookImgContainer{
+   width: 50%;
+   /* border: 1px solid orange; */
+   padding: 12px;
+}
+
+.bookImgContainer img{
+   width: 100%;
+   height: 100%;
+}
+
+.questionContainer{
+   width: 50%;
+   /* border: 1px solid grey; */
+   padding: 12px 12px 0px 12px;
+}
+
+.bookTitleContainer{
+   width: 100%;
+   padding: 8px 12px 8px 12px;
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   
+}
+.bookTitleContainer > h3{
+   opacity: 0.7;
+   font-size: 22px;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.bookTitleContainer > h2{
+   opacity: 0.7;
+   font-style: italic;
+   font-size: 20px;
+   text-align: left;
+}
+.questionText{
+   padding:38px 18px 18px 18px;
+   width: 100%;
+   /* border: 1px solid green; */
+   height: fit-content;
+   height: 50%;
+   position: relative;
+   overflow-y: auto;
+}
+
+.questionText > h6{
+   position: absolute;
+   top: 0px;
+   left:0px;
+   font-size: 20px;
+   opacity: 0.8;
+}
+/* .btnContainer{
+ 
+} */
+.ViewMoreBtn{
+   position: absolute!important;
+   bottom: 12px;
+   right: 12px;
+}

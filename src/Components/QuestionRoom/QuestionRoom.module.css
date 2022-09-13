@@ -1,0 +1,34 @@
+.mainContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:2px solid green;
+    min-height: 80vh;
+    max-height: fit-content;
+    position: relative;
+
+}
+.mainTitleContainer{
+   width: 100%;
+   text-align: center;
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   padding: 40px 20px 40px 20px;
+   font-size: 44px;
+   vertical-align: baseline;
+}
+
+.qWraper{
+   margin-top: 140px;
+   width: 100%;
+   height: fit-content;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   border: 2px solid gray;
+   padding:40px 60px 100px 60px;
+
+   gap: 80px 60px;
+}

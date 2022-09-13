@@ -26,6 +26,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { width } from '@mui/system';
 
 const pages = ['?Question room?', 'X-changer', 'About us'];
 const settings = ['Profile', 'Logout'];
@@ -69,7 +70,7 @@ const Header = () => {
                      textDecoration: 'none',
                   }}
                >
-                  GoodBook
+                  <img src={require("./GBlogo.PNG")} alt="logo"  style={{width:"140px"}}/>
                </Typography>
 
                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
