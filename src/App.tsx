@@ -4,6 +4,8 @@ import Footer from './Components/Footer/Footer';
 import FormContainer from './Components/AllFormTypes/FormContainer';
 import { WelcomeCarousel } from './Components/WelcomeCarousel/WelcomeCarousel';
 import QuestionRoom from './Components/QuestionRoom/QuestionRoom';
+import ViewMore from './Components/QuestionRoom/ViewMore/ViewMore';
+import ExchangerPage from './Components/ExhcangerPage/ExchangerPage';
 
 
 function App() {
@@ -12,7 +14,10 @@ function App() {
       <>
          <Header></Header>
          {/* <WelcomeCarousel></WelcomeCarousel> */}
-         <QuestionRoom></QuestionRoom>
+         {/* <QuestionRoom></QuestionRoom>
+         <ViewMore></ViewMore> */}
+         <ExchangerPage></ExchangerPage>
+
          <Footer></Footer>
       </>
 

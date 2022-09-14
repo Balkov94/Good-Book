@@ -8,7 +8,19 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 function QuestionAuthorHeader() {
    return (  
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ 
+         maxWidth: 345,
+         color:"white",
+         '& .MuiTypography-root.MuiTypography-body2.MuiCardHeader-title':{
+            fontSize:"18px",
+            fontStyle:"Bold",
+
+         },
+         '& .MuiTypography-body2.MuiCardHeader-subheader':{
+            color:"white",
+            opacity:"0.8"
+         },
+      }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

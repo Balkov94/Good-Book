@@ -1,4 +1,4 @@
-.mainContainer{
+.mainQuestionRoomContainer{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,6 +6,12 @@
     min-height: 80vh;
     max-height: fit-content;
     position: relative;
+
+    background-image: url("./ViewMore/paperBG.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    line-height: 24px;
 
 }
 .mainTitleContainer{
@@ -17,6 +23,8 @@
    padding: 40px 20px 40px 20px;
    font-size: 44px;
    vertical-align: baseline;
+   color: black;
+   font-weight: bold;
 }
 
 .qWraper{
@@ -27,8 +35,7 @@
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: space-between;
-   border: 2px solid gray;
+   /* border: 2px solid gray; */
    padding:40px 60px 100px 60px;
-
    gap: 80px 60px;
 }

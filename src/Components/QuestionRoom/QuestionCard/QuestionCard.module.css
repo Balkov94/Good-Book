@@ -7,8 +7,12 @@
    overflow: hidden;
    border-radius: 10px;
    position: relative;
-
+}
+.mainContainer:nth-child(odd){
    box-shadow: -10px -10px  15px #888888;
+}
+.mainContainer:nth-child(even){
+   box-shadow: 10px -10px  15px #888888;
 }
 
 .bookImgContainer{
@@ -26,6 +30,7 @@
    width: 50%;
    /* border: 1px solid grey; */
    padding: 12px 12px 0px 12px;
+   background-color: rgb(247, 212, 171);
 }
 
 .bookTitleContainer{
@@ -37,12 +42,12 @@
    
 }
 .bookTitleContainer > h3{
-   opacity: 0.7;
+   opacity: 0.9;
    font-size: 22px;
    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .bookTitleContainer > h2{
-   opacity: 0.7;
+   opacity: 0.9;
    font-style: italic;
    font-size: 20px;
    text-align: left;
@@ -52,9 +57,12 @@
    width: 100%;
    /* border: 1px solid green; */
    height: fit-content;
-   height: 50%;
+   height: 47%;
    position: relative;
-   overflow-y: auto;
+   overflow: hidden; 
+}
+.questionText p{
+   text-overflow: ellipsis;
 }
 
 .questionText > h6{
@@ -69,6 +77,6 @@
 } */
 .ViewMoreBtn{
    position: absolute!important;
-   bottom: 12px;
+   bottom: 22px;
    right: 12px;
 }

@@ -21,8 +21,12 @@ function QuestionCard() {
                <h2>Some very long and stupid book title lor</h2>
             </div>
             <div className={styles.questionText}>
-               <h6> <QuestionMarkIcon style={{fontSize:"18px"}}></QuestionMarkIcon> Question:</h6>
-               <p>Lorem ipsum dolor sit amet consectetur  dipisicing elit. Eos rerum, maxime harum cupiditate ab provident ea aspernatur incidunt cum nihil accusantium quas temporibus in sed dolor alias ratione sapiente sunt?</p>
+               <h6> <QuestionMarkIcon style={{ fontSize: "18px" }}></QuestionMarkIcon> Question:</h6>
+               <p>
+                  Lorem ipsum dolor sit amet consectetur  dipisicing elit. Eos rerum, maxime 
+                  harum cupiditate ab provident ea aspernatur incidunt cum nihil accusantium qu
+                  as temporibus in sed dolor alias ratione sapiente sunt?
+                  </p>
             </div>
             <div className={styles.btnContainer}>
                <Button variant="contained" color="warning" className={styles.ViewMoreBtn}>

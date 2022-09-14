@@ -14,6 +14,9 @@
      vertical-align: baseline;
      padding-top: 12px;
      padding-bottom: 12px;
+     color: White;
+
+     /* z-index: 200; */
 }
 .footerTextContainer{
    width: fit-content;
@@ -36,6 +39,7 @@
    width: 100%;
    bottom: 6px;
    gap: 20px 20px!important;
+   color: white!important;
 }
 .iconsStyles{
    border: 2px solid white;
@@ -47,8 +51,12 @@
    transition: all 0.5s;
    
 }
+a:active, a:visited,a:link{
+   color:white;
+}
 .iconsStyles:hover{
-   background-color: gray;  
+   background-color:rgb(82, 82, 82); 
+   color: white; 
 }
 
 

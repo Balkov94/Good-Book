@@ -1,0 +1,50 @@
+.tqCard{
+   margin-top: 180px;
+   margin-bottom: 40px;
+   padding: 20px;
+   width: 90%;
+   border: 2px solid black;
+   min-height: 220px;
+   max-height: fit-content;
+   color: black;
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+   background-color: black;
+   border-radius: 0px 5px 5px 5px;
+   /* border-bottom: 4px solid gray; */
+   box-shadow: 5px 15px 25px 5px #888888;
+
+   color: white;
+   
+
+   position: relative;
+}
+.qAuthor{
+   position: absolute;
+   top:-74px;
+   left: -2px;
+   
+}
+.bookImgContainer{
+   border: 2px solid black;
+   width: 200px;
+}
+.textContainer{
+   width: 100%;
+   min-height: 220px;
+   max-height: fit-content;
+   /* border: 2px solid green; */
+   padding:0px 18px 18px 18px;
+}
+.bookTitle{
+   font-size: 22px;
+   opacity: 0.8;
+   padding-bottom: 4px;
+   border-bottom: 1px solid gray;
+}
+.questionText{
+   font-size: 18px;
+   padding-top: 18px;
+   max-height: fit-content;
+}

@@ -50,8 +50,26 @@ const Header = () => {
       setAnchorElUser(null);
    };
 
+   const toggleNavMenu=(event: React.MouseEvent<HTMLElement>)=>{
+         if(anchorElNav!==null){
+            setAnchorElNav(null);
+         }
+         else{
+            setAnchorElNav(event.currentTarget);
+         }
+   }
+   const toggleUserMenu=(event: React.MouseEvent<HTMLElement>)=>{
+      if(anchorElUser!==null){
+         setAnchorElUser(null);
+      }
+      else{
+         setAnchorElUser(event.currentTarget);
+      }
+}
+
+
    return (
-      <AppBar position="sticky">
+      <AppBar position="sticky" sx={{zIndex:"2000"}}>
          <Container maxWidth={false} sx={{ backgroundColor: "#f7ba00", marginBottom:"0px",padding:"0px", width:"100%"}}>
             <Toolbar disableGutters>
                {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, }} /> */}
@@ -79,7 +97,8 @@ const Header = () => {
                      aria-label="account of current user"
                      aria-controls="menu-appbar"
                      aria-haspopup="true"
-                     onClick={handleOpenNavMenu}
+                     // onClick={handleOpenNavMenu}
+                     onClick={toggleNavMenu}
                      color="inherit"
                   >
                      <MenuIcon />
@@ -143,7 +162,7 @@ const Header = () => {
 
                <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
-                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                     <IconButton onClick={toggleUserMenu} sx={{ p: 0 , m:0}}>
                         <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                      </IconButton>
                   </Tooltip>

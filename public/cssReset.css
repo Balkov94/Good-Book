@@ -4,10 +4,12 @@
 */
 body{
      background-color: black;
+     /* override for header MUI component */
+     padding-right: 0px!important;    
 }
 *{
      box-sizing: border-box;
-     color: white;
+     /* color: white; */
 }
 ul li{
    color: black !important;
@@ -59,7 +61,6 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */

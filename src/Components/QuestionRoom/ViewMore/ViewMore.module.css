@@ -1,0 +1,58 @@
+.mainViewMoreContainer{
+   width: 100%;
+   min-height: 80vh;
+   max-height: fit-content;
+   position: absolute;
+   z-index: 10;
+   border: 5px solid rgb(252, 165, 3);
+   background-image: url("paperBG.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 24px;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+   align-items: center;
+   overflow: auto;
+   justify-content: center;
+   color: black;
+
+}
+/* title img opacity fixing */
+.opacityFixerDiv{
+   position: relative;
+}
+.mainTitleContainer{
+   margin-top: 40px;
+   display: flex;
+   width: 600px;
+   height: 160px;
+   background-image: url("./disRoomImg.jpg");
+   background-size: cover;
+   opacity: 0.6;
+}
+.opacityFixerDiv h1{
+   position: absolute;
+   width: 100%;
+   text-align: center;
+   top: 66px;
+   font-size: 38px;
+}
+/* _____________________________ */
+.sectionTitles{
+   margin-top: 100px;
+   font-size: 38px;
+}
+
+.commentsWrapper{
+   width: 96%;
+   min-height: 260px;
+   margin-bottom: 200px;
+   display: flex;
+   flex-direction: column;
+   gap: 80px;
+   align-items: center;
+   overflow: auto;
+   padding:40px 12px 160px 12px;
+}

@@ -1,4 +1,4 @@
-import QuestionCard from './QuestionCard';
+import QuestionCard from './QuestionCard/QuestionCard';
 import styles from './QuestionRoom.module.css';
 
 
@@ -6,7 +6,7 @@ import styles from './QuestionRoom.module.css';
 
 function QuestionRoom() {
    return (  
-      <div className={styles.mainContainer}>
+      <div className={styles.mainQuestionRoomContainer}>
             <div className={styles.mainTitleContainer}>? Question Room &#191; </div>
 
             <div className={styles.qWraper}>
