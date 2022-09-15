@@ -1,0 +1,60 @@
+.xPageMainContainer{
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   gap: 40px 50px;
+   min-height: 80vh;
+   border: 2px solid orange;
+   position: relative;
+
+   background-image: url("../QuestionRoom/ViewMore/paperBG.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 24px;
+
+}
+.topImgContainer{
+   position: absolute;
+   top: 40px;
+   left: 50px;
+   right: 50px;
+   margin-left: 50px;
+   margin: auto;
+   width: 80%;
+   /* border: 2px solid gray; */
+   height: 150px;
+   justify-self: flex-end;
+
+   background-image: url("./bExchangeImg.jpg");
+   background-size: contain;
+   background-repeat: no-repeat;
+   text-align: center;
+   background-position: center;
+   
+}
+.xPageMainContainer h6{
+   position: absolute;
+   top: 200px;
+   left: 0px;
+   width:100%;
+   text-align: center;
+   height: 40px;
+   text-align: center;
+   font-size: 30px;
+}
+/* Click icon animation */
+.clickIconSpan {
+   position: relative;
+   
+   animation: clickMove 1s infinite;
+   
+ }
+ 
+ @keyframes clickMove {
+   0% {top: 0px;}
+   25% {top: 5px;}
+   50% {top: 0px;}
+   100% {top: 5px;}
+ }
