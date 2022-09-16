@@ -6,6 +6,9 @@ import { WelcomeCarousel } from './Components/WelcomeCarousel/WelcomeCarousel';
 import QuestionRoom from './Components/QuestionRoom/QuestionRoom';
 import ViewMore from './Components/QuestionRoom/ViewMore/ViewMore';
 import ExchangerPage from './Components/ExhcangerPage/ExchangerPage';
+import AboutUs from './Components/AboutUs/AboutUs';
+import BookClubs from './Components/ReadingClubs/ReadingClubs';
+import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
 
 
 function App() {
@@ -13,10 +16,13 @@ function App() {
    return (
       <>
          <Header></Header>
-         {/* <WelcomeCarousel></WelcomeCarousel> */}
-         {/* <QuestionRoom></QuestionRoom>
-         <ViewMore></ViewMore> */}
+         
+         <BookClubs/>
+         {/* <AboutUs/>
+          <WelcomeCarousel></WelcomeCarousel>
+         <QuestionRoom></QuestionRoom>
          <ExchangerPage></ExchangerPage>
+         <ViewMore></ViewMore>  */}
 
          <Footer></Footer>
       </>

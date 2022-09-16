@@ -25,10 +25,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { width } from '@mui/system';
 
-const pages = ['?Question room?', 'X-changer', 'About us'];
+import styles from './Header.module.css';
+
+const pages = ['?Question room?', 'X-changer','Book Clubs','About us'];
 const settings = ['Profile', 'Logout'];
 
 const Header = () => {
@@ -72,7 +72,6 @@ const Header = () => {
       <AppBar position="sticky" sx={{zIndex:"2000"}}>
          <Container maxWidth={false} sx={{ backgroundColor: "#f7ba00", marginBottom:"0px",padding:"0px", width:"100%"}}>
             <Toolbar disableGutters>
-               {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, }} /> */}
                <Typography
                   variant="h6"
                   noWrap
@@ -103,6 +102,7 @@ const Header = () => {
                   >
                      <MenuIcon />
                   </IconButton>
+                  {/* PAGES */}
                   <Menu
                      id="menu-appbar"
                      anchorEl={anchorElNav}
@@ -128,7 +128,7 @@ const Header = () => {
                      ))}
                   </Menu>
                </Box>
-               {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+
                <Typography
                   variant="h5"
                   noWrap
@@ -145,10 +145,12 @@ const Header = () => {
                      textDecoration: 'none',
                   }}
                >
-                  <img src={require("./4.png")} alt="logo"  style={{width:"80px"}}/>
+                 <img src={require("./GBlogo.PNG")} alt="logo"  style={{width:"140px"}}/>
 
+                  {/* NAV MENU___________________________________ */}
                </Typography>
                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                  {/* Filter here if user is nto logged */}
                   {pages.map((page) => (
                      <Button
                         key={page}
@@ -159,7 +161,22 @@ const Header = () => {
                      </Button>
                   ))}
                </Box>
+               {/* USER MENU ____________________________________*/}
+               {/* HERE CHECK LOGGED OR NOT for hader buttons */}
+               {
+                  // if not logged
+                  <>
+                   <Button variant="text">Login</Button>
+                   <Button variant="text">Register</Button>   
+                   <Button variant="contained">ALL USERS</Button>   
+                  </>          
+               }
+               {
+                  // lock pages for guest
+                  // <div className={styles.lockCoverDiv}>
 
+                  // </div>
+               }
                <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                      <IconButton onClick={toggleUserMenu} sx={{ p: 0 , m:0}}>

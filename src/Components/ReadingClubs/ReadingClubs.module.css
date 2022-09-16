@@ -1,0 +1,35 @@
+.bClubsMainContainer{
+   width: 100%;
+   min-height: 80vh;
+   max-height: fit-content;
+   display: flex;
+   flex-direction: row;
+   border: 2px solid black;
+
+   background-image: url("../QuestionRoom/ViewMore/paperBG.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 24px;
+}
+
+.listClubsContainer{
+   width: 380px;
+   min-height: 100%;
+   background-color:black;
+   color: white;
+   display: flex;
+   flex-direction: column;
+   overflow-y: auto;
+   padding: 10px 40px 80px 40px;
+   gap:50px
+
+}
+.listClubsContainer h1{
+   width: 100%;
+   font-size: 22px;
+   text-align: center;
+   padding:12px 8px;
+   border-bottom: 1px solid gray;
+   
+}

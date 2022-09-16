@@ -1,4 +1,15 @@
-.header {
+.lockCoverDiv{
+   width: 80px;
+   height: 10vh;
+   border: 2px solid red;
+   position: absolute;
+}
+
+
+
+
+/* OLD HEADER  */
+/* .header {
      width: 100%;
      min-height: 10vh;
      max-height: fit-content;
@@ -29,4 +40,4 @@
      .header {
       zoom: 0.7;
      }
-   }
+   } */

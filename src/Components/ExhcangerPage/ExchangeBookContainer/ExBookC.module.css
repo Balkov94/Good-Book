@@ -1,0 +1,14 @@
+.booksWrapper {
+   /* border: 1px solid black; */
+   margin: 250px auto 200px auto;
+   width: 90%;
+   min-height: 80vh;
+   max-height: fit-content;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   gap: 40px 50px;
+   justify-content: flex-start;
+   
+   padding: 40px 20px 40px 30px;
+}

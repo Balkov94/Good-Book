@@ -1,0 +1,17 @@
+.mainContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: gray;
+   border:2px solid orange;
+   position: fixed;
+   top: 10vh;
+   left: 0;
+   right: 0;
+   width: 100%;
+   height: 80vh;
+   /* margin: auto; */
+  
+  
+
+}
