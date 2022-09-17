@@ -7,7 +7,7 @@ import QuestionRoom from './Components/QuestionRoom/QuestionRoom';
 import ViewMore from './Components/QuestionRoom/ViewMore/ViewMore';
 import ExchangerPage from './Components/ExhcangerPage/ExchangerPage';
 import AboutUs from './Components/AboutUs/AboutUs';
-import BookClubs from './Components/ReadingClubs/ReadingClubs';
+import ReadingClubs from './Components/ReadingClubs/ReadingClubs';
 import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
 
 
@@ -17,14 +17,14 @@ function App() {
       <>
          <Header></Header>
          
-         <BookClubs/>
-         {/* <AboutUs/>
-          <WelcomeCarousel></WelcomeCarousel>
-         <QuestionRoom></QuestionRoom>
-         <ExchangerPage></ExchangerPage>
-         <ViewMore></ViewMore>  */}
+         {/* <ExchangerPage></ExchangerPage> */}
+         {/* <ReadingClubs/> */}
+         {/* <AboutUs/> */}
+          {/* <WelcomeCarousel></WelcomeCarousel> */}
+         {/* <QuestionRoom></QuestionRoom> */}
+         {/* <ViewMore></ViewMore>  */}
 
-         <Footer></Footer>
+         {/* <Footer></Footer> */}
       </>
 
 

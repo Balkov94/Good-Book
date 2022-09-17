@@ -1,0 +1,74 @@
+.clubroomMainContainer{
+   width: 100%;
+   height: 80vh;
+   overflow-y:auto;
+   /* max-height: fit-content; */
+   border: 2px solid black;
+   padding: 40px 20px;
+   margin: 00px 0px 10px 380px;
+   background-image: url("./ClubRoomImgs/clubRoom2.jpg");
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-size: cover;
+   line-height: 24px;
+   color:white;
+}
+
+.clubDataContainer{
+   width: 94%;
+   min-height: 200px;
+   max-height: fit-content;
+   background-color: black;
+   color: white;
+   display: flex;
+   flex-direction: column;
+   padding: 18px 18px;
+   margin: auto;
+}
+.clubDataText{
+      width: 100%;
+      /* border: 1px solid gray; */
+}
+.clubDataText h1{
+   width: 100%;
+   text-align: center;
+   font-size: 28px;
+}
+.clubDataText > div{
+   margin-top: 18px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   font-size: 18px;
+   opacity: 0.8;
+}
+.clubMembersWrapper{
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+   gap: 10px 10px;
+   width: 100%;
+   /* border: 2px solid gray; */
+   min-height: 40px;
+   max-height: 260px;
+   overflow-y: auto;
+   padding: 8px;
+}
+
+
+
+
+
+.clubRoomCommentWrapper{
+   margin-top:40px;
+   margin-bottom:40px;
+   display: flex;
+   flex-direction: column;
+   gap: 90px;
+   padding: 26px 40px;
+   width: 100%;
+   min-height: 100%;
+   height: fit-content;
+   /* background-color: gray; */
+}

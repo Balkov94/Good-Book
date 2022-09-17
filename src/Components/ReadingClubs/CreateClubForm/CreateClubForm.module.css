@@ -1,17 +1,39 @@
+   /* Cover img box */
 .mainContainer{
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: gray;
-   border:2px solid orange;
+   /* border:2px solid orange; */
    position: fixed;
-   top: 10vh;
+   top: 9vh;
    left: 0;
    right: 0;
+   min-width: 100%!important;
+   height: 91vh;
+   overflow: auto;
+   color: white;
+   background-image:url("./ReadingClubImg/bgimg.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 24px;
+ 
+}
+.textInstructions{
    width: 100%;
-   height: 80vh;
-   /* margin: auto; */
-  
-  
+   padding:8px 12px;
+   opacity: 0.8;
+}
+
+/* look at MUI box form - SX */
+.closeIconContainer svg{
+   position: absolute;
+   top: 8px;
+   right: 8px;
+   opacity: 0.8;
+   cursor: pointer;
+}
+.closeIconContainer svg:hover{
+   opacity: 1;
 
 }

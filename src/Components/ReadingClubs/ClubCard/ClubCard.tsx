@@ -12,6 +12,8 @@ function BookClubCard() {
             <Chip label="three" size="small" variant="filled" color="warning" />
             <Chip label="three" size="small" variant="filled" color="success" />
             <Chip label="three" size="small" variant="filled" color="info" />
+            <Chip label="three" size="small" variant="filled" color="info" />
+       
          </div>
          <div className={styles.membersContainer}>
             <SupervisedUserCircleIcon/> 300

@@ -9,14 +9,16 @@
      background-color: black;
      vertical-align: baseline;
      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
-     opacity: 0.7;
      font-size: 18px;
      vertical-align: baseline;
      padding-top: 12px;
      padding-bottom: 12px;
-     color: White;
-
-     /* z-index: 200; */
+     color: rgb(203, 200, 200);
+     border-top: 1px solid gray;
+     position: absolute;
+     bottom:0px;
+     left: 0;
+    
 }
 .footerTextContainer{
    width: fit-content;

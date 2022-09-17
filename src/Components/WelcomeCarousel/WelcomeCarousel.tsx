@@ -15,7 +15,13 @@ export function WelcomeCarousel(props: any) {
          name: "./bhelp.jpg",
       },
       {
+         name: "./bookBuddie.jpg",
+      },
+      {
          name: "./bexchange.jpg",
+      },
+      {
+         name: "./communityImg.jpg",
       }
    ]
 
@@ -26,8 +32,8 @@ export function WelcomeCarousel(props: any) {
       <Carousel
          navButtonsAlwaysInvisible={true}
          indicators={false}
-         interval={5000}
-         duration={1500}
+         interval={3000}
+         duration={2000}
          stopAutoPlayOnHover={false}
          className={styles.carousel}
       >

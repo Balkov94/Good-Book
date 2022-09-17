@@ -1,7 +1,7 @@
 import BookCard from "../BookCard/BookCard";
-import styles from "./ExBookC.module.css";
+import styles from "./BooksWrapper.module.css";
 
-function ExchangeBookContainer() {
+function BooksWrapper() {
    return (  
       <div className={styles.booksWrapper}>
             <BookCard/>
@@ -17,4 +17,4 @@ function ExchangeBookContainer() {
    );
 }
 
-export default ExchangeBookContainer;
+export default BooksWrapper;

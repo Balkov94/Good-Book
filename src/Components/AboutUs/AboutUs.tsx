@@ -25,7 +25,7 @@ function AboutUs() {
                         <img src={require("./aboutPictures/team2.jpg")} alt="" />
                   </div>
             </div>
-            <span></span>
+            
       </div>
    );
 }

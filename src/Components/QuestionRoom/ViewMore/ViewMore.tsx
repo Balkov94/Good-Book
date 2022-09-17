@@ -1,6 +1,6 @@
 import { style } from '@mui/system';
 import QuestionCard from '../QuestionCard/QuestionCard';
-import Comment from './Comment/Comment';
+import Comment from '../../Comment/Comment';
 import TopQuestion from './TopQuestion/TopQuestion';
 import styles from './ViewMore.module.css';
 

@@ -4,8 +4,9 @@ import Button from '@mui/material/Button';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import { useState } from 'react';
 import CreateClubForm, { IClubData } from './CreateClubForm/CreateClubForm';
+import ClubRoom from './ClubRoom/ClubRoom';
 
-function BookClubs() {
+function ReadingClubs() {
    const [createClubMenu, setCreateClubMenu] = useState<boolean>(false);
 
    const toggleCreateClubMenu = () => {
@@ -32,9 +33,22 @@ function BookClubs() {
                <BookClubCard />
                <BookClubCard />
                <BookClubCard />
+               <BookClubCard />
+               <BookClubCard />
+               <BookClubCard />
+               <BookClubCard />
             </div>
+            
+            {
+               //switch Club chats
+               <ClubRoom />
+
+
+            }
          </div>
+
          {
+            // toggle Create Club Form
             createClubMenu &&
             <CreateClubForm
                onClose={toggleCreateClubMenu}
@@ -46,4 +60,4 @@ function BookClubs() {
    );
 }
 
-export default BookClubs;
+export default ReadingClubs;
