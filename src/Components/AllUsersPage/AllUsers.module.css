@@ -1,0 +1,25 @@
+.AllUsersWrapper{
+   width: 100%;
+   min-height: 80vh;
+   border: 2px solid black;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   gap:60px 50px;
+   background-image: url("../QuestionRoom/ViewMore/paperBG.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 24px;
+   position: relative;
+   padding:140px 60px 160px 80px;
+}
+.AllUsersWrapper > h1{
+   position: absolute;
+   width: 100%;
+   text-align: center;
+   top: 0px;
+   left: 0px;
+   padding-top: 40px;
+   font-size: 28px;
+}

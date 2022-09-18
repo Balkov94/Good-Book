@@ -9,6 +9,8 @@ import ExchangerPage from './Components/ExhcangerPage/ExchangerPage';
 import AboutUs from './Components/AboutUs/AboutUs';
 import ReadingClubs from './Components/ReadingClubs/ReadingClubs';
 import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
+import MyProfile from './Components/MyProfilePage/MyProfile';
+import AllUsersPage from './Components/AllUsersPage/AllUsersPage';
 
 
 function App() {
@@ -16,13 +18,14 @@ function App() {
    return (
       <>
          <Header></Header>
-         
-         {/* <ExchangerPage></ExchangerPage> */}
+         <AllUsersPage/>
+         <MyProfile/>
+         <ExchangerPage></ExchangerPage>
          {/* <ReadingClubs/> */}
-         {/* <AboutUs/> */}
-          {/* <WelcomeCarousel></WelcomeCarousel> */}
-         {/* <QuestionRoom></QuestionRoom> */}
-         {/* <ViewMore></ViewMore>  */}
+         <AboutUs/>
+          <WelcomeCarousel></WelcomeCarousel>
+         <QuestionRoom></QuestionRoom>
+         <ViewMore></ViewMore> 
 
          {/* <Footer></Footer> */}
       </>

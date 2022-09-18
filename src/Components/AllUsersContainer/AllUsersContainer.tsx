@@ -4,7 +4,7 @@ import { UserClass } from "../../Rest-APi-Client/shared-types";
 import Filters, { IFilterValues } from "../FIlters/Filter";
 import RegisterFormMUI, { IFormData } from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
 import styles from "./AllUsersContainer.module.css"
-import UserCardMUI from "../../MUIComponents/UserCardMUI/UserCardMUI";
+import UserCardMUI from "../UserCardMUI/UserCardMUI";
 import { Button } from "@mui/material";
 interface IAllUserContainerProps {
    loggedUser: IFormData;

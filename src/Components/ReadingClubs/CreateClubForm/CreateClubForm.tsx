@@ -212,7 +212,7 @@ export default function CreateClubForm({ onClose, onCreate }: ICreateClubProps) 
                   <div className={styles.textInstructions}>
                      <h3>Club interests:</h3>
                      <p>Write 2 or more interests.</p>
-                     <p>This will help you to find the perfect Book Buddy Friends.</p>
+                     <p>This will help you find the perfect Book Buddies.</p>
                   </div>
                   <Controller
                      control={control}

@@ -5,7 +5,9 @@
 body{
      background-color: black;
      /* override for header MUI component */
-     padding-right: 0px!important;    
+     padding-right: 0px!important;
+     /* TOO LARGE SCALE fix */
+     /* zoom: 0.8;     */
 }
 *{
      box-sizing: border-box;

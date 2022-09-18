@@ -7,6 +7,7 @@
    overflow: hidden;
    border-radius: 10px;
    position: relative;
+   zoom: 0.8;
 }
 .mainContainer:nth-child(odd){
    box-shadow: -10px -10px  15px #888888;
@@ -58,6 +59,8 @@
    /* border: 1px solid green; */
    height: fit-content;
    height: 47%;
+   font-size: 18px;
+   line-height: 18px;
    position: relative;
    overflow: hidden; 
 }

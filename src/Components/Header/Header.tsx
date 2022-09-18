@@ -83,11 +83,12 @@ const Header = () => {
                      fontFamily: 'monospace',
                      fontWeight: 700,
                      letterSpacing: '.3rem',
-                     color: 'inherit',
+                     // color: 'inherit',
+                     color: 'gray',
                      textDecoration: 'none',
                   }}
                >
-                  <img src={require("./GBlogo.PNG")} alt="logo"  style={{width:"140px"}}/>
+                  <img src={require("./GBlogo2.png")} alt="logo"  style={{width:"200px"}}/>
                </Typography>
 
                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -155,7 +156,7 @@ const Header = () => {
                      <Button
                         key={page}
                         onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'white', display: 'block',mr:"50px" }}
+                        sx={{ my: 2, color: 'rgb(48,48,48)', display: 'block',mr:"50px" ,fontWeight:"700"}}
                      >
                         {page}
                      </Button>
@@ -166,7 +167,7 @@ const Header = () => {
                {
                   // if not logged
                   <>
-                   <Button variant="text">Login</Button>
+                   <Button variant="text" >Login</Button>
                    <Button variant="text">Register</Button>   
                    <Button variant="contained">ALL USERS</Button>   
                   </>          
@@ -184,7 +185,8 @@ const Header = () => {
                      </IconButton>
                   </Tooltip>
                   <Menu
-                     sx={{ mt: '45px' }}
+                  // fix bc of zoom ot entire APP - ml:"20%" 
+                     sx={{ mt: '40px',}}
                      id="menu-appbar"
                      anchorEl={anchorElUser}
                      anchorOrigin={{

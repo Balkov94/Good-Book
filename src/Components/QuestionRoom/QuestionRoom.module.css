@@ -11,7 +11,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    line-height: 24px;
+    line-height: 18px;
 
 }
 .mainTitleContainer{
@@ -37,5 +37,5 @@
    justify-content: space-between;
    /* border: 2px solid gray; */
    padding:40px 60px 100px 60px;
-   gap: 80px 60px;
+   gap: 60px 60px;
 }

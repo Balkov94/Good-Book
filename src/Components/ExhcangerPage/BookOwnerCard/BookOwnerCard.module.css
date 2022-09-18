@@ -1,0 +1,91 @@
+/* User information absolute container ________________________________________*/
+/* only cover the book wrapper to disable it! */
+.ownerInfCoverContainer{
+   position: fixed;
+   width: 86%;
+   /* height: 100vh; */
+   height: 100%;
+   top:0px;
+   /* background-color: bisque; */
+   border: 2px solid red;
+   z-index: 10;
+   margin:auto;
+   display: flex;
+   justify-content: center;   
+   align-items: center;
+}
+.closeIconContainer{
+   width: 100%;
+   text-align: right;
+   padding-right: 8px;
+   padding-top: 8px;
+   opacity: 0.8;
+   color: white;
+} 
+.closeIconContainer svg:hover{
+   cursor: pointer;
+   opacity: 1;
+}
+.ownerInfCoverContainer h1{
+   text-align: center;
+   font-size: 26px;
+   margin-bottom: 12px;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.userInfWrapper{
+      margin-top:80px ;
+      zoom: 0.8;
+      color: white;
+      width: 400px;
+      min-height: 500px;
+      max-height: fit-content;
+      background-color: black;
+      border: 2px solid;
+      border-image: linear-gradient(90deg, rgba(246,153,14,0.9616888991924895) 0%, rgba(19,13,221,1) 100%) 10 / 3px;
+      box-shadow: 2px 40px 50px 0px rgb(10, 10, 10);
+      /* border-radius: 15px; */
+      display: flex; 
+      flex-direction: column;
+      
+}
+.ownerImgContainer{
+   width: 100%;
+   text-align: center;
+   margin-bottom: 22px;
+}
+.ownerTextContainer{
+   width: 100%;
+   max-height: fit-content;
+   padding: 18px 16px 28px 16px;
+   font-size: 22px;
+}
+.ownerIconsContainer{
+   /* border:2px solid gray; */
+   height: 40px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap:30px;
+   font-size: 22px;
+   margin-top: 22px;
+   margin-bottom: 18px;
+   
+}
+.ownerIconsContainer a:link,a:visited,a:active{
+   color:white;
+}
+.ownerIconsContainer svg{
+   font-size: 22px;
+   background-color: rgb(68, 68, 68);
+   width: 40px;
+   height: 40px;
+   border-radius: 50px;
+   padding: 4px;
+   box-shadow: 0 0 5px 3px white;
+   transition: all 0.3s;
+}
+.ownerIconsContainer svg:hover{
+   box-shadow: 0 0 5px 3px gray;
+   padding: 8px;
+}

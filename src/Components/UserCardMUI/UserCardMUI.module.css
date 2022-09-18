@@ -1,8 +1,9 @@
 .cardMenu{
      position: absolute;
      background-color: black;
+     color: white;
      width: 80%;
-     height: 48%;
+     height: 44%;
      border-radius: 50%;
      text-align: center;
      display: flex;
@@ -10,12 +11,12 @@
      justify-content: center;
      align-items: center;
      border:"1px solid gray"; 
-     box-shadow :0px 0px 30px gray;
+     box-shadow :0px 0px 30px rgb(171, 170, 170);
      opacity: 0.9;
-
      left: 50%;
      top: 50%;
      transform: translate(-50%, -50%);
+     
   
 }
 

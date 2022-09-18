@@ -49,22 +49,3 @@
    border-radius: 50%;
    cursor: pointer;
 }
-/* User information absolute container */
-/* only cover the book wrapper to disable it! */
-.ownerInfCoverContainer{
-   position: fixed;
-   width: 86%;
-   height: 100vh;
-   top:0px;
-   background-color: bisque;
-   z-index: 10;
-   margin:auto;
-   display: flex;
-   justify-content: center;   
-   align-items: center;
-}
-.userInfWrapper{
-      width: 400px;
-      height: 400px;
-      border: 1px solid black;
-}
