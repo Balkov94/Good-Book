@@ -1,4 +1,4 @@
-import * as React from 'react';
+import styles from './LoginForm.module.css';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,17 +7,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { IFormData } from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
+import { IFormData } from "../../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
 // react-form-hook (controller)    +  YUP Validation
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import ControllerTextFieldInput from '../ControllerTextFieldInput/ControllerTextFieldInput';
+import ControllerTextFieldInput from '../../../MUIComponents/ControllerTextFieldInput/ControllerTextFieldInput';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 
 export interface ILoginFormProps {
    switchForm?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-   handleLoginData(formData?: Partial<IFormData>): void;
+   handleLoginData?: (formData?: Partial<IFormData>) => void;
 }
 
 interface ILoginFormInputs {
@@ -82,7 +82,7 @@ export const formsMUIoverride = {
    },
 }
 
-export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginFormProps) {
+export default function LoginForm({ switchForm, handleLoginData }: ILoginFormProps) {
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ILoginFormInputs>({
       defaultValues: { username: "", password: "" },
       mode: "onChange",
@@ -95,20 +95,40 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
       if (event !== undefined) {
          event.preventDefault();
       }
-      handleLoginData(data);
+
+      console.log(data);
+      // handleLoginData(data);
    };
 
    return (
       <ThemeProvider theme={theme}>
-         <Container component="main" maxWidth="xs">
+         <Container component="main" maxWidth="xs" className={styles.mainFormWrapper}
+            sx={{
+               color: "white",
+               pb:"60px",
+               height:"fit-content",
+               borderRadius:"15px",
+               position:"relative",
+               // border: "2px solid red",
+               // bgcolor:"black",
+               // zIndex:"1400",
+            }}>
             <CssBaseline />
+            <img src={require("../LoginPageImages/booksPile.png")} alt="booksPile" className={styles.absoluteImg1}/>
+            <img src={require("../LoginPageImages/bulb.png")} alt="booksPile" className={styles.absoluteImg2}/>
             <Box
                sx={{
-                  height: "100vh",
+                  height: "560px",
                   marginTop: 8,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
+                  backgroundColor: "black",
+                  borderRadius:"15px",
+                  paddingLeft:"20px",
+                  paddingRight:"20px",
+                  border: "2px solid gray",
+                  boxShadow: "0px 0px 25px 10px white;"
                }}
             >
                <Avatar sx={{ m: 1, bgcolor: '#2286f7' }}>
@@ -120,9 +140,13 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
 
                {/* FORM ______________________________________________________ */}
                {/* !!! Controller syntax without GENERIC factory function */}
+               {/* PNG Absolute imgs */}
+            
+
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
                   sx={{
+                     // border: "2px solid gray",
                      mt: 1,
                      ...formsMUIoverride
                   }}
@@ -148,21 +172,29 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                   />
                   {/* one way to show errors (react-from-hook) */}
                   {/* <p>{errors.username?.message}</p> */}
-                  <ControllerTextFieldInput
+                  <Controller
                      control={control}
                      name="password"
-                     label='Password'
-                     type="password"
-                     error={errors.password?.message}
+                     render={({ field: { onChange, value } }) => (
+                        <TextField
+                           margin="normal"
+                           fullWidth
+                           id="password"
+                           label="Password"
+                           name="password"
+                           placeholder='password'
+                           value={value}
+                           onChange={onChange}
+                           error={errors.password?.message ? true : false}
+                           helperText={errors.password?.message || ""}
+                        />
+                     )}
                   />
-                  <p style={{ color: "gray" }}>Tips for testing: username:1x8, password:1x8+!</p>
 
                   <Button type="submit" fullWidth variant="contained"
-                     disabled={(isValid && isDirty)===false} sx={{ mt: 3, mb: 2 }}
-
-                  >
-                     Login
-                  </Button>
+                     disabled={(isValid && isDirty) === false} sx={{ mt: "60px", mb: 2 }}
+                  >  Login  </Button>
+                   
                   <Button variant="contained" color="success" fullWidth sx={{ mt: 0, mb: 2 }}
                      onClick={switchForm}>
                      Don't have an account? Go to register!

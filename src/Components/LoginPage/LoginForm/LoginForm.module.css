@@ -1,0 +1,20 @@
+/* styles for Absolute img decoration next login form */
+.absoluteImg1{
+   position: absolute;
+   z-index:-50;
+   top:24px;  
+   left: -220px;
+   width: 446px; 
+   /* border: 2px solid purple; */
+}
+.absoluteImg2{
+   position: absolute;
+   z-index:-50;
+   top:48px;  
+   right: -140px;
+   width: 318px; 
+   /* border: 2px solid purple; */
+}
+.mainFormWrapper{
+   z-index: 1400  !important;
+}

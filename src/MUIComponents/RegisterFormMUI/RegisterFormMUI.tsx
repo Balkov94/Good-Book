@@ -15,7 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import ControllerTextFieldInput from '../ControllerTextFieldInput/ControllerTextFieldInput';
-import { formsMUIoverride } from '../LoginFormMUI/LoginFormMUI';
+import { formsMUIoverride } from '../../Components/LoginPage/LoginForm/LoginForm';
 
 const theme = createTheme();
 

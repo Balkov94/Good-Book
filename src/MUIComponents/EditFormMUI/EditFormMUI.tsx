@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import ControllerTextFieldInput from '../ControllerTextFieldInput/ControllerTextFieldInput';
 import styles from "./overrideMUIStyles.module.css"; //some little override -> main BOX container
-import { formsMUIoverride } from '../LoginFormMUI/LoginFormMUI';
+import { formsMUIoverride } from '../../Components/LoginPage/LoginForm/LoginForm';
 
 const theme = createTheme();
 const URL = /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;

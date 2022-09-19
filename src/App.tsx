@@ -11,6 +11,7 @@ import ReadingClubs from './Components/ReadingClubs/ReadingClubs';
 import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
 import MyProfile from './Components/MyProfilePage/MyProfile';
 import AllUsersPage from './Components/AllUsersPage/AllUsersPage';
+import LoginPage from './Components/LoginPage/LoginPage';
 
 
 function App() {
@@ -18,14 +19,15 @@ function App() {
    return (
       <>
          <Header></Header>
-         <AllUsersPage/>
+         <LoginPage/>
+         {/* <AllUsersPage/>
          <MyProfile/>
-         <ExchangerPage></ExchangerPage>
+         <ExchangerPage></ExchangerPage> */}
          {/* <ReadingClubs/> */}
-         <AboutUs/>
+         {/* <AboutUs/>
           <WelcomeCarousel></WelcomeCarousel>
          <QuestionRoom></QuestionRoom>
-         <ViewMore></ViewMore> 
+         <ViewMore></ViewMore>  */}
 
          {/* <Footer></Footer> */}
       </>

@@ -1,0 +1,18 @@
+.LoginPageMainContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ 
+   height: 100%;
+   max-height: fit-content;
+   padding-top: 40px;
+   padding-bottom: 80px;
+   
+   overflow: hidden;
+ 
+   background-image: url("../QuestionRoom/ViewMore/paperBG.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 18px;
+}

@@ -4,7 +4,7 @@ import { IFormData } from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
 import { UserApi } from "../../Rest-APi-Client/client"
 import UserDataContainer from "../UserDataContainer/UserDataContainer";
 import { UserClass } from "../../Rest-APi-Client/shared-types";
-import LoginFormMUI from "../../MUIComponents/LoginFormMUI/LoginFormMUI";
+import LoginFormMUI from "../LoginPage/LoginForm/LoginForm";
 import RegisterFormMUI from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
 
 type FormType = "login" | "register";
@@ -109,10 +109,11 @@ function FormContainer() {
             (!logged)
                ? (
                   formType === "login" ?
-                     <LoginFormMUI
-                        switchForm={handleFormType}
-                        handleLoginData={handleLoginData}
-                     ></LoginFormMUI>
+                     // <LoginFormMUI
+                     //    switchForm={handleFormType}
+                     //    handleLoginData={handleLoginData}
+                     // ></LoginFormMUI>
+                     null
                      :
                      <RegisterFormMUI
                         switchForm={handleFormType}
