@@ -69,7 +69,7 @@ const schema = yup.object({
 }).required();
 
 const theme = createTheme();
-export const formsMUIoverride = {
+ const formsMUIoverride = {
    dispay: "flex",
    justifyContent: "center",
    alignItems: "center",

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styles from "./FormContainer.module.css";
-import { IFormData } from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
+import { IFormData } from "../RegisterPage/RegisterForm/RegisterForm";
 import { UserApi } from "../../Rest-APi-Client/client"
 import UserDataContainer from "../UserDataContainer/UserDataContainer";
 import { UserClass } from "../../Rest-APi-Client/shared-types";
 import LoginFormMUI from "../LoginPage/LoginForm/LoginForm";
-import RegisterFormMUI from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
+// import RegisterFormMUI from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
 
 type FormType = "login" | "register";
 type Logged = true | false;
@@ -84,7 +84,7 @@ function FormContainer() {
       setEditMode(editMode => !editMode);
       // if edit mode is on block scrolling
       blockScrolling(editMode)
-  
+
    }
 
    const handleUserEdition = (formData: UserClass) => {
@@ -106,28 +106,29 @@ function FormContainer() {
    return (
       <div className={styles.formContainer}>
          {
-            (!logged)
-               ? (
-                  formType === "login" ?
-                     // <LoginFormMUI
-                     //    switchForm={handleFormType}
-                     //    handleLoginData={handleLoginData}
-                     // ></LoginFormMUI>
-                     null
-                     :
-                     <RegisterFormMUI
-                        switchForm={handleFormType}
-                        handleCreateUser={handleCreateUser}
-                     ></RegisterFormMUI>
-               )
-               : (<UserDataContainer
-                  loggedUser={loggedUser}
-                  handleIslogged={handleIslogged}
-                  handleUserEdition={handleUserEdition}
+            // (!logged)
+            //</div>? (
+            //formType === "login" ?
+            // <LoginFormMUI
+            //    switchForm={handleFormType}
+            //    handleLoginData={handleLoginData}
+            // ></LoginFormMUI>
+            //   null
+            //   :
+            // <RegisterFormMUI
+            //    switchForm={handleFormType}
+            //    handleCreateUser={handleCreateUser}
+            // ></RegisterFormMUI>
+            //)
 
-                  handleEditMode={handleEditMode}
-                  currEditMode={editMode}
-               ></UserDataContainer>)
+            // : (<UserDataContainer
+            //    loggedUser={loggedUser}
+            //    handleIslogged={handleIslogged}
+            //    handleUserEdition={handleUserEdition}
+
+            //    handleEditMode={handleEditMode}
+            //    currEditMode={editMode}
+            // ></UserDataContainer>)
          }
       </div>
    );
@@ -137,7 +138,7 @@ export default FormContainer;
 
 
 // *func Block srcoling when EditForm is open (EditForm is position FIXED)
-export const blockScrolling = (editMode:boolean) => {
+export const blockScrolling = (editMode: boolean) => {
    if (editMode === false) {
       document.body.style.overflow = "hidden";
    }

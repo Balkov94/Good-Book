@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { UserApi } from "../../Rest-APi-Client/client";
 import { UserClass } from "../../Rest-APi-Client/shared-types";
 import Filters, { IFilterValues } from "../FIlters/Filter";
-import RegisterFormMUI, { IFormData } from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
+// import RegisterFormMUI from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
+// import RegisterFormMUI, { IFormData } from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
 import styles from "./AllUsersContainer.module.css"
 import UserCardMUI from "../UserCardMUI/UserCardMUI";
 import { Button } from "@mui/material";
+import { IFormData } from "../RegisterPage/RegisterForm/RegisterForm";
 interface IAllUserContainerProps {
-   loggedUser: IFormData;
+   loggedUser?: IFormData;
 }
 
 
@@ -18,7 +20,7 @@ function AllUsersContainer({ loggedUser }: IAllUserContainerProps) {
    useEffect(() => {
       UserApi.findAll()
          .then(res => {
-            setFetchedUsers(res.reverse());
+            // setFetchedUsers(res.reverse());
          })
          .catch(err => alert("ERROR:Coudn't get users from the data!"))
    }, []);
@@ -35,18 +37,18 @@ function AllUsersContainer({ loggedUser }: IAllUserContainerProps) {
    }
 
    const handleEditUser = (editUser: UserClass) => {
-      UserApi.update(editUser)
-         .then(() => {
-            setFetchedUsers(fetchedUsers.map(user => {
-               if (user.id === editUser.id) {
-                  return editUser;
-               }
-               return user
-            }));
-         })
-         .catch(err => {
-            alert("ERROR: Unsuccessful edition!");
-         })
+      // UserApi.update(editUser)
+      //    .then(() => {
+         //    setFetchedUsers(fetchedUsers.map(user => {
+         //       if (user.id === editUser.id) {
+         //          return editUser;
+         //       }
+         //       return user
+         //    }));
+         // })
+         // .catch(err => {
+         //    alert("ERROR: Unsuccessful edition!");
+         // })
    }
 
    const handleCreateUser = (newUserObj: IFormData) => {
@@ -62,7 +64,7 @@ function AllUsersContainer({ loggedUser }: IAllUserContainerProps) {
 					  
                   // setFetchedUsers(fetchedUsers => fetchedUsers.concat(res));
                   //put new user infront of the array
-                  setFetchedUsers(fetchedUsers => [res, ...fetchedUsers]);
+                  // setFetchedUsers(fetchedUsers => [res, ...fetchedUsers]);
                   // close createUserForm
                   handleShowCreateForm();
                })
@@ -89,7 +91,7 @@ function AllUsersContainer({ loggedUser }: IAllUserContainerProps) {
          // if filtervalue ==="All" need to return all of curr value
          const role = filter.role === "All" ? user.role : filter.role;
          const status = filter.status === "All" ? user.status : filter.status;
-         if (user.id !== loggedUser.id
+         if (user.id !== loggedUser?.id
             && user.role == role
             && user.status == status //StatusEnum return num but from fetch get str FIX -> ==
             && (user.username.toLowerCase().includes(filter.searchText.toLowerCase())
@@ -117,11 +119,11 @@ function AllUsersContainer({ loggedUser }: IAllUserContainerProps) {
                ? <>
                   <h3 style={{ textAlign: "center", fontSize: "22px", color: "lime" }}> 
                   Creating user ...</h3>
-                  <RegisterFormMUI
+                  {/* <RegisterFormMUI
                      handleCreateUser={handleCreateUser}
                      isAdminUsingForm={true}
                      handleShowCreateForm={handleShowCreateForm}
-                  ></RegisterFormMUI>
+                  ></RegisterFormMUI> */}
                </>
                :
                <>

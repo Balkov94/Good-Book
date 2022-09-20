@@ -8,14 +8,14 @@ import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { blue, red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { IFormData } from '../../MUIComponents/RegisterFormMUI/RegisterFormMUI';
 import { UserApi } from '../../Rest-APi-Client/client';
 import { GenderEnum, RoleEnum, StatusEnum, UserClass } from '../../Rest-APi-Client/shared-types';
-import EditFormMUI from '../../MUIComponents/EditFormMUI/EditFormMUI';
+// import EditFormMUI from '../../MUIComponents/EditFormMUI/EditFormMUI';
 
 import styles from './UserCardMUI.module.css';
 import { blockScrolling } from '../AllFormTypes/FormContainer';
 import { borderRadius } from '@mui/system';
+import { IFormData } from '../RegisterPage/RegisterForm/RegisterForm';
 interface ExpandMoreProps extends IconButtonProps {
    expand: boolean;
 }

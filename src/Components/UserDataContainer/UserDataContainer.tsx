@@ -2,7 +2,7 @@ import styles from "./UserDataContainer.module.css"
 import { GenderEnum, RoleEnum, StatusEnum, UserClass } from "../../Rest-APi-Client/shared-types";
 import AllUsersContainer from "../AllUsersContainer/AllUsersContainer";
 import { IEditMode } from "../AllFormTypes/FormContainer";
-import EditFormMUI from "../../MUIComponents/EditFormMUI/EditFormMUI";
+// import EditFormMUI from "../../MUIComponents/EditFormMUI/EditFormMUI";
 import { Button } from "@mui/material";
 
 interface IUserDataContainerProps {
@@ -57,16 +57,17 @@ function UserDataContainer({ loggedUser,
          </div>
 
          {currEditMode
-            && (<EditFormMUI
-               handleFormData={handleUserEdition}
-               editUser={loggedUser}
-               handleEditMode={handleEditMode}
-            ></EditFormMUI>)
+            // && (<EditFormMUI
+            //    handleFormData={handleUserEdition}
+            //    editUser={loggedUser}
+            //    handleEditMode={handleEditMode}
+            // ></EditFormMUI>)
          }
          {/* element wrapper ->all users card + options to edit/delete them */}
          {
             (RoleEnum[loggedUser!.role] === "Admin" && loggedUser !== undefined)
-            && <AllUsersContainer loggedUser={loggedUser}></AllUsersContainer>
+            // && <AllUsersContainer loggedUser={loggedUser}></AllUsersContainer>
+            && <AllUsersContainer ></AllUsersContainer>
          }
 
       </>

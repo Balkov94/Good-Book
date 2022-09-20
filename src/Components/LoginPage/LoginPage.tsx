@@ -2,9 +2,9 @@ import LoginForm from './LoginForm/LoginForm';
 import styles from './LoginPage.module.css';
 
 function LoginPage() {
-   return (  
+   return (
       <div className={styles.LoginPageMainContainer}>
-            <LoginForm/>
+         <LoginForm />
       </div>
    );
 }

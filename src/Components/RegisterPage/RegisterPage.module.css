@@ -1,0 +1,15 @@
+.registerPageMainContainer{
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   min-height: 90vh;
+   max-height: fit-content;
+   padding-bottom: 100px;
+   border: 4px solid rgb(91, 91, 91);
+
+   background-image: url("../QuestionRoom/ViewMore/paperBG.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 18px;
+}

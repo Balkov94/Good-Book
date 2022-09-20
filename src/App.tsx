@@ -12,6 +12,7 @@ import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubF
 import MyProfile from './Components/MyProfilePage/MyProfile';
 import AllUsersPage from './Components/AllUsersPage/AllUsersPage';
 import LoginPage from './Components/LoginPage/LoginPage';
+import RegisterPage from './Components/RegisterPage/RegisterPage';
 
 
 function App() {
@@ -19,15 +20,16 @@ function App() {
    return (
       <>
          <Header></Header>
+         <RegisterPage/>
          <LoginPage/>
-         {/* <AllUsersPage/>
+         <AllUsersPage/>
          <MyProfile/>
-         <ExchangerPage></ExchangerPage> */}
-         {/* <ReadingClubs/> */}
-         {/* <AboutUs/>
+         <ExchangerPage></ExchangerPage>
+         <AboutUs/>
           <WelcomeCarousel></WelcomeCarousel>
          <QuestionRoom></QuestionRoom>
-         <ViewMore></ViewMore>  */}
+         <ViewMore></ViewMore> 
+         {/* <ReadingClubs/> */}
 
          {/* <Footer></Footer> */}
       </>

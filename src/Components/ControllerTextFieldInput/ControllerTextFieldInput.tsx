@@ -54,8 +54,6 @@ function ControllerTextFieldInput<TFieldValues extends FieldValues>(
                   helperText={error || ''} placeholder={name}  
                   autoFocus={autoFocus}
                   inputProps={{ maxLength,readOnly}}
-            
-         
                   {...field} 
                />
             }

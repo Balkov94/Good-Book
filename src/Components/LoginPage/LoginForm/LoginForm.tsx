@@ -7,12 +7,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { IFormData } from "../../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
+import { IFormData } from "../../RegisterPage/RegisterForm/RegisterForm";
 // react-form-hook (controller)    +  YUP Validation
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import ControllerTextFieldInput from '../../../MUIComponents/ControllerTextFieldInput/ControllerTextFieldInput';
+import ControllerTextFieldInput from '../../ControllerTextFieldInput/ControllerTextFieldInput';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 
 export interface ILoginFormProps {
