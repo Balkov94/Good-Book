@@ -13,36 +13,65 @@ import MyProfile from './Components/MyProfilePage/MyProfile';
 import AllUsersPage from './Components/AllUsersPage/AllUsersPage';
 import LoginPage from './Components/LoginPage/LoginPage';
 import RegisterPage from './Components/RegisterPage/RegisterPage';
+import { Outlet } from 'react-router-dom';
 
+// import {
+//    createBrowserRouter,
+//    RouterProvider,
+//    Route,
+// } from "react-router-dom";
+
+// const router = createBrowserRouter([
+//    {
+//       path: "/",
+//       element: <WelcomeCarousel/>,
+
+//    },
+//    {
+//       path: "/QuestionRoom",
+//       element: <QuestionRoom/>,
+//       children: [
+//          {
+//            path: "/QuestionRoom/:questionID",
+//            element:  <ViewMore/> ,
+//          },
+//        ],
+//    },
+//    {
+//       path: "/ExchangerPage",
+//       element:   <ExchangerPage/>,
+//    },
+//    {
+//       path: "/ReadingClubs",
+//       element: <ReadingClubs/>,
+//    },
+//    {
+//       path: "/AboutUs",
+//       element: <AboutUs />,
+//    },
+//    {
+//       path: "/Login",
+//       element:  <LoginPage />,
+//    },
+//    {
+//       path: "/Register",
+//       element: <RegisterPage />,
+//    },
+//    {
+//       path: "/AllUsers",
+//       element:   <AllUsersPage />,
+//    },
+//    {
+//       path: "/MyProfile",
+//       element: <MyProfile />,
+//    },
+// ]);
 
 function App() {
 
    return (
-      <>
-         <Header></Header>
-         <RegisterPage/>
-         <LoginPage/>
-         <AllUsersPage/>
-         <MyProfile/>
-         <ExchangerPage></ExchangerPage>
-         <AboutUs/>
-          <WelcomeCarousel></WelcomeCarousel>
-         <QuestionRoom></QuestionRoom>
-         <ViewMore></ViewMore> 
-         {/* <ReadingClubs/> */}
 
-         {/* <Footer></Footer> */}
-      </>
-
-
-
-
-      // users administration
-      //  <div className={style.mainAppDiv}>
-      //       <Header></Header>
-      //       <FormContainer></FormContainer>
-      //       <Footer></Footer>                           
-      //  </div>
+     <></>
 
    );
 }
