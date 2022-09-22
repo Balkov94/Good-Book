@@ -3,9 +3,9 @@ export interface Identifiable<K> {
 }
 export type IdType = number | undefined;
 
-export enum GenderEnum {
-     Male = 1, Female,
-}
+// export enum GenderEnum {
+//      Male = 1, Female,
+// }
 export enum RoleEnum {
      User = 1, Admin,
 }
@@ -24,7 +24,8 @@ export class UserClass {
           public lname: string,
           readonly  username: string,
           public password: string,
-          public gender = GenderEnum.Male,
+          public mail: string,
+          public phone: string,
           public role = RoleEnum.User,
           public picture: string,
           public description: DescriptionType="",
@@ -36,7 +37,7 @@ export class UserClass {
      toString = () => {
           console.log(`fname:${this.fname}, lname:${this.lname}
           .username: ${this.username} , password:${this.password},
-          gender:${this.gender}, role:${this.role}, pic:${this.picture}
+          gender: role:${this.role}, pic:${this.picture}
           description: ${this.description}, status:${this.status},
           timeOfCreation: ${this.timeOfCreation}, 
           timeOfModification:${this.timeOfModification}

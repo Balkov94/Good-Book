@@ -15,8 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 import styles from './Header.module.css';
 import { Outlet, Link } from "react-router-dom";
 
-const pages = ['Question Room', 'Reading Clubs', 'Exchange Page', 'About Us'];
-const settings = ['My Profile', 'Logout'];
+const pages = ['QuestionRoom', 'ReadingClubs', 'ExchangePage', 'AboutUs'];
+const settings = ['MyProfile', 'Logout'];
 
 const Header = () => {
    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -168,7 +168,7 @@ const Header = () => {
                   <>
                      <Link to="/Login"><Button variant="text" >Login</Button></Link>
                      <Link to="/Register"> <Button variant="text">Register</Button> </Link>
-                     <Link to="/All Users"><Button variant="contained">ALL USERS</Button>   </Link>
+                     <Link to="/AllUsers"><Button variant="contained">ALL USERS</Button>   </Link>
 
                   </>
                }

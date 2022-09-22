@@ -2,9 +2,9 @@
    width: 100%;
    min-height: 80vh;
    max-height: fit-content;
-   position: absolute;
-   z-index: 10;
-   border: 5px solid rgb(252, 165, 3);
+   position: static;
+   z-index: 0;
+   border: 10px solid rgb(252, 165, 3);
    background-image: url("paperBG.jpg");
    background-size: cover;
    background-repeat: no-repeat;

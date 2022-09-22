@@ -9,7 +9,7 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { blue, red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { UserApi } from '../../Rest-APi-Client/client';
-import { GenderEnum, RoleEnum, StatusEnum, UserClass } from '../../Rest-APi-Client/shared-types';
+import { RoleEnum, StatusEnum, UserClass } from '../../Rest-APi-Client/shared-types';
 // import EditFormMUI from '../../MUIComponents/EditFormMUI/EditFormMUI';
 
 import styles from './UserCardMUI.module.css';

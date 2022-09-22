@@ -39,3 +39,11 @@
    padding:40px 60px 100px 60px;
    gap: 60px 60px;
 }
+
+.questionRoomOutlet{
+   width: 80%;
+   height: 600px;
+   border: 5px solid black;
+   position: static;
+
+}

@@ -1,77 +1,90 @@
-import Header from './Components/Header/Header';
-import style from "./app.module.css"
-import Footer from './Components/Footer/Footer';
-import FormContainer from './Components/AllFormTypes/FormContainer';
+import {
+   Routes,
+   Route,
+   Outlet,
+} from "react-router-dom";
+
 import { WelcomeCarousel } from './Components/WelcomeCarousel/WelcomeCarousel';
 import QuestionRoom from './Components/QuestionRoom/QuestionRoom';
 import ViewMore from './Components/QuestionRoom/ViewMore/ViewMore';
 import ExchangerPage from './Components/ExhcangerPage/ExchangerPage';
-import AboutUs from './Components/AboutUs/AboutUs';
 import ReadingClubs from './Components/ReadingClubs/ReadingClubs';
-import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
-import MyProfile from './Components/MyProfilePage/MyProfile';
-import AllUsersPage from './Components/AllUsersPage/AllUsersPage';
+import AboutUs from './Components/AboutUs/AboutUs';
 import LoginPage from './Components/LoginPage/LoginPage';
 import RegisterPage from './Components/RegisterPage/RegisterPage';
-import { Outlet } from 'react-router-dom';
-
-// import {
-//    createBrowserRouter,
-//    RouterProvider,
-//    Route,
-// } from "react-router-dom";
+import AllUsersPage from './Components/AllUsersPage/AllUsersPage';
+import MyProfile from './Components/MyProfilePage/MyProfile';
+import Header from './Components/Header/Header';
+import RouterRoot from './Components/Root/Root';
 
 // const router = createBrowserRouter([
 //    {
 //       path: "/",
-//       element: <WelcomeCarousel/>,
-
-//    },
-//    {
-//       path: "/QuestionRoom",
-//       element: <QuestionRoom/>,
+//       element: <><RouterRoot /></>,
 //       children: [
 //          {
-//            path: "/QuestionRoom/:questionID",
-//            element:  <ViewMore/> ,
+//             path: "/",
+//             element: <WelcomeCarousel />,
 //          },
-//        ],
+//          {
+//             path: "/Question Room",
+//             element: <QuestionRoom />,
+//             children: [
+//                {
+
+//                   path: "QuestionRoom/:questionID",
+//                   element: <ViewMore />,
+//                },
+//             ],
+//          },
+//          {
+//             path: "/Reading Clubs",
+//             element: <ReadingClubs />,
+//          },
+//          {
+//             path: "/Exchange Page",
+//             element: <ExchangerPage />,
+//          },
+//          {
+//             path: "/About Us",
+//             element: <AboutUs />,
+//          },
+//          {
+//             path: "/Login",
+//             element: <LoginPage />,
+//          },
+//          {
+//             path: "/Register",
+//             element: <RegisterPage />,
+//          },
+//          {
+//             path: "/All Users",
+//             element: <AllUsersPage />,
+//          },
+//          {
+//             path: "/My Profile",
+//             element: <MyProfile />,
+//          },
+
+//       ]
+
 //    },
-//    {
-//       path: "/ExchangerPage",
-//       element:   <ExchangerPage/>,
-//    },
-//    {
-//       path: "/ReadingClubs",
-//       element: <ReadingClubs/>,
-//    },
-//    {
-//       path: "/AboutUs",
-//       element: <AboutUs />,
-//    },
-//    {
-//       path: "/Login",
-//       element:  <LoginPage />,
-//    },
-//    {
-//       path: "/Register",
-//       element: <RegisterPage />,
-//    },
-//    {
-//       path: "/AllUsers",
-//       element:   <AllUsersPage />,
-//    },
-//    {
-//       path: "/MyProfile",
-//       element: <MyProfile />,
-//    },
+
 // ]);
+
 
 function App() {
 
    return (
+      <div>
 
-     <></>
+         <Header />
+
+         <main >
+               <Outlet/>
+         </main>
+
+      </div>
 
    );
 }

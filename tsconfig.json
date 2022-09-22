@@ -5,7 +5,7 @@
      //  "dom",
      //  "dom.iterable",
      //  "esnext"
-     "es6", "dom","dom.iterable",
+     "es6", "dom","dom.iterable","es5",
     ],
     //Material UI opt
     "noImplicitAny": true,

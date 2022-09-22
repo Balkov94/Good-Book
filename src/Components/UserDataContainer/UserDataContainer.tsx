@@ -1,5 +1,5 @@
 import styles from "./UserDataContainer.module.css"
-import { GenderEnum, RoleEnum, StatusEnum, UserClass } from "../../Rest-APi-Client/shared-types";
+import {RoleEnum, StatusEnum, UserClass } from "../../Rest-APi-Client/shared-types";
 import AllUsersContainer from "../AllUsersContainer/AllUsersContainer";
 import { IEditMode } from "../AllFormTypes/FormContainer";
 // import EditFormMUI from "../../MUIComponents/EditFormMUI/EditFormMUI";
@@ -30,7 +30,7 @@ function UserDataContainer({ loggedUser,
                <p>Last name: {loggedUser?.lname}</p>
                <p>Username: {loggedUser?.username}</p>
                <p>Password: {loggedUser?.password}</p>
-               <p>Gender: {GenderEnum[loggedUser!.gender]}</p>
+               {/* <p>Gender: {GenderEnum[loggedUser!.gender]}</p> */}
                <p>Role: {RoleEnum[loggedUser!.role]}</p>
                <p>Status: {StatusEnum[loggedUser!.status]}</p>
                <p>Created on date: {loggedUser?.timeOfCreation}</p>

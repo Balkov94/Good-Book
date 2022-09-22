@@ -4,7 +4,7 @@ import styles from './RegisterPage.module.css';
 
 
 function RegisterPage() {
-   return (  
+   return (     
       <div className={styles.registerPageMainContainer}>
             <RegisterForm/>
       </div>
