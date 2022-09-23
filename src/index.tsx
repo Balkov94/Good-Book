@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter,Route, Routes } from "react-router-dom";
 import { WelcomeCarousel } from './Components/WelcomeCarousel/WelcomeCarousel';
 import QuestionRoom from './Components/QuestionRoom/QuestionRoom';
 import ViewMore from './Components/QuestionRoom/ViewMore/ViewMore';
@@ -19,13 +19,16 @@ const root = ReactDOM.createRoot(
    document.getElementById('root') as HTMLElement
 );
 root.render(
-   <React.StrictMode>
+   // <React.StrictMode>
       <BrowserRouter>
          <App />
          <Routes>
             <Route index element={<WelcomeCarousel />} />
-            <Route path="QuestionRoom" element={<QuestionRoom />} />
-            <Route path=":questionId" element={<ViewMore />} />
+            {/* CARE WITH -> : / and open close tag of <Route> */}
+            <Route path="QuestionRoom" element={<QuestionRoom />}>
+               <Route path=":questionId" element={<ViewMore />} />
+            </Route>
+            {/* __________________________________________________ */}
             <Route path="ReadingClubs" element={<ReadingClubs />} />
             <Route path="ExchangePage" element={<ExchangerPage />} />
             <Route path="AboutUs" element={<AboutUs />} />
@@ -35,10 +38,8 @@ root.render(
             <Route path="MyProfile" element={<MyProfile />} />
             <Route path="*" element={<h1 style={{ color: "red", textAlign: "center", fontSize: "40px" }}>Error 404</h1>} />
          </Routes>
-
-         <Outlet/>
       </BrowserRouter>
-   </React.StrictMode>
+   // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

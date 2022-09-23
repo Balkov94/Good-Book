@@ -2,9 +2,10 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@mui/material';
 import styles from './carousel.module.css';
+import { Outlet } from 'react-router-dom';
 
 export function WelcomeCarousel(props: any) {
-   const items= [
+   const items = [
       {
          name: "./bfind.jpg",
       },
@@ -29,6 +30,7 @@ export function WelcomeCarousel(props: any) {
    // console.log(size);
 
    return (
+
       <Carousel
          navButtonsAlwaysInvisible={true}
          indicators={false}

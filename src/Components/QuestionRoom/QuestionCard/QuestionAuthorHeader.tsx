@@ -5,8 +5,10 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { IQuestionAuthorHeaderProps } from './QuestionCard';
 
-function QuestionAuthorHeader() {
+function QuestionAuthorHeader({username,fname,lname,picture}:IQuestionAuthorHeaderProps) {
+
    return (  
       <Card sx={{ 
          maxWidth: 345,
@@ -24,7 +26,7 @@ function QuestionAuthorHeader() {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {picture?picture:"R"}
           </Avatar>
         }
       //   action={
@@ -32,8 +34,8 @@ function QuestionAuthorHeader() {
       //       <MoreVertIcon />
       //     </IconButton>
       //   }
-        title="User username"
-        subheader="User firstName lastName"
+        title={username}
+        subheader={`${fname}  ${lname}`}
       />
       </Card>
      

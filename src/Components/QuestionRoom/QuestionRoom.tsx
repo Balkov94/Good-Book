@@ -1,50 +1,86 @@
 import { Outlet } from 'react-router-dom';
-import QuestionCard, { IQuestionCardProps } from './QuestionCard/QuestionCard';
+import QuestionCard, { IQuestionAuthorHeaderProps, IQuestionCardProps } from './QuestionCard/QuestionCard';
 import styles from './QuestionRoom.module.css';
-
-const bookQuestions: IQuestionCardProps[] = [
-   {
-      id: "1",
-      bookImg: "https://cdn.ozone.bg/media/catalog/product/cache/1/small_image/178x222/9df78eab33525d08d6e5fb8d27136e95/b/r/b3f75afdb59284ea0f7dbac6221d3871/bridzhartan-5--na-sar-filip--s-lyubov-20.jpg",
-      bookTitle: "Book ONE 111",
-      bookQuestion: "FIRST QUESTION 1?",
-   },
-   {
-      id: "2",
-      bookImg: "https://cdn.ozone.bg/media/catalog/product/cache/1/small_image/178x222/9df78eab33525d08d6e5fb8d27136e95/h/r/127e62aaadcc8684c15c8ddad41446ed/hronika-na-bolkata-20.jpg",
-      bookTitle: "TWO 222",
-      bookQuestion: "FIRST safkoalskf;laskf;laks;flka;lfsk;laskflasfk;alksf;lakf;laksf;lak;fk?",
-   }
-]
-
+import React, { useEffect, useState } from 'react';
+import { questionApi, UserApi } from '../../Rest-APi-Client/client';
 
 
 function QuestionRoom() {
-   return (
-      <div className={styles.mainQuestionRoomContainer}>
-         <div className={styles.mainTitleContainer}>? Question Room &#191; </div>
-
-         <div className={styles.qWraper}>
-            {
-               bookQuestions.map(q => {
-                  return <QuestionCard
-                  key={q.id}
-                     id={q.id}
-                     bookImg={q.bookImg}
-                     bookTitle={q.bookTitle}
-                     bookQuestion={q.bookQuestion}
-
-                  />
-               })
+   // On visit QuestionRoom page
+   //1.Get all Questions from the server
+   //2. Iterate all Q and print them
+   const [questionsList, setQuestionsList] = useState<IQuestionCardProps[] | any[]>();
+   const [questionCreators, setQuestionCreators] = useState<IQuestionAuthorHeaderProps[] | any[]>();
+   useEffect(() => {
+      const promise1 = questionApi.findAll()
+      // .then(res => {
+      //    console.log(res);
+      //    setQuestionsList(res);
+      // });
+      const promise2 = UserApi.findAll()
+      // .then(res => {
+      //    console.log(res);
+      //    setQuestionsList(res);
+      // });
+      Promise.all([promise1, promise2]).then((values) => {
+         const questions = (values[0]); //questions
+         const users = (values[1]); //users
+         const mixed = users.map((x, i) => {
+            return {
+               ...x,
+               ...questions[i]
             }
+
+         })
+         console.log(mixed);
+
+      });
+
+   }, []);
+   // useEffect(() => {
+   //    questionApi.findAll()
+   //       .then(res => {
+   //          console.log(res);
+   //          setQuestionsList(res);
+   //       })
+   // }, []);
+   // useEffect(() => {
+   //    UserApi.findAll()
+   //       .then(res => {
+   //          console.log(res);
+   //          setQuestionCreators(res);
+   //       })
+   // }, []);
+   return (
+      <>
+         <div className={styles.mainQuestionRoomContainer}>
+            <div className={styles.mainTitleContainer}>? Question Room &#191; </div>
+
+            <div className={styles.qWraper}>
+               {/* {
+                  questionsList?.map((q, i) => {
+                     return <QuestionCard
+                        // card main
+                        key={q.id}
+                        id={q.id}
+                        picture={q.picture}
+                        title={q.title}
+                        content={q.content}
+                        creatorId={q.creatorId}
+                        //card header (user box) with creator data
+                        username={questionCreators![i].username}
+                        fname={q.fname}
+                        lname={q.lname}
+                     />
+                  })
+               } */}
+            </div>
+            {/* render ViewMore in Absolute Zindex-10 DIV */}
+            <Outlet />
          </div>
 
-         {/* <div className={styles.questionRoomOutlet}> */}
-            {/* <Outlet /> */}
-         {/* </div> */}
+      </>
 
-
-      </div>
    );
 }
 
