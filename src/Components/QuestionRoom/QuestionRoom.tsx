@@ -1,79 +1,58 @@
 import { Outlet } from 'react-router-dom';
 import QuestionCard, { IQuestionAuthorHeaderProps, IQuestionCardProps } from './QuestionCard/QuestionCard';
 import styles from './QuestionRoom.module.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { questionApi, UserApi } from '../../Rest-APi-Client/client';
 
+ interface questionListType extends IQuestionCardProps, IQuestionAuthorHeaderProps{};
 
 function QuestionRoom() {
    // On visit QuestionRoom page
    //1.Get all Questions from the server
    //2. Iterate all Q and print them
-   const [questionsList, setQuestionsList] = useState<IQuestionCardProps[] | any[]>();
-   const [questionCreators, setQuestionCreators] = useState<IQuestionAuthorHeaderProps[] | any[]>();
+   const [questionsList, setQuestionsList] = useState<questionListType[]>([]);
    useEffect(() => {
       const promise1 = questionApi.findAll()
-      // .then(res => {
-      //    console.log(res);
-      //    setQuestionsList(res);
-      // });
       const promise2 = UserApi.findAll()
-      // .then(res => {
-      //    console.log(res);
-      //    setQuestionsList(res);
-      // });
       Promise.all([promise1, promise2]).then((values) => {
          const questions = (values[0]); //questions
          const users = (values[1]); //users
-         const mixed = users.map((x, i) => {
+         // make arr of mixed {}s with both q and u props
+         const mixed:questionListType[] = users.map((x, i) => {
             return {
                ...x,
                ...questions[i]
             }
-
          })
-         console.log(mixed);
-
+         setQuestionsList(mixed);
       });
 
    }, []);
-   // useEffect(() => {
-   //    questionApi.findAll()
-   //       .then(res => {
-   //          console.log(res);
-   //          setQuestionsList(res);
-   //       })
-   // }, []);
-   // useEffect(() => {
-   //    UserApi.findAll()
-   //       .then(res => {
-   //          console.log(res);
-   //          setQuestionCreators(res);
-   //       })
-   // }, []);
+   
    return (
       <>
          <div className={styles.mainQuestionRoomContainer}>
             <div className={styles.mainTitleContainer}>? Question Room &#191; </div>
 
             <div className={styles.qWraper}>
-               {/* {
-                  questionsList?.map((q, i) => {
+               {
+                  questionsList.map(q => {
                      return <QuestionCard
                         // card main
                         key={q.id}
                         id={q.id}
-                        picture={q.picture}
+                        questionPic={q.questionPic}
                         title={q.title}
                         content={q.content}
                         creatorId={q.creatorId}
                         //card header (user box) with creator data
-                        username={questionCreators![i].username}
+                        username={q.username}
                         fname={q.fname}
                         lname={q.lname}
+                        userPic={q.userPic}
                      />
                   })
-               } */}
+               }
             </div>
             {/* render ViewMore in Absolute Zindex-10 DIV */}
             <Outlet />

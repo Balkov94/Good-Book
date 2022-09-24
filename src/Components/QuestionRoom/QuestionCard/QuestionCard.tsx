@@ -3,39 +3,35 @@ import styles from './QuestionCard.module.css';
 import Button from '@mui/material/Button';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Link } from 'react-router-dom';
-
+// i for question data
 export interface IQuestionCardProps {
-   picture: string,
+   questionPic: string,
    title: string,
    content: string,
    creatorId: string,
    id: string,
 
 }
+// i for user data (question creator)
 export interface IQuestionAuthorHeaderProps{
    username:string,
    fname:string,
    lname:string,
-   picture?:string
+   userPic:string
 }
 
-function QuestionCard({ picture, title, content, id, creatorId ,username,fname,lname,}: IQuestionCardProps & IQuestionAuthorHeaderProps) {
-   // 1.Make Request to BD by creatorId (userId) - useEffect
-   //2. Put the fetched data to QuestionAuthorHeader
+function QuestionCard({questionPic, title, content, id, creatorId ,username,fname,lname,userPic}: IQuestionCardProps & IQuestionAuthorHeaderProps) {
    return (
       <>
-
          <div className={styles.mainContainer}>
             <div className={styles.bookImgContainer}>
-               <img src={picture}
+               <img src={questionPic}
                   alt="test-img" />
             </div>
             <div className={styles.questionContainer}>
                <div className={styles.questionAuthor}>
                   {/* Question Creator(user) data */}
-                  <QuestionAuthorHeader {...{username,fname,lname}}/>
-
-
+                  <QuestionAuthorHeader {...{username,fname,lname,userPic}}/>
                </div>
                <div className={styles.bookTitleContainer}>
                   <h3>Book title:</h3>
@@ -50,7 +46,7 @@ function QuestionCard({ picture, title, content, id, creatorId ,username,fname,l
                   <Link
                       // ViewMore component -> Outlet is located QuestionRoom
                      to={`/QuestionRoom/:${id}`}
-                     state={{ picture, title, content, id, creatorId }}>
+                     state={{ id,creatorId, questionPic, title, content,username,fname,lname,userPic }}>
                      <Button variant="contained" color="warning" className={styles.ViewMoreBtn}>
                         view more ...
                      </Button>

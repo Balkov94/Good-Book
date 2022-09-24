@@ -7,7 +7,7 @@
    height: 100%;
    top:0px;
    /* background-color: bisque; */
-   border: 2px solid red;
+   /* border: 2px solid red; */
    z-index: 10;
    margin:auto;
    display: flex;
@@ -33,7 +33,7 @@
    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .userInfWrapper{
-      margin-top:80px ;
+      margin-top:50px ;
       zoom: 0.8;
       color: white;
       width: 400px;
@@ -51,13 +51,26 @@
 .ownerImgContainer{
    width: 100%;
    text-align: center;
-   margin-bottom: 22px;
+   margin-bottom: 8px;
+}
+.ownerImgContainer img{
+   width: 200px;
+   border-radius: 50%;
+   box-shadow: 0px 0px 25px 2px #8a8a8a 
 }
 .ownerTextContainer{
+   display: flex;
+   flex-direction: column;
    width: 100%;
    max-height: fit-content;
-   padding: 18px 16px 28px 16px;
-   font-size: 22px;
+   padding: 8px 16px 28px 16px;
+   line-height: normal;
+   font-size: 20px;
+   /* border: 2px solid red; */
+}
+.ownerTextContainerPLine{
+   display: flex;
+   justify-content: space-between;
 }
 .ownerIconsContainer{
    /* border:2px solid gray; */

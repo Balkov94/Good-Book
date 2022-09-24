@@ -7,38 +7,38 @@ import { red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IQuestionAuthorHeaderProps } from './QuestionCard';
 
-function QuestionAuthorHeader({username,fname,lname,picture}:IQuestionAuthorHeaderProps) {
+function QuestionAuthorHeader({ username, fname, lname, userPic }: IQuestionAuthorHeaderProps) {
 
-   return (  
-      <Card sx={{ 
+   return (
+      <Card sx={{
          maxWidth: 345,
-         color:"white",
-         '& .MuiTypography-root.MuiTypography-body2.MuiCardHeader-title':{
-            fontSize:"18px",
-            fontStyle:"Bold",
+         color: "white",
+         '& .MuiTypography-root.MuiTypography-body2.MuiCardHeader-title': {
+            fontSize: "18px",
+            fontStyle: "Bold",
 
          },
-         '& .MuiTypography-body2.MuiCardHeader-subheader':{
-            color:"white",
-            opacity:"0.8"
+         '& .MuiTypography-body2.MuiCardHeader-subheader': {
+            color: "white",
+            opacity: "0.8"
          },
       }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {picture?picture:"R"}
-          </Avatar>
-        }
-      //   action={
-      //     <IconButton aria-label="settings">
-      //       <MoreVertIcon />
-      //     </IconButton>
-      //   }
-        title={username}
-        subheader={`${fname}  ${lname}`}
-      />
+         <CardHeader
+            avatar={
+               <Avatar sx={{ bgcolor: red[500] }} alt="user"
+                  src={userPic} aria-label="recipe">
+               </Avatar>
+            }
+            //   action={
+            //     <IconButton aria-label="settings">
+            //       <MoreVertIcon />
+            //     </IconButton>
+            //   }
+            title={username}
+            subheader={`${fname}  ${lname}`}
+         />
       </Card>
-     
+
    );
 }
 

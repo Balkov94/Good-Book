@@ -32,14 +32,14 @@ function ClubRoom() {
          </div>
 
          <div className={styles.clubRoomCommentWrapper}>
+            {/* <Comment />
             <Comment />
             <Comment />
             <Comment />
             <Comment />
             <Comment />
             <Comment />
-            <Comment />
-            <Comment />
+            <Comment /> */}
          </div>
       </div>
 

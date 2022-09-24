@@ -60,5 +60,6 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
 
 // export const UserApi: ApiClient<IdType, UserClass> = new ApiClientImpl('users');
 export const UserApi: ApiClient<IdType, any> = new ApiClientImpl('users');
-
 export const questionApi: ApiClient<IdType, any> = new ApiClientImpl('questions');
+export const commentApi: ApiClient<IdType, any> = new ApiClientImpl('comments');
+export const bookApi: ApiClient<IdType, any> = new ApiClientImpl('books');

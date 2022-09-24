@@ -1,22 +1,26 @@
-import { style } from '@mui/system';
-import QuestionCard from '../QuestionCard/QuestionCard';
-import Comment from '../../Comment/Comment';
+import Comment, { ICommentProps } from '../../Comment/Comment';
 import TopQuestion from './TopQuestion/TopQuestion';
 import styles from './ViewMore.module.css';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { commentApi } from '../../../Rest-APi-Client/client';
+
 
 
 function ViewMore() {
-   // 1. get state (props from QuestioCard)
-   // 2. Pass these props to child comonents 
-   const { id, title, content, picture,creatorId } = useLocation().state;
-   // console.log(id);
-   // console.log(bookTitle);
-   // console.log(bookQuestion);
-   // console.log(bookImg);
-   // console.log({id,bookTitle,bookQuestion,bookImg})
-   // console.log(typeof {id,bookTitle,bookQuestion,bookImg})
+   // 1. get state (props from QuestioCard) -> LInk state props / useLocation
+   const { id, creatorId, questionPic, title, content, username, fname, lname, userPic }
+      = useLocation().state;
+   const [commentsList, setcommentsList] = useState<ICommentProps[] | []>([]);
+   // 2. From id(question) fetch all comments
+   useEffect(() => {
+      commentApi.findAll()
+         .then(res => {
+            setcommentsList(res)
+            console.log(res);
 
+         })
+   }, [])
 
    return (
       <div className={styles.mainViewMoreContainer}>
@@ -24,14 +28,25 @@ function ViewMore() {
             <div className={styles.mainTitleContainer}> </div>
             <h1 >Discussion room</h1>
          </div>
-         <TopQuestion {...{ id, title, content, picture,creatorId }}></TopQuestion>
+         <TopQuestion {...{ id, creatorId, questionPic, title, content, username, fname, lname, userPic }}></TopQuestion>
 
          <h1 className={styles.sectionTitles}>Comments:</h1>
          <div className={styles.commentsWrapper}>
-            <Comment></Comment>
-            {/* <Comment></Comment>
-            <Comment></Comment> */}
-
+            <>
+               {
+                  commentsList.filter(c => c.questionId === id)
+                     .map((comment,index) => {
+                        return <Comment
+                           key={comment.id}
+                           id={comment.id}
+                           creatorId={comment.creatorId}
+                           questionId={comment.questionId}
+                           content={comment.content}
+                           orderIndex={index+1}
+                        />
+                     })
+               }
+            </>
          </div>
       </div>
    );
