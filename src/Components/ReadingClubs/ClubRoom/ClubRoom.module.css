@@ -1,17 +1,21 @@
 .clubroomMainContainer{
-   width: 100%;
-   height: 80vh;
-   overflow-y:auto;
-   /* max-height: fit-content; */
-   border: 2px solid black;
+   width: 70%;
+   height: 100%;
+   /* min-height: 87.4vh; */
    padding: 40px 20px;
-   margin: 00px 0px 10px 380px;
+   margin: 00px 0px 0px 380px;
    background-image: url("./ClubRoomImgs/clubRoom2.jpg");
    background-attachment: fixed;
    background-repeat: no-repeat;
    background-size: cover;
    line-height: 24px;
    color:white;
+
+   top:66px;
+   right: 0px;
+   bottom:0px;
+   overflow-y: auto;
+   position: fixed;
 }
 
 .clubDataContainer{
@@ -56,10 +60,6 @@
    padding: 8px;
 }
 
-
-
-
-
 .clubRoomCommentWrapper{
    margin-top:40px;
    margin-bottom:40px;
@@ -68,7 +68,5 @@
    gap: 90px;
    padding: 26px 40px;
    width: 100%;
-   min-height: 100%;
-   height: fit-content;
-   /* background-color: gray; */
+   height: fit-content; 
 }

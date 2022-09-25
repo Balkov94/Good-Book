@@ -1,8 +1,6 @@
 .bClubsMainContainer{
    width: 100%;
-   min-height: 80vh;
-   /* max-height: 80vh; */
-   max-height: fit-content;
+   /* height depends on ClubRoom component styles */
    display: flex;
    flex-direction: row;
    border: 2px solid black;
@@ -11,14 +9,15 @@
    background-repeat: no-repeat;
    background-attachment: fixed;
    line-height: 24px;
-
+   /* border: 2px solid green; */
    position: relative;
+   overflow-x: hidden;
 }
 
 .listClubsContainer{
    min-width: 380px;
    max-width: 380px;
-   max-height: 100vh;
+   max-height: 100%;
    background-color:black;
    color: white;
    display: flex;
@@ -27,9 +26,11 @@
    gap:50px;
 
    overflow-y: auto;
-   top:9vh;
+   top:60px;
    bottom:0;
    position: fixed;
+
+   /* border: 5px solid orange; */
    
 }
 .listClubsContainer h1{

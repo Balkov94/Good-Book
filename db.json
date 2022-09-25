@@ -50,27 +50,59 @@
   "comments":[
    {
       "id":1,
-      "questionId":1,
-      "creatorId":1,
-      "content":"Comment ONE1 for Question 1"   
+      "discussionId":1,
+      "creatdiorId":1,
+      "content":"Comment ONE1 for Question 1" ,
+      "isClub":false
    },
    {
       "id":2,
-      "questionId":1,
+      "discussionId":1,
       "creatorId":1,
-      "content":"Comment Two2 for Question 1"  
+      "content":"Comment Two2 for Question 1" ,
+      "isClub":false 
    },
    {
       "id":3,
-      "questionId":1,
+      "discussionId":1,
       "creatorId":2,
-      "content":"Comment THREE 3 for Question 1"  
+      "content":"Comment THREE 3 for Question 1" ,
+      "isClub":false
    },
    {
       "id":4,
-      "questionId":2,
+      "discussionId":2,
       "creatorId":2,
-      "content":"Comment ONE for Question 2222"  
+      "content":"Comment ONE for Question 2",
+      "isClub":false
+   },
+   {
+      "id":5,
+      "discussionId":1,
+      "creatorId":2,
+      "content":"Comment ONE for CLUB 1" ,
+      "isClub":false 
+   },
+   {
+      "id":6,
+      "discussionId":2,
+      "creatorId":2,
+      "content":"Comment ONE for CLUB  2",
+      "isClub":true
+   },
+   {
+      "id":7,
+      "discussionId":2,
+      "creatorId":1,
+      "content":"Comment 2 for CLUB  2",
+      "isClub":true
+   },
+   {
+      "id":8,
+      "discussionId":2,
+      "creatorId":2,
+      "content":"Comment 3 for CLUB  2",
+      "isClub":true
    }
   ],
   "clubs":[
@@ -86,7 +118,7 @@
       "id":2,
       "creatorId":2,
       "name":"222 CLub",
-      "interests":["secondClub,interest1"],
+      "interests":["secondClub","interest1"],
       "participants":[2],
       "banned":[1]
    }

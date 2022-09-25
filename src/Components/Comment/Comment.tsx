@@ -7,14 +7,18 @@ import { UserApi } from '../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../QuestionRoom/QuestionCard/QuestionCard';
 
 export interface ICommentProps {
+   // for sorting club or question
    id: string,
-   questionId: string,
-   creatorId: string,
+   discussionId: string,
+   isClub: boolean,
+   //for rendering with author and index
    content: string,
    orderIndex?: number,
+   creatorId: string,
 }
 
-function Comment({ id, questionId, creatorId, content, orderIndex }: ICommentProps) {
+// i will need id,discussionId,isClub for DELETE,EDIT when got DB and Back-end
+function Comment({ id, discussionId,isClub, creatorId, content, orderIndex }: ICommentProps) {
    //1. Fetch creator data for the Comment card
    // *** using JSON-server so need fetch all andsort than just single fetch by ID
    const [commentCreator, setCommentCreator] = useState<IQuestionAuthorHeaderProps | undefined>();

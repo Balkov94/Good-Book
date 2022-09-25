@@ -12,15 +12,16 @@ function ViewMore() {
    const { id, creatorId, questionPic, title, content, username, fname, lname, userPic }
       = useLocation().state;
    const [commentsList, setcommentsList] = useState<ICommentProps[] | []>([]);
-   // 2. From id(question) fetch all comments
+   // 2. From id(question) fetch all comments !*id(question) === discussionId(comment)
    useEffect(() => {
       commentApi.findAll()
-         .then(res => {
-            setcommentsList(res)
-            console.log(res);
+         .then((res: ICommentProps[]) => {
+            //!!! get only if commend isClub===false
+            const sortedComments = res.filter(c => (c.discussionId === id && c.isClub === false));
+            setcommentsList(sortedComments);
 
          })
-   }, [])
+   }, [id])
 
    return (
       <div className={styles.mainViewMoreContainer}>
@@ -34,17 +35,17 @@ function ViewMore() {
          <div className={styles.commentsWrapper}>
             <>
                {
-                  commentsList.filter(c => c.questionId === id)
-                     .map((comment,index) => {
-                        return <Comment
-                           key={comment.id}
-                           id={comment.id}
-                           creatorId={comment.creatorId}
-                           questionId={comment.questionId}
-                           content={comment.content}
-                           orderIndex={index+1}
-                        />
-                     })
+                  commentsList.map((comment, index) => {
+                     return <Comment
+                        key={comment.id}
+                        id={comment.id}
+                        creatorId={comment.creatorId}
+                        discussionId={comment.discussionId}
+                        content={comment.content}
+                        orderIndex={index + 1}
+                        isClub={comment.isClub}
+                     />
+                  })
                }
             </>
          </div>

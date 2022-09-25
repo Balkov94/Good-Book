@@ -63,3 +63,4 @@ export const UserApi: ApiClient<IdType, any> = new ApiClientImpl('users');
 export const questionApi: ApiClient<IdType, any> = new ApiClientImpl('questions');
 export const commentApi: ApiClient<IdType, any> = new ApiClientImpl('comments');
 export const bookApi: ApiClient<IdType, any> = new ApiClientImpl('books');
+export const clubApi: ApiClient<IdType, any> = new ApiClientImpl('clubs');

@@ -1,12 +1,24 @@
-import BookClubCard from './ClubCard/ClubCard';
+import ClubCard, { IClubCard } from './ClubCard/ClubCard';
 import styles from './ReadingClubs.module.css';
 import Button from '@mui/material/Button';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
-import { useState } from 'react';
 import CreateClubForm, { IClubData } from './CreateClubForm/CreateClubForm';
 import ClubRoom from './ClubRoom/ClubRoom';
+import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { clubApi } from '../../Rest-APi-Client/client';
 
 function ReadingClubs() {
+   //1.Fetch all Reading clubs from DB
+   const [clubsList, setClubsList] = useState<IClubCard[]>();
+   useEffect(() => {
+      clubApi.findAll()
+         .then(res => {
+            setClubsList(res);
+         })
+   }, [])
+
+
    const [createClubMenu, setCreateClubMenu] = useState<boolean>(false);
 
    const toggleCreateClubMenu = () => {
@@ -18,7 +30,6 @@ function ReadingClubs() {
 
    }
 
-
    return (
       <>
          <div className={styles.bClubsMainContainer}>
@@ -28,23 +39,23 @@ function ReadingClubs() {
                   <BookmarkAddIcon />Create Club
                </Button>
 
-               <BookClubCard />
-               <BookClubCard />
-               <BookClubCard />
-               <BookClubCard />
-               <BookClubCard />
-               <BookClubCard />
-               <BookClubCard />
-               <BookClubCard />
-               <BookClubCard />
+               {
+                  clubsList?.map(c => {
+                     return <ClubCard key={c.id}
+                        id={c.id}
+                        name={c.name}
+                        interests={c.interests}
+                        participants={c.participants}
+                        banned={c.banned}
+                        creatorId={c.creatorId}
+                     />
+                  })
+               }
+
             </div>
-            
-            {
-               //switch Club chats
-               <ClubRoom />
+            {/* Each club discussion room - ClubRoom */}
+            <Outlet />
 
-
-            }
          </div>
 
          {
