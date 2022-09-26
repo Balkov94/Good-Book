@@ -13,7 +13,7 @@ import { RoleEnum, StatusEnum, UserClass } from '../../Rest-APi-Client/shared-ty
 // import EditFormMUI from '../../MUIComponents/EditFormMUI/EditFormMUI';
 
 import styles from './UserCardMUI.module.css';
-import { blockScrolling } from '../AllFormTypes/FormContainer';
+
 import { borderRadius } from '@mui/system';
 import { IFormData } from '../RegisterPage/RegisterForm/RegisterForm';
 interface ExpandMoreProps extends IconButtonProps {

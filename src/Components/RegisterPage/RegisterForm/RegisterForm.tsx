@@ -189,8 +189,8 @@ export default function RegisterFormMUI({handleCreateUser, isAdminUsingForm, swi
    }
 
    return (
-      <ThemeProvider theme={theme}>
-         <Container component="main" maxWidth="xs">
+      <ThemeProvider theme={theme} >
+         <Container component="main" maxWidth="xs" style={{display:"flex",justifyContent:"center"}}>
             <CssBaseline />
             <Box
                sx={{
@@ -198,14 +198,14 @@ export default function RegisterFormMUI({handleCreateUser, isAdminUsingForm, swi
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
+                  justifyContent:"center",
                   width: "440px",
                   bgcolor: "black",
                   color: "white",
                   paddingBottom: "80px",
                   border: "2px solid gray",
                   borderRadius: "15px",
-
-
+                  
                }}
             >
                <Avatar sx={{ m: 1, bgcolor: '#ffc244' }}><AppRegistrationIcon style={{ fontSize: "32px" }} /></Avatar>
