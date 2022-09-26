@@ -16,6 +16,7 @@ import MyProfile from './Components/MyProfilePage/MyProfile';
 import BookOwnerCard from './Components/ExhcangerPage/BookOwnerCard/BookOwnerCard';
 import ClubRoom from './Components/ReadingClubs/ClubRoom/ClubRoom';
 import IndexClubRoom from './Components/ReadingClubs/IndexClubRoom/IndexClubRoom';
+import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
 
 
 const root = ReactDOM.createRoot(
@@ -33,9 +34,12 @@ root.render(
          </Route>
          {/* __________________________________________________ */}
          <Route path="ReadingClubs" element={<ReadingClubs />} >
-            <Route index element={<IndexClubRoom />} />
+            <Route path="" element={<IndexClubRoom />} >
+               {/* <Route path=":clubId" element={<ClubRoom />} /> */}
+            </Route>
             <Route path=":clubId" element={<ClubRoom />} />
          </Route>
+         <Route path="ReadingClubs/createClub" element={<CreateClubForm />} />
          <Route path="ExchangePage" element={<ExchangerPage />} />
          <Route path="AboutUs" element={<AboutUs />} />
          <Route path="Login" element={<LoginPage />} />

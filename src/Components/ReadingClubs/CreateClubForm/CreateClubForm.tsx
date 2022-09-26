@@ -15,8 +15,7 @@ import * as yup from "yup";
 import CloseIcon from '@mui/icons-material/Close';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
-
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -30,10 +29,11 @@ export interface IClubData {
    interest5?: string,
    interest6?: string,
 }
-interface ICreateClubProps {
-   onClose: () => void,
-   onCreate: (newClub: IClubData) => void,
-}
+// !!! used before reacrt router
+// interface ICreateClubProps {
+//    onClose: () => void,
+//    onCreate: (newClub: IClubData) => void,
+// }
 
 const schema = yup.object({
    clubName: yup.string().required("Required field.")
@@ -122,7 +122,7 @@ const theme = createTheme();
    },
 }
 
-export default function CreateClubForm({ onClose, onCreate }: ICreateClubProps) {
+export default function CreateClubForm() {
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<IClubData>({
       defaultValues: {
          clubName: "",
@@ -137,9 +137,6 @@ export default function CreateClubForm({ onClose, onCreate }: ICreateClubProps) 
       resolver: yupResolver(schema)
 
    });
-
-
-
    const sendSubmit = (data: IClubData, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
@@ -148,7 +145,8 @@ export default function CreateClubForm({ onClose, onCreate }: ICreateClubProps) 
 
       // onCreate(data);
    };
-
+   // back button(used in X to close create Form)
+   const navigate=useNavigate();
    return (
       <ThemeProvider theme={theme}>
          <Container className={styles.mainContainer}>
@@ -186,7 +184,7 @@ export default function CreateClubForm({ onClose, onCreate }: ICreateClubProps) 
                   }}
                >
 
-                  <div className={styles.closeIconContainer} onClick={onClose}>
+                  <div className={styles.closeIconContainer} onClick={()=>navigate(-1)}>
                      <CloseIcon />
                   </div>
 

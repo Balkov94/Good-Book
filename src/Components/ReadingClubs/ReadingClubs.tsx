@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import CreateClubForm, { IClubData } from './CreateClubForm/CreateClubForm';
 import ClubRoom from './ClubRoom/ClubRoom';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { clubApi } from '../../Rest-APi-Client/client';
 
@@ -18,26 +18,17 @@ function ReadingClubs() {
          })
    }, [])
 
-
-   const [createClubMenu, setCreateClubMenu] = useState<boolean>(false);
-
-   const toggleCreateClubMenu = () => {
-      setCreateClubMenu(createClubMenu => !createClubMenu)
-   }
-
-   const handleCreateClub = (newClub: IClubData) => {
-      console.log(newClub);
-
-   }
-
    return (
       <>
          <div className={styles.bClubsMainContainer}>
             <div className={styles.listClubsContainer}>
                <h1>&#x1f4da; Book Clubs:</h1>
-               <Button onClick={toggleCreateClubMenu} variant='contained' color="success">
-                  <BookmarkAddIcon />Create Club
-               </Button>
+               <Link to={"createClub"} >
+                  <Button variant='contained' color="success">
+                     <BookmarkAddIcon />
+                     Create Club
+                  </Button>
+               </Link>
 
                {
                   clubsList?.map(c => {
@@ -54,18 +45,10 @@ function ReadingClubs() {
 
             </div>
             {/* Each club discussion room - ClubRoom */}
-            <Outlet />
-
+            <div className={styles.outletContainer}>
+               <Outlet />
+            </div>
          </div>
-
-         {
-            // toggle Create Club Form
-            createClubMenu &&
-            <CreateClubForm
-               onClose={toggleCreateClubMenu}
-               onCreate={handleCreateClub}
-            />
-         }
       </>
 
    );

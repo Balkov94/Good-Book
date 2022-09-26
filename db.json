@@ -119,7 +119,7 @@
       "creatorId":2,
       "name":"222 CLub",
       "interests":["secondClub","interest1"],
-      "participants":[2],
+      "participants":[2,1],
       "banned":[1]
    }
   ],

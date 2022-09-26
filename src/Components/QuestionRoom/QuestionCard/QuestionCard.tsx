@@ -45,7 +45,7 @@ function QuestionCard({questionPic, title, content, id, creatorId ,username,fnam
 
                   <Link
                       // ViewMore component -> Outlet is located QuestionRoom
-                     to={`/QuestionRoom/:${id}`}
+                     to={`/QuestionRoom/:question${id}`}
                      state={{ id,creatorId, questionPic, title, content,username,fname,lname,userPic }}>
                      <Button variant="contained" color="warning" className={styles.ViewMoreBtn}>
                         view more ...
