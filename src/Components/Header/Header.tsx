@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 import styles from './Header.module.css';
-import { Outlet, Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const pages = ['QuestionRoom', 'ReadingClubs', 'ExchangePage', 'AboutUs'];
 const settings = ['MyProfile', 'Logout'];
@@ -56,27 +56,27 @@ const Header = () => {
 
 
    return (
-      <AppBar position="sticky" sx={{ zIndex: "2000" }} className={styles.mainAppBar}>
+      <AppBar position="sticky" sx={{ zIndex: "2000" }}>
          <Container maxWidth={false} sx={{ backgroundColor: "#f7ba00", marginBottom: "0px", padding: "0px", width: "100%" }}>
             <Toolbar disableGutters>
 
                <Link to="/">
-               <Typography
-                  variant="h6"
-                  noWrap
-                  component="h1"
-                  sx={{
-                     mr: 2,
-                     display: { xs: 'none', md: 'flex' },
-                     fontFamily: 'monospace',
-                     fontWeight: 700,
-                     letterSpacing: '.3rem',
-                     color: 'gray',
-                     textDecoration: 'none',
-                  }}
-               >
-                  <img src={require("./GBlogo2.png")} alt="logo" style={{ width: "200px", }} />
-               </Typography>
+                  <Typography
+                     variant="h6"
+                     noWrap
+                     component="h1"
+                     sx={{
+                        mr: 2,
+                        display: { xs: 'none', md: 'flex' },
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                        letterSpacing: '.3rem',
+                        color: 'gray',
+                        textDecoration: 'none',
+                     }}
+                  >
+                     <img src={require("./GBlogo2.png")} alt="logo" style={{ width: "200px", }} />
+                  </Typography>
                </Link>
 
                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -138,9 +138,9 @@ const Header = () => {
                      textDecoration: 'none',
                   }}
                >
-                     <Link to={"/"}>
+                  <Link to={"/"}>
                      <img src={require("./GBlogo.PNG")} alt="logo" style={{ width: "140px" }} />
-                     </Link>
+                  </Link>
                </Typography>
 
 
@@ -149,14 +149,17 @@ const Header = () => {
                   {/* BIG SCREEN NAV __________________________ */}
                   {
                      pages.map((page) => (
-                        <Link to={page} key={page}>
+                        <NavLink to={page} key={page}
+                           className={({ isActive }) =>
+                              isActive ? styles.activeNav : undefined
+                           }>
                            <Button
                               onClick={handleCloseNavMenu}
-                              sx={{ my: 2, color: 'rgb(48,48,48)', display: 'block', mr: "50px", fontWeight: "700" }}
+                              sx={{ my: 2, color: 'rgb(48,48,48)', display: 'block', mr: "50px", fontWeight: "700",marginLeft:"auto",marginRight:"auto"}}
                            >
                               {page}
                            </Button>
-                        </Link>
+                        </NavLink>
                      ))
                   }
 

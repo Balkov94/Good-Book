@@ -1,5 +1,4 @@
 import styles from './CreateClubForm.module.css';
-
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,8 +12,6 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import CloseIcon from '@mui/icons-material/Close';
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 

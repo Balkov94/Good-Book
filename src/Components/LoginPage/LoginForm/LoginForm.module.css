@@ -5,6 +5,7 @@
    top:24px;  
    left: -220px;
    width: 446px; 
+   animation: show 2s;
    /* border: 2px solid purple; */
 }
 .absoluteImg2{
@@ -13,9 +14,15 @@
    top:48px;  
    right: -140px;
    width: 318px; 
+   animation: show 2s;
    /* border: 2px solid purple; */
 }
 /* add zIndex to  MUI Container component "main" */
 .mainFormWrapper{
    z-index: 1400;
 }
+
+@keyframes show {
+   from {opacity: 0;}
+   to {opacity: 1;}
+ }

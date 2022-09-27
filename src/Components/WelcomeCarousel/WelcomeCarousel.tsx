@@ -1,8 +1,7 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { Paper, Button } from '@mui/material';
+import { Paper} from '@mui/material';
 import styles from './carousel.module.css';
-import { Outlet } from 'react-router-dom';
 
 export function WelcomeCarousel(props: any) {
    const items = [
@@ -25,9 +24,6 @@ export function WelcomeCarousel(props: any) {
          name: "./communityImg.jpg",
       }
    ]
-
-   // let size = window.innerWidth;
-   // console.log(size);
 
    return (
 

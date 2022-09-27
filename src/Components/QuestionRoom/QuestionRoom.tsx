@@ -32,7 +32,7 @@ function QuestionRoom() {
    return (
       <>
          <div className={styles.mainQuestionRoomContainer}>
-            <div className={styles.mainTitleContainer}>? Question Room &#191; </div>
+            <div className={styles.mainTitleContainer}>? Questions Room &#191; </div>
 
             <div className={styles.qWraper}>
                {

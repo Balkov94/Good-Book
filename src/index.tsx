@@ -13,7 +13,6 @@ import LoginPage from './Components/LoginPage/LoginPage';
 import RegisterPage from './Components/RegisterPage/RegisterPage';
 import AllUsersPage from './Components/AllUsersPage/AllUsersPage';
 import MyProfile from './Components/MyProfilePage/MyProfile';
-import BookOwnerCard from './Components/ExhcangerPage/BookOwnerCard/BookOwnerCard';
 import ClubRoom from './Components/ReadingClubs/ClubRoom/ClubRoom';
 import IndexClubRoom from './Components/ReadingClubs/IndexClubRoom/IndexClubRoom';
 import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';

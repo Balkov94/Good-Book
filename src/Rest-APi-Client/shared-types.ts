@@ -27,7 +27,7 @@ export class UserClass {
           public mail: string,
           public phone: string,
           public role = RoleEnum.User,
-          public picture: string,
+          public userPic: string,
           public description: DescriptionType="",
           public status = (StatusEnum.Active),
           public timeOfCreation:string = `${new Date().toDateString()} ${new Date().toLocaleTimeString()} `,
@@ -37,7 +37,7 @@ export class UserClass {
      toString = () => {
           console.log(`fname:${this.fname}, lname:${this.lname}
           .username: ${this.username} , password:${this.password},
-          gender: role:${this.role}, pic:${this.picture}
+          gender: role:${this.role}, pic:${this.userPic}
           description: ${this.description}, status:${this.status},
           timeOfCreation: ${this.timeOfCreation}, 
           timeOfModification:${this.timeOfModification}

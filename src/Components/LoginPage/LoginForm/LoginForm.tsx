@@ -12,11 +12,10 @@ import { IFormData } from "../../RegisterPage/RegisterForm/RegisterForm";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import ControllerTextFieldInput from '../../ControllerTextFieldInput/ControllerTextFieldInput';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import { useNavigate } from 'react-router-dom';
 
 export interface ILoginFormProps {
-   switchForm?: (event: React.MouseEvent<HTMLButtonElement>) => void;
    handleLoginData?: (formData?: Partial<IFormData>) => void;
 }
 
@@ -82,7 +81,7 @@ export const formsMUIoverride = {
    },
 }
 
-export default function LoginForm({ switchForm, handleLoginData }: ILoginFormProps) {
+export default function LoginForm({ handleLoginData }: ILoginFormProps) {
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ILoginFormInputs>({
       defaultValues: { username: "", password: "" },
       mode: "onChange",
@@ -100,22 +99,23 @@ export default function LoginForm({ switchForm, handleLoginData }: ILoginFormPro
       // handleLoginData(data);
    };
 
+   let navigate = useNavigate();
    return (
       <ThemeProvider theme={theme}>
          <Container component="main" maxWidth="xs" className={styles.mainFormWrapper}
             sx={{
                color: "white",
-               pb:"60px",
-               height:"fit-content",
-               borderRadius:"15px",
-               position:"relative",
+               pb: "60px",
+               height: "fit-content",
+               borderRadius: "15px",
+               position: "relative",
                // border: "2px solid red",
                // bgcolor:"black",
                // zIndex:"1400",
             }}>
             <CssBaseline />
-            <img src={require("../LoginPageImages/booksPile.png")} alt="booksPile" className={styles.absoluteImg1}/>
-            <img src={require("../LoginPageImages/bulb.png")} alt="booksPile" className={styles.absoluteImg2}/>
+            <img src={require("../LoginPageImages/booksPile.png")} alt="booksPile" className={styles.absoluteImg1} />
+            <img src={require("../LoginPageImages/bulb.png")} alt="booksPile" className={styles.absoluteImg2} />
             <Box
                sx={{
                   height: "560px",
@@ -124,9 +124,9 @@ export default function LoginForm({ switchForm, handleLoginData }: ILoginFormPro
                   flexDirection: 'column',
                   alignItems: 'center',
                   backgroundColor: "black",
-                  borderRadius:"15px",
-                  paddingLeft:"20px",
-                  paddingRight:"20px",
+                  borderRadius: "15px",
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
                   border: "2px solid gray",
                   boxShadow: "0px 0px 25px 10px white;"
                }}
@@ -141,7 +141,7 @@ export default function LoginForm({ switchForm, handleLoginData }: ILoginFormPro
                {/* FORM ______________________________________________________ */}
                {/* !!! Controller syntax without GENERIC factory function */}
                {/* PNG Absolute imgs */}
-            
+
 
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
@@ -193,10 +193,12 @@ export default function LoginForm({ switchForm, handleLoginData }: ILoginFormPro
 
                   <Button type="submit" fullWidth variant="contained"
                      disabled={(isValid && isDirty) === false} sx={{ mt: "60px", mb: 2 }}
-                  >  Login  </Button>
-                   
+                  >  Login
+                  </Button>
+
                   <Button variant="contained" color="success" fullWidth sx={{ mt: 0, mb: 2 }}
-                     onClick={switchForm}>
+                     onClick={()=>navigate("/Register")}
+                  >
                      Don't have an account? Go to register!
                   </Button>
                </Box>

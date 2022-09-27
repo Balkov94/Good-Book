@@ -1,14 +1,12 @@
 import styles from './BookCard.module.css';
-import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
-import ListIcon from '@mui/icons-material/List';
 import { useState } from 'react';
 import BookOwnerCard from '../BookOwnerCard/BookOwnerCard';
 import InfoIcon from '@mui/icons-material/Info';
-import { Link } from 'react-router-dom';
+
 
 export interface IBookCardProps {
-   id: string,
-   ownerId: string,
+   id: number,
+   ownerId: number,
    title: string,
    bookPic: string,
 }

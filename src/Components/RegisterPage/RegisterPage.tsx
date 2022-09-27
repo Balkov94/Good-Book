@@ -1,4 +1,3 @@
-
 import RegisterForm from './RegisterForm/RegisterForm';
 import styles from './RegisterPage.module.css';
 

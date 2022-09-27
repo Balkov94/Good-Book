@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border:5px solid green;
+    /* border:5px solid green; */
     min-height: 80vh;
     max-height: fit-content;
     position: relative;

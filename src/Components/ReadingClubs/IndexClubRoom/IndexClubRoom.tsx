@@ -1,10 +1,8 @@
 import styles from './IndexClubRoom.module.css';
 import { useEffect, useState } from 'react';
-import { clubApi, UserApi } from '../../../Rest-APi-Client/client';
+import { clubApi,} from '../../../Rest-APi-Client/client';
 import { IClubCard } from '../ClubCard/ClubCard';
-import { Link, useNavigate } from 'react-router-dom';
-import { array } from 'yup/lib/locale';
-
+import {  useNavigate } from 'react-router-dom';
 
 function IndexClubRoom() {
    //1. Fetch logged user data

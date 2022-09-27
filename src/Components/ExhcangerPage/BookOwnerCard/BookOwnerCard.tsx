@@ -3,14 +3,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import EmailIcon from '@mui/icons-material/Email';
 import CallIcon from '@mui/icons-material/Call';
 import { useEffect, useState } from 'react';
-import { IBookCardProps } from '../BookCard/BookCard';
 import { UserApi } from '../../../Rest-APi-Client/client';
-import { Link } from 'react-router-dom';
 
 interface IBookOwnerCardProps {
    toggleBookMenu: () => void,
    title: string,
-   ownerId: string,
+   ownerId: number,
 }
 // need interface for User full date
 interface IOwner {

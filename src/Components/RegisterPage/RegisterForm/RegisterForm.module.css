@@ -1,0 +1,16 @@
+/* Styles for absolute img next to the form   */
+
+.treeImg{
+   position: absolute;
+   width: 1000px;
+   z-index: 0;
+   bottom:0px;
+   left: -300px;
+
+   animation: grow 3s;
+}
+
+@keyframes grow {
+   from {width: 15px;bottom:600px;left:230px;}
+   to {width: 1000px;bottom:0px;left:-300;}
+ }
