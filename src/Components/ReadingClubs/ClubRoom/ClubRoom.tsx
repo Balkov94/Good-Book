@@ -2,13 +2,12 @@ import Comment, { ICommentProps } from '../../Comment/Comment';
 import styles from './ClubRoom.module.css';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
-import { IClubCard } from '../ClubCard/ClubCard';
-import { useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { bookApi, clubApi, commentApi, UserApi } from '../../../Rest-APi-Client/client';
+import { commentApi, UserApi } from '../../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../../QuestionRoom/QuestionCard/QuestionCard';
-import { promises } from 'stream';
-
+import { Button } from '@mui/material';
+import AddComment from '../../AddComment/AddComment';
 
 
 function ClubRoom() {
@@ -18,6 +17,8 @@ function ClubRoom() {
    //4.Fetch all Banned !!!![]
    //5.Fetch comments
    const { id, name, interests, participants, banned, creatorId } = useLocation().state;
+   // console.log("check useLocation.state")
+   // console.log(useLocation().state)
 
    const [clubCreator, setClubCreator] = useState<IQuestionAuthorHeaderProps>();
    const [participantsList, setParticipantsList] = useState<IQuestionAuthorHeaderProps[]>();
@@ -55,20 +56,29 @@ function ClubRoom() {
                setClubComments(filtred);
             })
          })
-
-
    }, [creatorId, participants, banned, id])
+
+   const navigate = useNavigate();
 
    return (
       <div className={styles.clubroomMainContainer}>
          <div className={styles.clubDataContainer}>
             <div className={styles.clubDataText}>
-               <h1>{name}</h1>
+               <div className={styles.titleAndBtns}>
+                  <div>
+                     <h1>Club name: {name} </h1>
+                  </div>
+                  <div>
+                     <Button className={styles.editClubBtn} variant="contained">Edit</Button>
+                     {/* <Button className={styles.editClubBtn} variant="contained">Delete</Button> */}
+                  </div>
+               </div>
                <div>
                   <h2>Club leader: {clubCreator?.username}</h2>
                   <h2>Members: {participants.length}</h2>
                </div>
             </div>
+
             <div className={styles.clubMembersWrapper}>
                {
                   participantsList?.map((p: IQuestionAuthorHeaderProps) => {
@@ -82,6 +92,22 @@ function ClubRoom() {
          </div>
 
          <div className={styles.clubRoomCommentWrapper}>
+            <div className={styles.discRommTitleContainer}>
+               <h1>Discussion room 💬</h1>
+            </div>
+            {
+               (clubComments === undefined || clubComments?.length < 1)
+               &&
+               (<div className={styles.noCommentsContainer}>
+                  <h2>There aren't any comments.</h2>
+                  <h2>Why don't you write the first one? 🤔</h2>
+                  <div>
+                     <img src={require("./ClubRoomImgs/ledArrow.png")} alt="arrow" />
+                  </div>
+               </div>
+               )
+
+            }
             {
                clubComments?.map((c, index) => {
                   return (<Comment
@@ -97,6 +123,11 @@ function ClubRoom() {
                })
             }
          </div>
+
+         <div className={styles.addCommentContainer}>
+            <AddComment />
+         </div>
+
       </div>
 
 

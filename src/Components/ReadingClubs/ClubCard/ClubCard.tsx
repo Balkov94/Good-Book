@@ -35,7 +35,9 @@ function ClubCard({ id, creatorId, name, interests, participants, banned }: IClu
          </div>
          <div className={styles.membersContainer}>
             <SupervisedUserCircleIcon /> {participants.length}
-            <Link to={`/ReadingClubs/:club${id}`} state={{id, creatorId, name, interests, participants, banned}}>
+            <Link
+               to={`/ReadingClubs/:club${id}`}
+               state={{ id, creatorId, name, interests, participants, banned }}>
                <Button size="small" variant="contained" color="info">Sign in</Button>
             </Link>
          </div>

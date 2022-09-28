@@ -1,0 +1,19 @@
+.addCommentMain{
+   /* border: 5px solid red; */
+   width: 100%;
+   min-height: 100vh;
+   height: 100%;
+   display: flex;
+   justify-content: center;   
+   align-items: center;
+   position: fixed;
+   top:5vh;
+   left:0px;
+   right:0px;
+   bottom:0px;
+
+   /* z-index: 100!important; */
+   /* background-color: black; */
+   
+}
+

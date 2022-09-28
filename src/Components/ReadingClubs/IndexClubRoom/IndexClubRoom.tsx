@@ -1,8 +1,8 @@
 import styles from './IndexClubRoom.module.css';
 import { useEffect, useState } from 'react';
-import { clubApi,} from '../../../Rest-APi-Client/client';
+import { clubApi, } from '../../../Rest-APi-Client/client';
 import { IClubCard } from '../ClubCard/ClubCard';
-import {  useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 function IndexClubRoom() {
    //1. Fetch logged user data
@@ -36,11 +36,11 @@ function IndexClubRoom() {
    }, [])
 
    let navigate = useNavigate();
-   const clickHandler = (event: any) => {
-      event.preventDefault();
-      // navigate("/ReadingClubs");
-      navigate("/ReadingClubs/");
-   };
+   // const clickHandler = (event: any) => {
+   //    event.preventDefault();
+   //    // navigate("/ReadingClubs");
+   //    navigate("/ReadingClubs/");
+   // };
 
    return (
       <div className={styles.indexClubRoomMain}>
@@ -54,11 +54,14 @@ function IndexClubRoom() {
                   <h2> 👑 Club leader: </h2>
                   {
                      leaderList?.map((club, index) => {
+                        const { id, creatorId, name, interests, participants, banned } = club;
                         return (
-                           // <Link to={`:club${1}`} key={club.id}>
-                           <a href={"#"} key={club.id} onClick={(event)=>clickHandler(event)}>
-                              <p> {index + 1}. {club.name}</p>
-                           </a>
+                           <Link key={club.id}
+                              to={`/ReadingClubs/:club${club.id}`}
+                              state={{ id, creatorId, name, interests, participants, banned }}
+                           >
+                              <p>{`${index + 1}.${club.name}`}</p>
+                           </Link>
                         )
                      })
                   }
@@ -68,15 +71,20 @@ function IndexClubRoom() {
                   <h2>&#128511; Member:</h2>
                   {
                      memberList?.map((club, index) => {
+                        const { id, creatorId, name, interests, participants, banned } = club;
                         return (
-                           <a href={`#`} key={club.id}>
-                              <p> {index + 1}. {club.name}</p>
-                           </a>
+                           <Link key={club.id}
+                           to={`/ReadingClubs/:club${club.id}`}
+                           state={{ id, creatorId, name, interests, participants, banned }}
+                        >
+                           <p>{`${index + 1}.${club.name}`}</p>
+                        </Link>
                         )
                      })
                   }
 
                </div>
+               <Outlet />
             </div>
          </div>
       </div>

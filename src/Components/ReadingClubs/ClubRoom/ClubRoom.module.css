@@ -1,22 +1,22 @@
-.clubroomMainContainer{
+.clubroomMainContainer {
    height: 100%;
-   /* border: 2px solid blue; */
+   border: 2px solid blue;
    padding: 40px 20px;
    background-image: url("./ClubRoomImgs/clubRoom2.jpg");
    background-attachment: fixed;
    background-repeat: no-repeat;
    background-size: cover;
    line-height: 24px;
-   color:white;
-   top:64px;
+   color: white;
+   top: 64px;
    left: 240px;
    right: 0px;
-   bottom:0px;
+   bottom: 0px;
    overflow-y: auto;
    position: fixed;
 }
 
-.clubDataContainer{
+.clubDataContainer {
    width: 94%;
    min-height: 200px;
    max-height: fit-content;
@@ -27,16 +27,29 @@
    padding: 18px 18px;
    margin: auto;
 }
-.clubDataText{
-      width: 100%;
-      /* border: 1px solid gray; */
+
+.clubDataText {
+   /* border: 1px solid red; */
+   width: 100%;
+   position: relative;
 }
-.clubDataText h1{
+.titleAndBtns{
+   /* border: 2px solid green; */
+   display: flex;
+   flex-direction: row;
+   justify-content:space-between;
+}
+.titleAndBtns div:nth-child(2) button{
+  margin-left: 4px;
+}
+
+.clubDataText h1 {
    width: 100%;
    text-align: center;
    font-size: 28px;
 }
-.clubDataText > div{
+
+.clubDataText>div {
    margin-top: 18px;
    display: flex;
    flex-direction: row;
@@ -44,7 +57,8 @@
    font-size: 18px;
    opacity: 0.8;
 }
-.clubMembersWrapper{
+
+.clubMembersWrapper {
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
@@ -58,18 +72,70 @@
    padding: 8px;
 }
 
-.clubRoomCommentWrapper{
-   margin-top:40px;
-   margin-bottom:40px;
+.clubRoomCommentWrapper {
+   margin-top: 40px;
+   margin-bottom: 40px;
    display: flex;
    flex-direction: column;
    gap: 90px;
    padding: 26px 40px;
    width: 100%;
-   height: fit-content; 
+   height: fit-content;
+}
+.discRommTitleContainer{
+   color:white;
+   background-color: black;
+   border-bottom: 2px solid gray;
+   width: 100%;
+   font-size:28px;
+   text-align: center;
+   padding: 14px 12px;
+   
+}
+.noCommentsContainer{
+   background-color:#ffc244 ;
+   color:rgb(71, 71, 71);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   justify-items:center;
+   width: fit-content;
+   padding: 18px;
+   margin-left: auto;
+   margin-right: auto;
+   font-size: 22px;
+   border-radius: 10px;
+   /* border: 2px solid black; */
+   box-shadow: 0px 0px 40px 4px rgb(255,194,68);
+   margin-bottom: 80px;
+   position: relative;
+}
+.noCommentsContainer h2{
+   width: 100%;
+   text-align: center;
+}
+.noCommentsContainer div img{
+   position: absolute;
+   bottom: -90px;
+   right: -100px;
+   width: 80px;
+   height: 140px;
+   /* border: 2px solid red; */
+   transform: rotate(-64deg);
+   animation: glow infinite 1s alternate-reverse;
+}
+@keyframes glow {
+   from{opacity: 0.5;}
+   to{opacity: 1;}
 }
 
-/* Mobile */
-@media only screen and (max-width: 1000px) {
+.addCommentContainer{
+   position:  fixed;
+   bottom: 40px;
+   right: 60px;
+   border: 2ps soldi red;
+
    
- }
+}
+/* Mobile */
+@media only screen and (max-width: 1000px) {}

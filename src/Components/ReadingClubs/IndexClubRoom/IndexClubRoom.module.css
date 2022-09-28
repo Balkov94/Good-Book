@@ -49,17 +49,28 @@
    display: flex;
    flex-direction: column;
    padding: 4px 4px;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .clubColumnsContainer div h2{
-   font-size: 18px;
+   font-size: 26px;
    border-bottom: 1px solid black;
+   margin-bottom: 18px;
 }
 .clubColumnsContainer div p,a{
-   font-size: 18px;
+   font-size: 20px;
    text-decoration: none;
-   color:black
-}
-/* .outletContainer{
-   width: 100%;
+   color:black;
+   transition: 0.5s;
 
-} */
+}
+.clubColumnsContainer div p:hover{
+   color: #2286f7;
+   font-size: 24px;
+   transition: 0.5s;
+   cursor: pointer;
+
+}
+
+
+
+

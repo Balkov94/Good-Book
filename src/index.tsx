@@ -16,13 +16,14 @@ import MyProfile from './Components/MyProfilePage/MyProfile';
 import ClubRoom from './Components/ReadingClubs/ClubRoom/ClubRoom';
 import IndexClubRoom from './Components/ReadingClubs/IndexClubRoom/IndexClubRoom';
 import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
+import AddComment from './Components/AddComment/AddComment';
 
 
 const root = ReactDOM.createRoot(
    document.getElementById('root') as HTMLElement
 );
 root.render(
-   // <React.StrictMode>
+   <React.StrictMode>
    <BrowserRouter>
       <App />
       <Routes>
@@ -31,11 +32,8 @@ root.render(
          <Route path="QuestionRoom" element={<QuestionRoom />}>
             <Route path=":questionId" element={<ViewMore />} />
          </Route>
-         {/* __________________________________________________ */}
          <Route path="ReadingClubs" element={<ReadingClubs />} >
-            <Route path="" element={<IndexClubRoom />} >
-               {/* <Route path=":clubId" element={<ClubRoom />} /> */}
-            </Route>
+            <Route path="" element={<IndexClubRoom />} />
             <Route path=":clubId" element={<ClubRoom />} />
          </Route>
          <Route path="ReadingClubs/createClub" element={<CreateClubForm />} />
@@ -48,7 +46,7 @@ root.render(
          <Route path="*" element={<h1 style={{ color: "red", textAlign: "center", fontSize: "40px" }}>Error 404</h1>} />
       </Routes>
    </BrowserRouter>
-   // </React.StrictMode>
+   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
