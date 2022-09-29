@@ -66,7 +66,7 @@ function Filters({ onfilterChange, filterValues }: IFilterProps) {
                               <option value={"All"}>All</option>
                               <option value={StatusEnum.Active}>Active</option>
                               <option value={StatusEnum.Deactivated}>Deactivated</option>
-                              <option value={StatusEnum.Suspended}>Suspended</option>
+                              {/* <option value={StatusEnum.Suspended}>Suspended</option> */}
                          </select>
                     {/* </div> */}
                </form>

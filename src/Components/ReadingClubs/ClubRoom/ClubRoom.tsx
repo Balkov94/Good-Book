@@ -60,6 +60,13 @@ function ClubRoom() {
 
    const navigate = useNavigate();
 
+   // update clubComments
+   const createComment=(newComment:ICommentProps)=>{
+         setClubComments(clubComments=>[...(clubComments||[]),newComment]);
+     
+   }
+
+
    return (
       <div className={styles.clubroomMainContainer}>
          <div className={styles.clubDataContainer}>
@@ -110,22 +117,24 @@ function ClubRoom() {
             }
             {
                clubComments?.map((c, index) => {
-                  return (<Comment
-                     key={c.id}
-                     id={c.id}
-                     discussionId={c.discussionId}
-                     isClub={c.isClub}
+                  return (
+                     <Comment
+                        key={c.id}
+                        id={c.id}
+                        discussionId={c.discussionId}
+                        isClub={c.isClub}
 
-                     creatorId={c.creatorId}
-                     content={c.content}
-                     orderIndex={index + 1}
-                  />)
+                        creatorId={c.creatorId}
+                        content={c.content}
+                        orderIndex={index + 1}
+                     />
+                  )
                })
             }
          </div>
-
+         {/* add comment for ReadingClubs -> ClubRoom  */}
          <div className={styles.addCommentContainer}>
-            <AddComment />
+            <AddComment onCreateComment={createComment}/>
          </div>
 
       </div>

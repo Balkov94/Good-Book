@@ -11,7 +11,7 @@ function ViewMore() {
    // 1. get state (props from QuestioCard) -> LInk state props / useLocation
    const { id, creatorId, questionPic, title, content, username, fname, lname, userPic }
       = useLocation().state;
-   const [commentsList, setcommentsList] = useState<ICommentProps[] | []>([]);
+   const [commentsList, setcommentsList] = useState<ICommentProps[]>();
    // 2. From id(question) fetch all comments !*id(question) === discussionId(comment)
    useEffect(() => {
       commentApi.findAll()
@@ -35,7 +35,7 @@ function ViewMore() {
          <div className={styles.commentsWrapper}>
             <>
                {
-                  commentsList.map((comment, index) => {
+                  commentsList?.map((comment, index) => {
                      return <Comment
                         key={comment.id}
                         id={comment.id}

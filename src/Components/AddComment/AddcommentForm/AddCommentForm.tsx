@@ -6,26 +6,29 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { IFormData } from "../../RegisterPage/RegisterForm/RegisterForm";
 // react-form-hook (controller)    +  YUP Validation
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-// @ts-ignore
-//import InputEmoji from 'react-input-emoji';
+import { CommentClass } from '../../../Rest-APi-Client/shared-types';
+import { useParams } from 'react-router-dom';
+import { commentApi } from '../../../Rest-APi-Client/client';
+import { ICommentProps } from '../../Comment/Comment';
+
 
 interface IAddCommentFormInputs {
    content: string,
 }
 
 const schema = yup.object({
-   content: yup.string().required().min(5).max(512),
+   content: yup.string().required().min(1).max(512),
 }).required();
 
+
 const theme = createTheme();
-export const formsMUIoverride = {
+const formsMUIoverride = {
    dispay: "flex",
    justifyContent: "center",
    alignItems: "center",
@@ -75,12 +78,12 @@ export const formsMUIoverride = {
    },
 }
 
-export interface ILoginFormProps {
-   handleLoginData?: (formData?: Partial<IFormData>) => void;
-   toggleForm(): void;
+interface ICreateCommentForm {
+   toggleForm(): void,
+   onCreateComment: (newComment: ICommentProps) => void,
 }
 
-export default function AddCommentForm({ toggleForm }: ILoginFormProps) {
+export default function AddCommentForm({ toggleForm,onCreateComment}: ICreateCommentForm) {
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<IAddCommentFormInputs>({
       defaultValues: { content: "" },
       mode: "onChange",
@@ -88,17 +91,34 @@ export default function AddCommentForm({ toggleForm }: ILoginFormProps) {
 
    });
 
-   console.log(errors)
-   const sendSubmit = (data: IAddCommentFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
+   const params = useParams();
+
+   const sendSubmit = (data: IAddCommentFormInputs,
+      event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
       }
 
-      console.log(data);
-      // handleLoginData(data);
-   };
+      // get date from form data and useParams 
+      // !!! logged user - > assume  its id1 for now (still dont have global state)
+      const urlParams = (params.clubId ? params.clubId : params.question)
+      const paramName = urlParams?.replace(/[^a-zA-Z]+/g, '');
+      const paramId = Number(urlParams!.replace(/\D/g, ""));
+      const comment = new CommentClass(
+         undefined,
+         1,
+         paramId,
+         (paramName === "club" ? true : false),
+         data.content,
 
+      );
+      // console.log(comment);
+      // add comment to the DB
+      toggleForm();
+      commentApi.create(comment);
+      onCreateComment(comment);
 
+   }
    return (
       <ThemeProvider theme={theme}>
          <Container component="main" maxWidth="xs" className={styles.mainFormWrapper}
@@ -108,12 +128,13 @@ export default function AddCommentForm({ toggleForm }: ILoginFormProps) {
                height: "fit-content",
                borderRadius: "15px",
                position: "relative",
-              
+
                // border: "2px solid red",
                // bgcolor:"black",
                // zIndex:"1400",
             }}>
             <CssBaseline />
+
             <Box
                sx={{
                   height: "440px",
@@ -126,16 +147,15 @@ export default function AddCommentForm({ toggleForm }: ILoginFormProps) {
                   paddingLeft: "20px",
                   paddingRight: "20px",
                   border: "2px solid gray",
-                  
-                  // boxShadow: "0px 0px 25px 10px white;"
                }}
             >
                <Avatar sx={{ m: 1, bgcolor: '#00a082' }}>
                   <DriveFileRenameOutlineIcon style={{ fontSize: "34px" }} />
                </Avatar>
                <Typography component="h1" variant="h5">
-                  Writing ...
+                  Add Comment
                </Typography>
+
 
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
@@ -169,18 +189,21 @@ export default function AddCommentForm({ toggleForm }: ILoginFormProps) {
                      <p>{errors.content.message}</p>
 
                   }
+                  
                   <Button type="submit" fullWidth variant="contained"
-                     disabled={(isValid && isDirty) === false} sx={{ mt: "20px", mb: "4px" }}
-                  >  Post
+                     disabled={(isValid && isDirty) === false} sx={{ mt: "20px", mb: "4px" }}>
+                     Post
                   </Button>
+
                   <Button fullWidth variant="outlined"
                      onClick={toggleForm}
-                     sx={{ mt: "0px" }}
-                  >  cancel
+                     sx={{ mt: "0px" }}>
+                     cancel
                   </Button>
                </Box>
             </Box>
          </Container>
       </ThemeProvider>
-   );
+
+   )
 }

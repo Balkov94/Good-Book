@@ -1,25 +1,37 @@
 import styles from './AddComment.module.css';
-import AddCommentForm from './AddcommentForm/AddCommentForm';
 import { Button } from '@mui/material';
 import { useState } from 'react';
+import { ICommentProps } from '../Comment/Comment';
+import AddCommentForm from './AddCommentForm/AddCommentForm';
 
-function AddComment() {
+
+interface IAddEditCommentBtn {
+   onCreateComment: (newComment: ICommentProps) => void,
+}
+
+function AddComment({ onCreateComment }: IAddEditCommentBtn) {
    const [commentForm, setCommentForm] = useState(false);
    const toggleCommentForm = () => {
       setCommentForm(commentForm => !commentForm);
    }
+
+   // using same toggleBtn and form - 1.Add comment 2.Edit comment
    return (
       <>
-         <Button className={styles.editClubBtn} variant="contained"
-            onClick={toggleCommentForm}
-         >Comment
+         <Button className={styles.editClubBtn} variant="contained" size="medium"
+            onClick={toggleCommentForm}>
+            comment
          </Button>
          {
             commentForm
             &&
             (
                <div className={styles.addCommentMain}>
-                  <AddCommentForm toggleForm={toggleCommentForm} />
+                  <AddCommentForm
+                     toggleForm={toggleCommentForm}
+                     onCreateComment={onCreateComment}
+
+                  />
                </div>
             )
          }

@@ -62,7 +62,9 @@
    width: 100%;
    padding: 18px 18px 18px 30px;
    gap: 30px;
-   /* background-color: black; */
+   position: relative;
+   /* border: 2px solid red; */
+   
 }
 .likesContainer svg{
    color: #ADD8E6;
@@ -76,5 +78,11 @@
    cursor: pointer;
    font-size: 26px;
    color:rgb(187, 7, 7)!important;
+}
+.commentEditBtn{
+   position: absolute;
+   top:4px;
+   right: 4px;
+
 }
 

@@ -20,7 +20,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.2",
-    "react-input-emoji": "^4.2.0",
     "react-markdown": "^8.0.3",
     "react-material-ui-carousel": "^3.4.2",
     "react-router-dom": "^6.4.0",
