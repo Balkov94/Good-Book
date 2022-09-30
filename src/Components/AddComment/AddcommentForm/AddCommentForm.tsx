@@ -23,7 +23,7 @@ interface IAddCommentFormInputs {
 }
 
 const schema = yup.object({
-   content: yup.string().required().min(1).max(512),
+   content: yup.string().required().min(1).max(1000),
 }).required();
 
 
@@ -78,12 +78,12 @@ const formsMUIoverride = {
    },
 }
 
-interface ICreateCommentForm {
+interface IAddCommentFormProps {
    toggleForm(): void,
    onCreateComment: (newComment: ICommentProps) => void,
 }
 
-export default function AddCommentForm({ toggleForm,onCreateComment}: ICreateCommentForm) {
+export default function AddCommentForm({ toggleForm,onCreateComment}: IAddCommentFormProps) {
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<IAddCommentFormInputs>({
       defaultValues: { content: "" },
       mode: "onChange",
@@ -92,27 +92,25 @@ export default function AddCommentForm({ toggleForm,onCreateComment}: ICreateCom
    });
 
    const params = useParams();
-
+ 
    const sendSubmit = (data: IAddCommentFormInputs,
       event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
       }
-
       // get date from form data and useParams 
       // !!! logged user - > assume  its id1 for now (still dont have global state)
-      const urlParams = (params.clubId ? params.clubId : params.question)
-      const paramName = urlParams?.replace(/[^a-zA-Z]+/g, '');
-      const paramId = Number(urlParams!.replace(/\D/g, ""));
+      let [paramsValue1] = Object.values(params)// get params value (ex. [:question2, club12])
+      let discussionId = Number(paramsValue1?.replace(/\D/g, "")); //get only the Id 
       const comment = new CommentClass(
          undefined,
          1,
-         paramId,
-         (paramName === "club" ? true : false),
+         discussionId,
+         (paramsValue1!.includes("club")? true : false), 
          data.content,
 
       );
-      // console.log(comment);
+      console.log(comment);
       // add comment to the DB
       toggleForm();
       commentApi.create(comment);
@@ -179,6 +177,7 @@ export default function AddCommentForm({ toggleForm,onCreateComment}: ICreateCom
                            name="content"
                            value={value}
                            cols={35}
+                           maxLength={1000}
                            // rows={10}
                            onChange={onChange}
                         />

@@ -73,8 +73,6 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex }: I
 
             {/*Edit comment in ReadingClubs->ClubRoom*/}
 
-
-            
             <div className={styles.commentEditBtn}>
                {/* <AddComment btnAction='edit' commentId={id} /> */}
             </div>

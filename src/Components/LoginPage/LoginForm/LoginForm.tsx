@@ -30,7 +30,7 @@ const schema = yup.object({
 }).required();
 
 const theme = createTheme();
-export const formsMUIoverride = {
+const LoginFormMUIOverride = {
    dispay: "flex",
    justifyContent: "center",
    alignItems: "center",
@@ -148,7 +148,7 @@ export default function LoginForm({ handleLoginData }: ILoginFormProps) {
                   sx={{
                      // border: "2px solid gray",
                      mt: 1,
-                     ...formsMUIoverride
+                     ...LoginFormMUIOverride
                   }}
                >
                   <Controller

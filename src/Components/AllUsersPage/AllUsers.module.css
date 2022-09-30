@@ -1,5 +1,6 @@
 .AllUsersWrapper{
    width: 100%;
+   top: 55px;
    min-height: 80vh;
    border: 2px solid black;
    display: flex;

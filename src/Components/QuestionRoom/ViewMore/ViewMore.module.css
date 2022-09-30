@@ -59,3 +59,11 @@
    overflow: auto;
    padding:40px 12px 160px 12px;
 }
+
+/* Add comment Btn */
+.addCommentContainer{
+   position:  fixed;
+   bottom: 40px;
+   right: 60px;
+   border: 2ps soldi red;
+}

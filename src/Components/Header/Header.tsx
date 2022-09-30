@@ -56,7 +56,7 @@ const Header = () => {
 
 
    return (
-      <AppBar position="sticky" sx={{ zIndex: "2000" }}>
+      <AppBar position="fixed" sx={{ zIndex: "2000" , top: "0"}}>
          <Container maxWidth={false} sx={{ backgroundColor: "#f7ba00", marginBottom: "0px", padding: "0px", width: "100%" }}>
             <Toolbar disableGutters>
 

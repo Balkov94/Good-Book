@@ -116,16 +116,15 @@ function ClubRoom() {
 
             }
             {
-               clubComments?.map((c, index) => {
+               clubComments?.map((comment, index) => {
                   return (
                      <Comment
-                        key={c.id}
-                        id={c.id}
-                        discussionId={c.discussionId}
-                        isClub={c.isClub}
-
-                        creatorId={c.creatorId}
-                        content={c.content}
+                        key={(comment.id)?comment.id:comment.content.slice(0,10)}
+                        id={comment.id}
+                        discussionId={comment.discussionId}
+                        isClub={comment.isClub}
+                        creatorId={comment.creatorId}
+                        content={comment.content}
                         orderIndex={index + 1}
                      />
                   )

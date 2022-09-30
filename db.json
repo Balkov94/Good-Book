@@ -49,62 +49,13 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "discussionId": 1,
-      "creatdiorId": 1,
-      "content": "Comment ONE1 for Question 1",
-      "isClub": false
-    },
-    {
-      "id": 2,
-      "discussionId": 1,
-      "creatorId": 1,
-      "content": "Comment Two2 for Question 1",
-      "isClub": false
-    },
-    {
-      "id": 3,
-      "discussionId": 1,
-      "creatorId": 2,
-      "content": "Comment THREE 3 for Question 1",
-      "isClub": false
-    },
-    {
-      "id": 4,
-      "discussionId": 2,
-      "creatorId": 2,
-      "content": "Comment ONE for Question 2",
-      "isClub": false
-    },
-    {
-      "id": 6,
-      "discussionId": 2,
-      "creatorId": 2,
-      "content": "Comment ONE for CLUB  2",
-      "isClub": true
-    },
-    {
-      "id": 7,
-      "discussionId": 2,
-      "creatorId": 1,
-      "content": "Comment 2 for CLUB  2",
-      "isClub": true
-    },
-    {
-      "id": 8,
-      "discussionId": 2,
-      "creatorId": 2,
-      "content": "Comment 3 for CLUB  2",
-      "isClub": true
-    },
-    {
       "creatorId": 1,
       "discussionId": 1,
-      "isClub": true,
-      "content": "comment 1 club 1",
-      "timeOfCreation": "Thu Sep 29 2022 6:27:56 PM ",
+      "isClub": false,
+      "content": "comment 1 Q1",
+      "timeOfCreation": "Fri Sep 30 2022 2:32:51 PM ",
       "timeOfModification": null,
-      "id": 9
+      "id": 1
     }
   ],
   "clubs": [

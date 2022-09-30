@@ -6,6 +6,7 @@
    max-height: fit-content;
    padding:40px 20px 100px 40px;
    border: 2px solid orange;
+   margin-top: 55px;
 
    background-image: url("../QuestionRoom/ViewMore/paperBG.jpg");
    background-size: cover;

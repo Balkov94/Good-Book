@@ -4,6 +4,7 @@ import styles from './ViewMore.module.css';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { commentApi } from '../../../Rest-APi-Client/client';
+import AddComment from '../../AddComment/AddComment';
 
 
 
@@ -23,6 +24,14 @@ function ViewMore() {
          })
    }, [id])
 
+   // update Question comments
+   const createComment = (newComment: ICommentProps) => {
+      setcommentsList(commentsList => [...(commentsList || []), newComment]);
+   }
+
+
+
+
    return (
       <div className={styles.mainViewMoreContainer}>
          <div className={styles.opacityFixerDiv}>
@@ -37,7 +46,7 @@ function ViewMore() {
                {
                   commentsList?.map((comment, index) => {
                      return <Comment
-                        key={comment.id}
+                        key={(comment.id)?comment.id:comment.content.slice(0,10)}
                         id={comment.id}
                         creatorId={comment.creatorId}
                         discussionId={comment.discussionId}
@@ -48,6 +57,10 @@ function ViewMore() {
                   })
                }
             </>
+         </div>
+         {/* add comment for ReadingClubs -> ClubRoom  */}
+         <div className={styles.addCommentContainer}>
+            <AddComment onCreateComment={(createComment)} />
          </div>
       </div>
    );

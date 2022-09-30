@@ -1,8 +1,8 @@
 .lockCoverDiv{
    width: 80px;
    height: 10vh;
-   border: 2px solid red;
-   position: absolute;
+   /* border: 2px solid red;
+   position: absolute; */
 }
 /* Reacr-router NavLink Active styles  */
 .activeNav{
