@@ -51,11 +51,29 @@
     {
       "creatorId": 1,
       "discussionId": 1,
-      "isClub": false,
-      "content": "comment 1 Q1",
-      "timeOfCreation": "Fri Sep 30 2022 2:32:51 PM ",
+      "isClub": true,
+      "content": "c1 c1",
+      "timeOfCreation": "Fri Sep 30 2022 5:06:22 PM ",
       "timeOfModification": null,
-      "id": 1
+      "id": 8
+    },
+    {
+      "creatorId": 1,
+      "discussionId": 2,
+      "isClub": false,
+      "content": "123",
+      "timeOfCreation": "Fri Sep 30 2022 11:17:00 PM ",
+      "timeOfModification": null,
+      "id": 9
+    },
+    {
+      "id": 10,
+      "discussionId": 1,
+      "isClub": false,
+      "creatorId": 1,
+      "content": "1234",
+      "timeOfCreation": "Fri Sep 30 2022 11:26:04 PM ",
+      "timeOfModification": "Fri Sep 30 2022 11:26:09 PM "
     }
   ],
   "clubs": [

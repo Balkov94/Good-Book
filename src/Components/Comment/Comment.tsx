@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { UserApi } from '../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../QuestionRoom/QuestionCard/QuestionCard';
 import { IdType, TimeOfModificationType } from '../../Rest-APi-Client/shared-types';
+import AddComment from '../AddComment/AddComment';
 
 export interface ICommentProps {
    // for sorting club or question
@@ -16,12 +17,14 @@ export interface ICommentProps {
    content: string,
    orderIndex?: number,
    creatorId: number,
-   timeOfCreation?:string,
-   timeOfModification?:TimeOfModificationType
+   timeOfCreation: string,
+   timeOfModification: TimeOfModificationType
+   // updater f
+   onUpdateCommentList?: (comment: ICommentProps) => void,
 }
 
 // i will need id,discussionId,isClub for DELETE,EDIT when got DB and Back-end
-function Comment({ id, discussionId, isClub, creatorId, content, orderIndex }: ICommentProps) {
+function Comment({ id, discussionId, isClub, creatorId, content, orderIndex, timeOfCreation, timeOfModification, onUpdateCommentList }: ICommentProps) {
    //1. Fetch creator data for the Comment card
    // *** using JSON-server so need fetch all andsort than just single fetch by ID
    const [commentCreator, setCommentCreator] = useState<IQuestionAuthorHeaderProps | undefined>();
@@ -37,9 +40,7 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex }: I
    // 2.By passed id to AddEditComment component update the comment in DB
    // ***  signle source is OK comment always comes from parent no handle operations there
    /// ** Parent component (ClubRoom) is responsible only for fething
-   const [contant, setContant] = useState<string>(content);
-   
-   
+
    return (
       <div className={styles.commentContainer}>
          <div className={styles.commentHeader}>
@@ -55,7 +56,12 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex }: I
                <h1>{`${commentCreator?.fname} ${commentCreator?.lname}`}</h1>
             </div>
             <div className={styles.commentDate}>
-               <h1>Data: not integrated YET</h1>
+               {
+                  timeOfModification
+                     ? <h1>Edited on:{timeOfModification}</h1>
+                     : <h1>Created on:{timeOfCreation}</h1>
+
+               }
                <h2>№: {orderIndex}</h2>
             </div>
          </div>
@@ -74,7 +80,10 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex }: I
             {/*Edit comment in ReadingClubs->ClubRoom*/}
 
             <div className={styles.commentEditBtn}>
-               {/* <AddComment btnAction='edit' commentId={id} /> */}
+               <AddComment
+                  onUpdateCommentList={onUpdateCommentList}
+                  editComment={{ id, discussionId, isClub, creatorId, content, timeOfCreation, timeOfModification }}
+               />
             </div>
          </div>
 

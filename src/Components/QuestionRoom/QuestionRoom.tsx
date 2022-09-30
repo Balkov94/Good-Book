@@ -4,7 +4,7 @@ import styles from './QuestionRoom.module.css';
 import { useEffect, useState } from 'react';
 import { questionApi, UserApi } from '../../Rest-APi-Client/client';
 
- interface questionListType extends IQuestionCardProps, IQuestionAuthorHeaderProps{};
+interface questionListType extends IQuestionCardProps, IQuestionAuthorHeaderProps { };
 
 function QuestionRoom() {
    // On visit QuestionRoom page
@@ -18,17 +18,17 @@ function QuestionRoom() {
          const questions = (values[0]); //questions
          const users = (values[1]); //users
          // make arr of mixed {}s with both q and u props
-         const mixed:questionListType[] = users.map((x, i) => {
+         const mixed: questionListType[] = users.map((x, i) => {
             return {
                ...x,
                ...questions[i]
             }
          })
          setQuestionsList(mixed);
-      });   
+      });
 
    }, []);
-   
+
    return (
       <>
          <div className={styles.mainQuestionRoomContainer}>

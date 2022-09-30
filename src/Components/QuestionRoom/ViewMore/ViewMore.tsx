@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import AddComment from '../../AddComment/AddComment';
+import { CommentClass, IdType } from '../../../Rest-APi-Client/shared-types';
 
 
 
@@ -16,7 +17,7 @@ function ViewMore() {
    // 2. From id(question) fetch all comments !*id(question) === discussionId(comment)
    useEffect(() => {
       commentApi.findAll()
-         .then((res: ICommentProps[]) => {
+         .then((res: CommentClass[]) => {
             //!!! get only if commend isClub===false
             const sortedComments = res.filter(c => (c.discussionId === id && c.isClub === false));
             setcommentsList(sortedComments);
@@ -24,11 +25,36 @@ function ViewMore() {
          })
    }, [id])
 
-   // update Question comments
-   const createComment = (newComment: ICommentProps) => {
-      setcommentsList(commentsList => [...(commentsList || []), newComment]);
+   // UI updater functions
+   const updateCommentList = (currComment: ICommentProps) => {
+      // delete from UI
+      if (currComment.content === "_this_entity_was_deleted") {
+         setcommentsList(commentsList => {
+            return (
+               commentsList?.filter(c => c.id !== currComment.id)
+            )
+         })
+      }
+      // Update edited comment
+      else {
+         if (commentsList?.some(comment => comment.id === currComment?.id)) {
+            setcommentsList(commentsList => {
+               return (
+                  commentsList?.map(c => {
+                     if (c.id === currComment.id) {
+                        return currComment;
+                     }
+                     return c;
+                  })
+               )
+            });
+         }
+         // Update list with new created comment
+         else {
+            setcommentsList(commentsList => [...(commentsList || []), currComment]);
+         }
+      }
    }
-
 
 
 
@@ -46,13 +72,17 @@ function ViewMore() {
                {
                   commentsList?.map((comment, index) => {
                      return <Comment
-                        key={(comment.id)?comment.id:comment.content.slice(0,10)}
+                        key={(comment.id)}
                         id={comment.id}
                         creatorId={comment.creatorId}
                         discussionId={comment.discussionId}
                         content={comment.content}
                         orderIndex={index + 1}
                         isClub={comment.isClub}
+                        timeOfCreation={comment.timeOfCreation}
+                        timeOfModification={comment.timeOfModification}
+
+                        onUpdateCommentList={updateCommentList}
                      />
                   })
                }
@@ -60,7 +90,7 @@ function ViewMore() {
          </div>
          {/* add comment for ReadingClubs -> ClubRoom  */}
          <div className={styles.addCommentContainer}>
-            <AddComment onCreateComment={(createComment)} />
+            <AddComment onUpdateCommentList={(updateCommentList)} />
          </div>
       </div>
    );
