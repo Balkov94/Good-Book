@@ -1,8 +1,10 @@
-import { Outlet } from 'react-router-dom';
+
 import QuestionCard, { IQuestionAuthorHeaderProps, IQuestionCardProps } from './QuestionCard/QuestionCard';
 import styles from './QuestionRoom.module.css';
 import { useEffect, useState } from 'react';
 import { questionApi, UserApi } from '../../Rest-APi-Client/client';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 interface questionListType extends IQuestionCardProps, IQuestionAuthorHeaderProps { };
 
@@ -12,16 +14,17 @@ function QuestionRoom() {
    //2. Iterate all Q and print them
    const [questionsList, setQuestionsList] = useState<questionListType[]>([]);
    useEffect(() => {
-      const promise1 = questionApi.findAll()
-      const promise2 = UserApi.findAll()
-      Promise.all([promise1, promise2]).then((values) => {
+      const questions = questionApi.findAll()
+      const users = UserApi.findAll()
+      Promise.all([questions, users]).then((values) => {
          const questions = (values[0]); //questions
          const users = (values[1]); //users
          // make arr of mixed {}s with both q and u props
-         const mixed: questionListType[] = users.map((x, i) => {
+         const mixed: questionListType[] = questions.map((qData, i) => {
             return {
-               ...x,
-               ...questions[i]
+               ...(users.find(user=>user.id===qData.creatorId)),
+               ...qData
+               // ! qData SECOND, to override id(user) with id(question)
             }
          })
          setQuestionsList(mixed);
@@ -54,10 +57,14 @@ function QuestionRoom() {
                   })
                }
             </div>
-            {/* render ViewMore in Absolute Zindex-10 DIV */}
-            <Outlet />
          </div>
-
+         {/* Ask question Btn container */}
+         <Link to="/QuestionRoom/createQuestion">
+         <div className={styles.askQContainer}>
+                <Button variant="contained">Ask Question</Button>
+            </div>
+         </Link>
+           
       </>
 
    );

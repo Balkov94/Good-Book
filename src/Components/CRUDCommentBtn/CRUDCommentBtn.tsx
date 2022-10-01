@@ -1,4 +1,4 @@
-import styles from './AddComment.module.css';
+import styles from './CRUDCommentBtn.module.css';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { ICommentProps } from '../Comment/Comment';
@@ -17,6 +17,9 @@ function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
 
    const [commentForm, setCommentForm] = useState(false);
    const toggleCommentForm = () => {
+      
+
+      
       setCommentForm(commentForm => !commentForm);
    }
 
@@ -46,7 +49,7 @@ function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
             (commentForm && editComment === undefined && onUpdateCommentList !== undefined)
             &&
             (
-               <div className={styles.addCommentMain}>
+               <div className={styles.mainFormContainer}>
                   <AddCommentForm
                      toggleForm={toggleCommentForm}
                      onUpdateCommentList={onUpdateCommentList}
@@ -61,7 +64,7 @@ function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
             (commentForm && editComment !== undefined && onUpdateCommentList!==undefined)
             &&
             (
-               <div className={styles.addCommentMain}>
+               <div className={styles.mainFormContainer}>
                   <EditCommentForm
                      toggleForm={toggleCommentForm}
                      editComment={editComment}

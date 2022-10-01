@@ -4,7 +4,7 @@ import styles from './ViewMore.module.css';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { commentApi } from '../../../Rest-APi-Client/client';
-import AddComment from '../../AddComment/AddComment';
+import CRUDCommentBtn from '../../CRUDCommentBtn/CRUDCommentBtn';
 import { CommentClass, IdType } from '../../../Rest-APi-Client/shared-types';
 
 
@@ -15,6 +15,7 @@ function ViewMore() {
       = useLocation().state;
    const [commentsList, setcommentsList] = useState<ICommentProps[]>();
    // 2. From id(question) fetch all comments !*id(question) === discussionId(comment)
+   
    useEffect(() => {
       commentApi.findAll()
          .then((res: CommentClass[]) => {
@@ -25,7 +26,7 @@ function ViewMore() {
          })
    }, [id])
 
-   // UI updater functions
+   // UI updater functions // 
    const updateCommentList = (currComment: ICommentProps) => {
       // delete from UI
       if (currComment.content === "_this_entity_was_deleted") {
@@ -90,7 +91,7 @@ function ViewMore() {
          </div>
          {/* add comment for ReadingClubs -> ClubRoom  */}
          <div className={styles.addCommentContainer}>
-            <AddComment onUpdateCommentList={(updateCommentList)} />
+            <CRUDCommentBtn onUpdateCommentList={(updateCommentList)} />
          </div>
       </div>
    );

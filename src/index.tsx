@@ -16,36 +16,42 @@ import MyProfile from './Components/MyProfilePage/MyProfile';
 import ClubRoom from './Components/ReadingClubs/ClubRoom/ClubRoom';
 import IndexClubRoom from './Components/ReadingClubs/IndexClubRoom/IndexClubRoom';
 import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
-import AddComment from './Components/AddComment/AddComment';
+import AddComment from './Components/CRUDCommentBtn/CRUDCommentBtn';
+import AskQComponent from './Components/QuestionRoom/AskQComponent/AskQComponent';
 
 
 const root = ReactDOM.createRoot(
    document.getElementById('root') as HTMLElement
 );
 root.render(
+
    <React.StrictMode>
-   <BrowserRouter>
-      <App />
-      <Routes>
-         <Route index element={<WelcomeCarousel />} />
-         {/* CARE WITH -> : / and open close tag of <Route> */}
-         <Route path="QuestionRoom" element={<QuestionRoom />}>
-            <Route path=":questionId" element={<ViewMore />} />
-         </Route>
-         <Route path="ReadingClubs" element={<ReadingClubs />} >
-            <Route path="" element={<IndexClubRoom />} />
-            <Route path=":clubId" element={<ClubRoom />} />
-         </Route>
-         <Route path="ReadingClubs/createClub" element={<CreateClubForm />} />
-         <Route path="ExchangePage" element={<ExchangerPage />} />
-         <Route path="AboutUs" element={<AboutUs />} />
-         <Route path="Login" element={<LoginPage />} />
-         <Route path="Register" element={<RegisterPage />} />
-         <Route path="AllUsers" element={<AllUsersPage />} />
-         <Route path="MyProfile" element={<MyProfile />} />
-         <Route path="*" element={<h1 style={{ color: "red", textAlign: "center", fontSize: "40px" }}>Error 404</h1>} />
-      </Routes>
-   </BrowserRouter>
+      <BrowserRouter>
+         <App />
+         <Routes>
+            <Route index element={<WelcomeCarousel />} />
+
+            <Route index element={<WelcomeCarousel />} />
+            {/* CARE WITH -> : / and open close tag of <Route> */}
+            <Route path="QuestionRoom" element={<QuestionRoom />} />
+            <Route path="QuestionRoom/:questionId" element={<ViewMore />} />
+            <Route path="QuestionRoom/createQuestion" element={<AskQComponent />} />
+            <Route path="QuestionRoom/:questionId/edit" element={<AskQComponent />} />
+            
+            <Route path="ReadingClubs" element={<ReadingClubs />} >
+               <Route path="" element={<IndexClubRoom />} />
+               <Route path=":clubId" element={<ClubRoom />} />
+            </Route>
+            <Route path="ReadingClubs/createClub" element={<CreateClubForm />} />
+            <Route path="ExchangePage" element={<ExchangerPage />} />
+            <Route path="AboutUs" element={<AboutUs />} />
+            <Route path="Login" element={<LoginPage />} />
+            <Route path="Register" element={<RegisterPage />} />
+            <Route path="AllUsers" element={<AllUsersPage />} />
+            <Route path="MyProfile" element={<MyProfile />} />
+            <Route path="*" element={<h1 style={{ color: "red", textAlign: "center", fontSize: "40px" }}>Error 404</h1>} />
+         </Routes>
+      </BrowserRouter>
    </React.StrictMode>
 );
 

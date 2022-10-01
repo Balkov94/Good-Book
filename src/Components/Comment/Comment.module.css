@@ -10,9 +10,8 @@
    max-height: fit-content;
    box-shadow: 0px 20px  15px rgba(0,0,0,0.6);
    zoom: 0.8;
-   /* -moz-box-shadow: 0px 10px  5px  rgba(0,0,0,0.6);
-   -webkit-box-shadow: 0px 10px 5px  rgba(0,0,0,0.6);
-   -o-box-shadow: 0px 10px 5px  rgba(0,0,0,0.6); */
+   /* border: 2px solid red; */
+   /* z-index: 1; */
 }
 .commentHeader{
    display: flex;
@@ -22,15 +21,17 @@
    height: 80px;
    padding:12px;
    justify-content: space-between;
-
+   
 }
+
 .commentImgUsername{
    width: fit-content;
    /* border: 2px solid gray; */
    display: flex;
    justify-content: center;
    align-items: center;
-   gap:30px
+   gap:30px;
+
 }
 .commentDate{
    width: fit-content;
@@ -40,7 +41,7 @@
    align-items: center;
    gap:30px;
    font-style: italic;
-   opacity: 0.8;
+   z-index: 0;
    
 }
 .commentContent{
@@ -65,11 +66,15 @@
    padding: 18px 18px 18px 30px;
    gap: 30px;
    position: relative;
+   left: 0%;
+   bottom: 0;
+   z-index: 0;
    /* border: 2px solid red; */
    
 }
 .likesContainer svg{
    color: #ADD8E6;
+   z-index: 0!important;
 }
 .commentFooterActions > .likesContainer:nth-child(1) svg:hover{
    cursor: pointer;
@@ -85,6 +90,6 @@
    position: absolute;
    top:4px;
    right: 4px;
-
+   z-index: 1000;
 }
 

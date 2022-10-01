@@ -27,8 +27,14 @@
    
 }
 .bookImgContainer{
-   /* border: 2px solid black; */
+   /* border: 2px solid red; */
    width: 200px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.bookImgContainer img{
+   width: 100%;
 }
 .textContainer{
    min-width: 100px;
@@ -53,6 +59,10 @@
    width: 100%;
    word-wrap: break-word;
 }
-/* .questionText>p{
-   word-wrap: break-word;
-} */
+
+/* EDIT Question Btn */
+.editQBtnContainer{
+   position: absolute;
+   top:8px;
+   right: 8px;
+}

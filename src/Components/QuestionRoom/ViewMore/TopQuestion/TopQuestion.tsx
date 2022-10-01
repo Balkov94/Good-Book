@@ -1,9 +1,14 @@
 import QuestionAuthorHeader from '../../QuestionCard/QuestionAuthorHeader';
 import { IQuestionAuthorHeaderProps, IQuestionCardProps } from '../../QuestionCard/QuestionCard';
 import styles from './TopQuestion.module.css';
+import Button from '@mui/material/Button';
+import { Link, useParams } from 'react-router-dom';
+
+function TopQuestion({ id, creatorId, questionPic, title, content, username, fname, lname, userPic,}: IQuestionCardProps & IQuestionAuthorHeaderProps) {
+
+   const params = useParams();
 
 
-function TopQuestion({ id, creatorId, questionPic, title, content, username, fname, lname, userPic }: IQuestionCardProps & IQuestionAuthorHeaderProps) {
    return (
       <div className={styles.tqCard}>
          <div className={styles.qAuthor}>
@@ -20,6 +25,15 @@ function TopQuestion({ id, creatorId, questionPic, title, content, username, fna
                <p>{content}</p>
             </div>
          </div>
+         {/* EDIT QUESTION Btn */}
+         <Link to={`/QuestionRoom/${params.questionId}/edit`}
+            state={{ id, questionPic, title, content,creatorId}}
+         >
+            <div className={styles.editQBtnContainer}>
+               <Button variant="contained">Edit Question</Button>
+            </div>
+         </Link>
+
       </div>
    );
 }

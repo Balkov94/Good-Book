@@ -3,13 +3,17 @@ import styles from './QuestionCard.module.css';
 import Button from '@mui/material/Button';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Link } from 'react-router-dom';
+import { IdType, TimeOfModificationType } from '../../../Rest-APi-Client/shared-types';
 // i for question data
 export interface IQuestionCardProps {
    questionPic: string,
    title: string,
    content: string,
-   creatorId: string,
-   id: string,
+   creatorId: number,
+   id: IdType,
+   // timeOfCreation?:string,
+   // timeOfModification?:TimeOfModificationType,
+
 
 }
 // i for user data (question creator)

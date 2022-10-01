@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { UserApi } from '../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../QuestionRoom/QuestionCard/QuestionCard';
 import { IdType, TimeOfModificationType } from '../../Rest-APi-Client/shared-types';
-import AddComment from '../AddComment/AddComment';
+import CRUDCommentBtn from '../CRUDCommentBtn/CRUDCommentBtn';
 
 export interface ICommentProps {
    // for sorting club or question
@@ -41,6 +41,9 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex, tim
    // ***  signle source is OK comment always comes from parent no handle operations there
    /// ** Parent component (ClubRoom) is responsible only for fething
 
+   // fix for Z-index - onClick change btn marginBottom and block scroll window
+   
+
    return (
       <div className={styles.commentContainer}>
          <div className={styles.commentHeader}>
@@ -49,11 +52,11 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex, tim
                   sx={{
                      // override avatarMui zIndex fix styles bug
                      'MuiAvatar-root': {
-                        zIndex: 10,
+                        zIndex:"none",
                      }
                   }}
                />
-               <h1>{`${commentCreator?.fname} ${commentCreator?.lname}`}</h1>
+               <h1 style={{zIndex:"0"}}>{`${commentCreator?.fname} ${commentCreator?.lname}`}</h1>
             </div>
             <div className={styles.commentDate}>
                {
@@ -80,7 +83,7 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex, tim
             {/*Edit comment in ReadingClubs->ClubRoom*/}
 
             <div className={styles.commentEditBtn}>
-               <AddComment
+               <CRUDCommentBtn
                   onUpdateCommentList={onUpdateCommentList}
                   editComment={{ id, discussionId, isClub, creatorId, content, timeOfCreation, timeOfModification }}
                />

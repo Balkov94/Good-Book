@@ -2,12 +2,8 @@
    width: 100%;
    min-height: 80vh;
    max-height: fit-content;
-   position: absolute;
-   top:0;
-   left:0;
-   z-index: 10;
-   /* add absolute and Zindex bocause render in QuestionRoom -> Outlet */
-   border: 10px solid rgb(252, 165, 3);
+   margin-top: 55px;
+   /* border: 10px solid rgb(252, 165, 3); */
    background-image: url("paperBG.jpg");
    background-size: cover;
    background-repeat: no-repeat;

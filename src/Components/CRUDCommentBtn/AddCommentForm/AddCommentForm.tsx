@@ -1,4 +1,4 @@
-import styles from './EditCommentForm.module.css';
+import styles from './AddCommentForm.module.css';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,8 +16,11 @@ import { CommentClass } from '../../../Rest-APi-Client/shared-types';
 import { useParams } from 'react-router-dom';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import { ICommentProps } from '../../Comment/Comment';
-import { CLIENT_RENEG_LIMIT } from 'tls';
 
+
+interface IAddCommentFormInputs {
+   content: string,
+}
 
 const schema = yup.object({
    content: yup.string().required().min(1).max(1000),
@@ -29,6 +32,8 @@ const formsMUIoverride = {
    dispay: "flex",
    justifyContent: "center",
    alignItems: "center",
+   maxWidth:"90%",
+   minWidth:"90%",
 
    '& .MuiTextField-root': {
       bgcolor: "rgb(10,25,41)",
@@ -75,57 +80,49 @@ const formsMUIoverride = {
    },
 }
 
-interface IEditCommentFormInputs {
-   content: string,
-}
-interface IEditCommentFormProps {
+interface IAddCommentFormProps {
    toggleForm(): void,
-   editComment: CommentClass;
-   onUpdateCommentList: (comment: ICommentProps) => void,
+   onUpdateCommentList: (newComment: ICommentProps) => void,
 }
 
-export default function EditCommentForm({ toggleForm, editComment, onUpdateCommentList }: IEditCommentFormProps) {
-   const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<IEditCommentFormInputs>({
-      defaultValues: { content: editComment.content },
+export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAddCommentFormProps) {
+   const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<IAddCommentFormInputs>({
+      defaultValues: { content: "" },
       mode: "onChange",
       resolver: yupResolver(schema)
 
    });
 
+   const params = useParams();
 
-   const sendSubmit = (data: IEditCommentFormInputs,
+   const sendSubmit = (data: IAddCommentFormInputs,
       event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
       }
+      // get date from form data and useParams 
+      // !!! logged user - > assume  its id1 for now (still dont have global state)
+      let [paramsValue1] = Object.values(params)// get params value (ex. [:question2, club12])
+      let discussionId = Number(paramsValue1?.replace(/\D/g, "")); //get only the Id 
+      const comment = new CommentClass(
+         undefined,
+         1,
+         discussionId,
+         (paramsValue1!.includes("club") ? true : false),
+         data.content,
 
-      const updatedComment = { 
-          ...editComment,
-          content: data.content,
-          timeOfModification :`${new Date().toDateString()} ${new Date().toLocaleTimeString()} `
-         };
+      );
 
       // add comment to the DB
       toggleForm();
-      commentApi.update(updatedComment)
+      commentApi.create(comment)
          .then(resCommentObj => {
             console.log("response res");
             console.log(resCommentObj);
-            onUpdateCommentList(resCommentObj)
-            // onCreateComment(resCommentObj);
+            onUpdateCommentList(resCommentObj);
          });
 
    }
-
-   const deleteComment = () => {
-      commentApi.deleteById(editComment.id)
-         .then(res => {
-            onUpdateCommentList({...editComment,content:`_this_entity_was_deleted`});
-            console.log({...editComment,content:undefined});
-         })
-
-   };
-
    return (
       <ThemeProvider theme={theme}>
          <Container component="main" maxWidth="xs" className={styles.mainFormWrapper}
@@ -144,7 +141,7 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
 
             <Box
                sx={{
-                  height: "520px",
+                  height: "440px",
                   marginTop: 8,
                   display: 'flex',
                   flexDirection: 'column',
@@ -200,18 +197,13 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
 
                   <Button type="submit" fullWidth variant="contained"
                      disabled={(isValid && isDirty) === false} sx={{ mt: "20px", mb: "4px" }}>
-                     Save
+                     Post
                   </Button>
 
                   <Button fullWidth variant="outlined"
                      onClick={toggleForm}
                      sx={{ mt: "0px" }}>
                      cancel
-                  </Button>
-                  <Button fullWidth variant="contained" color="error"
-                     onClick={deleteComment}
-                     sx={{ mt: "30px" }}>
-                     Delete comment
                   </Button>
                </Box>
             </Box>

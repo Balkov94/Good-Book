@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { commentApi, UserApi } from '../../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../../QuestionRoom/QuestionCard/QuestionCard';
 import { Button } from '@mui/material';
-import AddComment from '../../AddComment/AddComment';
+import AddComment from '../../CRUDCommentBtn/CRUDCommentBtn';
 
 
 function ClubRoom() {
@@ -60,10 +60,35 @@ function ClubRoom() {
 
    const navigate = useNavigate();
 
-   // update clubComments
-   const onUpdateCommentList=(newComment:ICommentProps)=>{
-         setClubComments(clubComments=>[...(clubComments||[]),newComment]);
-     
+   // UI updater functions __________________________// 
+   const updateCommentList = (currComment: ICommentProps) => {
+      // delete from UI
+      if (currComment.content === "_this_entity_was_deleted") {
+         setClubComments(clubComments => {
+            return (
+               clubComments?.filter(c => c.id !== currComment.id)
+            )
+         })
+      }
+      // Update edited comment
+      else {
+         if (clubComments?.some(comment => comment.id === currComment?.id)) {
+            setClubComments(clubComments => {
+               return (
+                  clubComments?.map(c => {
+                     if (c.id === currComment.id) {
+                        return currComment;
+                     }
+                     return c;
+                  })
+               )
+            });
+         }
+         // Update list with new created comment
+         else {
+            setClubComments(clubComments => [...(clubComments || []), currComment]);
+         }
+      }
    }
 
 
@@ -128,6 +153,8 @@ function ClubRoom() {
                         orderIndex={index + 1}
                         timeOfCreation={comment.timeOfCreation}
                         timeOfModification={comment.timeOfModification}
+
+                        onUpdateCommentList={updateCommentList}
                      />
                   )
                })
@@ -135,7 +162,7 @@ function ClubRoom() {
          </div>
          {/* add comment for ReadingClubs -> ClubRoom  */}
          <div className={styles.addCommentContainer}>
-            <AddComment onUpdateCommentList={onUpdateCommentList}/>
+            <AddComment onUpdateCommentList={updateCommentList} />
          </div>
 
       </div>

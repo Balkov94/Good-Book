@@ -30,14 +30,22 @@
 }
 .qWraper{
    margin-top: 140px;
-   width: 100%;
+   width: 90%;
    height: fit-content;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
-   justify-content: space-around;
-   /* border: 2px solid gray; */
-   padding:40px 60px 100px 60px;
-   gap: 60px 60px;
+   justify-content: flex-start;
+   /* border: 5px solid gray; */
+   padding:50px 50px 140px 50px;
+   gap: 70px 60px;
+   margin-left: auto;
+   margin-right:auto;
+}
+/* QuestionRoom   AskQBtn ___________________________________*/
+.askQContainer{
+   position: fixed;
+   left: 40px;
+   top: 110px;
 }
 
