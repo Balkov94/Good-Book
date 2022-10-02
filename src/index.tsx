@@ -17,7 +17,7 @@ import ClubRoom from './Components/ReadingClubs/ClubRoom/ClubRoom';
 import IndexClubRoom from './Components/ReadingClubs/IndexClubRoom/IndexClubRoom';
 import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
 import AddComment from './Components/CRUDCommentBtn/CRUDCommentBtn';
-import AskQComponent from './Components/QuestionRoom/AskQComponent/AskQComponent';
+import CRUDQFormComponent from './Components/QuestionRoom/CRUDQFormComponent/CRUDQFormComponent';
 
 
 const root = ReactDOM.createRoot(
@@ -35,8 +35,8 @@ root.render(
             {/* CARE WITH -> : / and open close tag of <Route> */}
             <Route path="QuestionRoom" element={<QuestionRoom />} />
             <Route path="QuestionRoom/:questionId" element={<ViewMore />} />
-            <Route path="QuestionRoom/createQuestion" element={<AskQComponent />} />
-            <Route path="QuestionRoom/:questionId/edit" element={<AskQComponent />} />
+            <Route path="QuestionRoom/createQuestion" element={<CRUDQFormComponent />} />
+            <Route path="QuestionRoom/:questionId/edit" element={<CRUDQFormComponent />} />
             
             <Route path="ReadingClubs" element={<ReadingClubs />} >
                <Route path="" element={<IndexClubRoom />} />

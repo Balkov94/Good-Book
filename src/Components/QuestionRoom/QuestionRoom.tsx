@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { questionApi, UserApi } from '../../Rest-APi-Client/client';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 interface questionListType extends IQuestionCardProps, IQuestionAuthorHeaderProps { };
 
@@ -35,7 +36,7 @@ function QuestionRoom() {
    return (
       <>
          <div className={styles.mainQuestionRoomContainer}>
-            <div className={styles.mainTitleContainer}>? Questions Room &#191; </div>
+            <div className={styles.mainTitleContainer}>❔Quest<span style={{color:"#922B21"}}>&#191;</span>ons Room ❔ </div>
 
             <div className={styles.qWraper}>
                {
@@ -58,10 +59,10 @@ function QuestionRoom() {
                }
             </div>
          </div>
-         {/* Ask question Btn container */}
+         {/* Ask question Btn container goes to CRUDQFormComponent*/}
          <Link to="/QuestionRoom/createQuestion">
          <div className={styles.askQContainer}>
-                <Button variant="contained">Ask Question</Button>
+                <Button variant="contained"><HelpOutlineIcon style={{marginRight:"4px"}}/>Ask Question</Button>
             </div>
          </Link>
            

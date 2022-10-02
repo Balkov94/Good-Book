@@ -1,4 +1,4 @@
-import styles from './AskQComponent.module.css';
+import styles from './CRUDQFormComponent.module.css';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,17 +13,14 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { TextareaAutosize } from '@mui/material';
 import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { QuestionClass } from '../../../Rest-APi-Client/shared-types';
-import { questionApi } from '../../../Rest-APi-Client/client';
-
-interface IQuestionFormProps {
-   editQuestion?: QuestionClass,
-}
+import { commentApi, questionApi } from '../../../Rest-APi-Client/client';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 interface ILoginFormInputs {
    title: string,
@@ -102,9 +99,10 @@ const LoginFormMUIOverride = {
    },
 }
 
-export default function AskQComponent({ editQuestion }: IQuestionFormProps) {
-   // get props from Link-> state -> useState React-router
-   const location=useLocation().state;
+export default function CRUDQFormComponent() {
+   // get PROPS by Link-> state -> useLocation.state React-router
+   const location = useLocation().state;
+   let navigate = useNavigate();
 
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ILoginFormInputs>({
       defaultValues: {
@@ -117,16 +115,10 @@ export default function AskQComponent({ editQuestion }: IQuestionFormProps) {
 
    });
 
-   const params = useParams();
-   // console.log("Create form params:");
-   // console.log(params);
-   // const paramsValues = Object.values(params);
-
    const sendSubmit = (data: ILoginFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
       }
-
       const newQuestion = new QuestionClass(
          location?.id || undefined,
          location?.creatorId || 1,//logged user if new Q
@@ -138,24 +130,41 @@ export default function AskQComponent({ editQuestion }: IQuestionFormProps) {
       );
 
       // Create Or Edit Question in the DB
-      if (location?.title!=="") {
+      if (location !== null) {
          questionApi.update(newQuestion)
             .then(res => {
-               console.log(res);
-               navigate(-1)
+               navigate(-2)
             })
       }
       else {
          questionApi.create(newQuestion)
             .then(res => {
-               console.log(res);
                navigate(-1)
 
             })
       }
    };
 
-   let navigate = useNavigate();
+   const deleteQuestion = () => {
+      // delete question and its comments
+      // NEED FIX not to make so many requests
+      commentApi.findAll()
+         .then(allComments => {
+            const commentForDelete = allComments.filter(c => c.discussionId === location.id);
+            return commentForDelete;
+         })
+         .then(filtred => {
+            filtred.forEach(c => commentApi.deleteById(c.id))
+         })
+
+      questionApi.deleteById(location.id)
+         .then(res => {
+            navigate(-2)
+         })
+   }
+
+
+
    return (
       <ThemeProvider theme={theme}>
          <Container component="main" maxWidth="md" className={styles.mainFormWrapper}
@@ -175,6 +184,7 @@ export default function AskQComponent({ editQuestion }: IQuestionFormProps) {
                sx={{
                   height: "fit-content",
                   marginTop: 8,
+                  paddingBottom: 8,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -192,7 +202,12 @@ export default function AskQComponent({ editQuestion }: IQuestionFormProps) {
 
 
                <Typography component="h1" variant="h5">
-                  ✍️ Write your question. The community will do the rest.
+                  {
+                     location !== null
+                        ? ("✏️ Editing your question...")
+                        : ("✍️ Write your question. The community will do the rest.")
+                  }
+
                </Typography>
 
                <Box component="form"
@@ -282,16 +297,28 @@ export default function AskQComponent({ editQuestion }: IQuestionFormProps) {
                      )}
                   />
 
+
                   <Button type="submit" fullWidth variant="contained"
                      disabled={(isValid && isDirty) === false} sx={{ mt: "60px", mb: 2 }}
-                  >  Post question
+                  >
+                     {location !== null ? "Save changes" : "Post question"}
                   </Button>
+
 
                   <Button variant="outlined" color="warning" fullWidth sx={{ mt: 0, mb: 2 }}
                      onClick={() => navigate(-1)}
                   >
                      cancel
                   </Button>
+                  {
+                     location !== null &&
+                     <Button variant="contained" color="error" fullWidth sx={{ mt: 4, mb: 2 }}
+                        onClick={deleteQuestion}
+                     >
+                        <DeleteOutlineIcon /> Delete question
+                     </Button>
+
+                  }
                </Box>
             </Box>
          </Container>

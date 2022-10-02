@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Link } from 'react-router-dom';
 import { IdType, TimeOfModificationType } from '../../../Rest-APi-Client/shared-types';
+
+
 // i for question data
 export interface IQuestionCardProps {
    questionPic: string,
@@ -52,7 +54,7 @@ function QuestionCard({questionPic, title, content, id, creatorId ,username,fnam
                      to={`/QuestionRoom/:question${id}`}
                      state={{ id,creatorId, questionPic, title, content,username,fname,lname,userPic }}>
                      <Button variant="contained" color="warning" className={styles.ViewMoreBtn}>
-                        view more ...
+                        view more...
                      </Button>
                   </Link>
                </div>
