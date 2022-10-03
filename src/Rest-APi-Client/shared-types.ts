@@ -73,15 +73,8 @@ export class CommentClass {
    }
 }
 
-// {
-//    "id": 1,
-//    "creatorId": 1,
-//    "title": "Question one1 title",
-//    "content": "Content question 1???",
-//    "questionPic": "https://cdn.ozone.bg/media/catalog/product/cache/1/small_image/178x222/9df78eab33525d08d6e5fb8d27136e95/b/r/b3f75afdb59284ea0f7dbac6221d3871/bridzhartan-5--na-sar-filip--s-lyubov-20.jpg"
-//  },
 
-//2.CommentClass
+//2.QuestionClass
 export class QuestionClass {
    constructor(
       public id: IdType = undefined,
@@ -97,6 +90,28 @@ export class QuestionClass {
       console.log(`id:${this.id}, creatorId:${this.creatorId},
         content${this.content}, timeOfCreation:${this.timeOfCreation}
         timeOfModification: ${this.timeOfModification}`);
+   }
+}
+
+
+
+//3.ClubClass
+export class ClubClass {
+   constructor(
+      public id: IdType = undefined,
+      public creatorId: number,
+      public name: string,
+      public interests: string[],
+      public participants: number[],
+      public banned: number[],
+      // public timeOfCreation: string = `${new Date().toDateString()} ${new Date().toLocaleTimeString()} `,
+      // public timeOfModification: TimeOfModificationType = null,
+   ) { }
+
+   toString = () => {
+      console.log(`id:${this.id}, creatorId:${this.creatorId},
+        name${this.name}, timeOfCreation:
+        timeOfModification: `);
    }
 }
 

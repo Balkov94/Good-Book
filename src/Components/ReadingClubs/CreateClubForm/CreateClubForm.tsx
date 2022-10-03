@@ -13,11 +13,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
+import { ClubClass } from '../../../Rest-APi-Client/shared-types';
+import { clubApi } from '../../../Rest-APi-Client/client';
 
 
 
 
-export interface IClubData {
+export interface ICreateClubFormInputs {
    clubName: string,
    interest1: string,
    interest2: string,
@@ -26,22 +28,18 @@ export interface IClubData {
    interest5?: string,
    interest6?: string,
 }
-// !!! used before reacrt router
-// interface ICreateClubProps {
-//    onClose: () => void,
-//    onCreate: (newClub: IClubData) => void,
-// }
+
 
 const schema = yup.object({
    clubName: yup.string().required("Required field.")
       .min(2, "Club name must be at least 2 characters.")
-      .max(22).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
+      .max(22),
    interest1: yup.string().required("You must write at least two interests for your club.")
       .min(2, "The word must be at least 2 characters.")
-      .max(25).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
+      .max(25),
    interest2: yup.string().required("You must write at least two interests for your club.")
       .min(2, "The word must be at least 2 characters.")
-      .max(25).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
+      .max(25),
    interest3: yup.string().max(25).test(
       'empty-or-2-characters-check',
       'The word must be at least 2 characters',
@@ -66,7 +64,7 @@ const schema = yup.object({
 }).required();
 
 const theme = createTheme();
- const formsMUIoverride = {
+const formsMUIoverride = {
    dispay: "flex",
    justifyContent: "center",
    alignItems: "center",
@@ -120,7 +118,7 @@ const theme = createTheme();
 }
 
 export default function CreateClubForm() {
-   const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<IClubData>({
+   const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ICreateClubFormInputs>({
       defaultValues: {
          clubName: "",
          interest1: "",
@@ -132,18 +130,34 @@ export default function CreateClubForm() {
       },
       mode: "onChange",
       resolver: yupResolver(schema)
-
    });
-   const sendSubmit = (data: IClubData, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
+
+   const navigate = useNavigate();
+   const sendSubmit = (data: ICreateClubFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
       }
-      console.log(data);
 
-      // onCreate(data);
+      const interestsArr = [data.interest1, data.interest2, data.interest3, data.interest4, data.interest5, data.interest6]
+      const falidInterestsArr = interestsArr.filter(x => x !== "");
+      const newClub = new ClubClass(
+         undefined,
+         1, //logged user
+         data.clubName,
+         (falidInterestsArr as string[]),
+         [1,],  //paricipants + logged user
+         [],  //banned
+      )
+
+      clubApi.create(newClub)
+         .then(res => {
+            console.log(res);
+            navigate(-1);
+         })
+
    };
    // back button(used in X to close create Form)
-   const navigate=useNavigate();
+  
    return (
       <ThemeProvider theme={theme}>
          <Container className={styles.mainContainer}>
@@ -169,19 +183,19 @@ export default function CreateClubForm() {
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
                   sx={{
-                     mt:"20px",
+                     mt: "20px",
                      mb: "100px",
                      border: "1px solid gray",
                      padding: "46px 26px 20px 26px",
                      width: "440px",
                      bgcolor: "black",
                      borderRadius: "10px",
-                     position:"relative",
+                     position: "relative",
                      ...formsMUIoverride
                   }}
                >
 
-                  <div className={styles.closeIconContainer} onClick={()=>navigate(-1)}>
+                  <div className={styles.closeIconContainer} onClick={() => navigate(-1)}>
                      <CloseIcon />
                   </div>
 
@@ -232,8 +246,8 @@ export default function CreateClubForm() {
                      render={({ field: { onChange, value } }) => (
                         <TextField
                            margin="normal"
-                           fullWidth                         
-                           id="interest2"                          
+                           fullWidth
+                           id="interest2"
                            name="interest2"
                            placeholder="🧩 Boardgames"
                            value={value}
@@ -249,8 +263,8 @@ export default function CreateClubForm() {
                      render={({ field: { onChange, value } }) => (
                         <TextField
                            margin="normal"
-                           fullWidth                       
-                           id="interest3"                  
+                           fullWidth
+                           id="interest3"
                            name="interest3"
                            placeholder="👨‍🏫 Languages"
                            value={value}
@@ -266,8 +280,8 @@ export default function CreateClubForm() {
                      render={({ field: { onChange, value } }) => (
                         <TextField
                            margin="normal"
-                           fullWidth                       
-                           id="interest4"                        
+                           fullWidth
+                           id="interest4"
                            name="interest4"
                            placeholder="&#9917; Football"
                            value={value}
@@ -284,7 +298,7 @@ export default function CreateClubForm() {
                         <TextField
                            margin="normal"
                            fullWidth
-                           id="interest5"                       
+                           id="interest5"
                            name="interest5"
                            placeholder="💃 Dancing"
                            value={value}

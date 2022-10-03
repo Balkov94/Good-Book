@@ -1,4 +1,4 @@
-import { CommentClass, Identifiable, IdType, QuestionClass, UserClass } from "./shared-types";
+import { ClubClass, CommentClass, Identifiable, IdType, QuestionClass, UserClass } from "./shared-types";
 
 const API_BASE_URL="http://localhost:4000/api";
 
@@ -64,4 +64,4 @@ export const UserApi: ApiClient<IdType, any> = new ApiClientImpl('users');
 export const questionApi: ApiClient<IdType, QuestionClass> = new ApiClientImpl('questions');
 export const commentApi: ApiClient<IdType, CommentClass> = new ApiClientImpl('comments');
 export const bookApi: ApiClient<IdType, any> = new ApiClientImpl('books');
-export const clubApi: ApiClient<IdType, any> = new ApiClientImpl('clubs');
+export const clubApi: ApiClient<IdType, ClubClass> = new ApiClientImpl('clubs');

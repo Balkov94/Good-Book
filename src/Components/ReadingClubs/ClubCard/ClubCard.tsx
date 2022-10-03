@@ -3,11 +3,12 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import { Link } from 'react-router-dom';
+import { IdType } from '../../../Rest-APi-Client/shared-types';
 
 // const chipColor = ["primary", "secondary", "warning", "success", "info"];
 const chipColor = ["DarkSlateBlue", "CadetBlue", "DodgerBlue", "ForestGreen", "OrangeRed", "CornflowerBlue"];
 export interface IClubCard {
-   id: number,
+   id: IdType,
    creatorId: number,
    name: string,
    interests: string[],

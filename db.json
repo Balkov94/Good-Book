@@ -69,6 +69,24 @@
       "timeOfCreation": "Sun Oct 02 2022 2:45:19 PM ",
       "timeOfModification": null,
       "id": 3
+    },
+    {
+      "creatorId": 1,
+      "discussionId": 4,
+      "isClub": true,
+      "content": "1",
+      "timeOfCreation": "Mon Oct 03 2022 6:16:56 PM ",
+      "timeOfModification": null,
+      "id": 4
+    },
+    {
+      "creatorId": 1,
+      "discussionId": 4,
+      "isClub": true,
+      "content": "2",
+      "timeOfCreation": "Mon Oct 03 2022 6:16:58 PM ",
+      "timeOfModification": null,
+      "id": 5
     }
   ],
   "clubs": [
@@ -101,6 +119,32 @@
       "banned": [
         1
       ]
+    },
+    {
+      "creatorId": 1,
+      "name": "11",
+      "interests": [
+        "22",
+        "33"
+      ],
+      "participants": [
+        1
+      ],
+      "banned": [],
+      "id": 3
+    },
+    {
+      "creatorId": 1,
+      "name": "22",
+      "interests": [
+        "22",
+        "22"
+      ],
+      "participants": [
+        1
+      ],
+      "banned": [],
+      "id": 4
     }
   ],
   "books": [
