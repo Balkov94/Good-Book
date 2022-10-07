@@ -55,7 +55,7 @@
    flex-direction: row;
    justify-content: space-between;
    font-size: 18px;
-   opacity: 0.8;
+   color: rgb(201, 201, 201);
 }
 
 .clubMembersWrapper {

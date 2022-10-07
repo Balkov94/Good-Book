@@ -9,7 +9,7 @@ function MyBooks() {
    const [booksList, setBooksList] = useState<IBookCardProps[]>();
    useEffect(() => {
       // JSON-Server - get all books and sort by userId
-      const loggedUser = 1
+      const loggedUser = "1"
       bookApi.findAll()
          .then((allbooks: IBookCardProps[]) => {
             const sorted = allbooks.filter(b => b.ownerId === loggedUser);

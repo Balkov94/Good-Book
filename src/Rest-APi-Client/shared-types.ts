@@ -1,7 +1,7 @@
 export interface Identifiable<K> {
    id: K;
 }
-export type IdType = number | undefined;
+export type IdType = number | string | undefined;
 
 // export enum GenderEnum {
 //      Male = 1, Female,
@@ -35,16 +35,6 @@ export class UserClass {
       public timeOfModification: TimeOfModificationType = null,
    ) { }
 
-   toString = () => {
-      console.log(`fname:${this.fname}, lname:${this.lname}
-          .username: ${this.username} , password:${this.password},
-          gender: role:${this.role}, pic:${this.userPic}
-          description: ${this.description}, status:${this.status},
-          timeOfCreation: ${this.timeOfCreation}, 
-          timeOfModification:${this.timeOfModification}
-          `);
-
-   }
 }
 
 export function toIsoDate(date: Date) {
@@ -57,20 +47,14 @@ export function toIsoDate(date: Date) {
 export class CommentClass {
    constructor(
       public id: IdType = undefined,
-      public creatorId: number,
-      public discussionId: number,
+      public creatorId: string,
+      public discussionId: string,
       public isClub: boolean,
       public content: string,
       public timeOfCreation: string = `${new Date().toDateString()} ${new Date().toLocaleTimeString()} `,
       public timeOfModification: TimeOfModificationType = null,
    ) { }
 
-   toString = () => {
-      console.log(`id:${this.id}, creatorId:${this.creatorId}
-        .discussionId: ${this.discussionId} , isClub:${this.isClub},
-        content${this.content}, timeOfCreation:${this.timeOfCreation}
-        timeOfModification: ${this.timeOfModification}`);
-   }
 }
 
 
@@ -78,19 +62,13 @@ export class CommentClass {
 export class QuestionClass {
    constructor(
       public id: IdType = undefined,
-      public creatorId: number,
+      public creatorId: string,
       public title: string,
       public content: string,
       public questionPic: string,
       public timeOfCreation: string = `${new Date().toDateString()} ${new Date().toLocaleTimeString()} `,
       public timeOfModification: TimeOfModificationType = null,
    ) { }
-
-   toString = () => {
-      console.log(`id:${this.id}, creatorId:${this.creatorId},
-        content${this.content}, timeOfCreation:${this.timeOfCreation}
-        timeOfModification: ${this.timeOfModification}`);
-   }
 }
 
 
@@ -99,20 +77,15 @@ export class QuestionClass {
 export class ClubClass {
    constructor(
       public id: IdType = undefined,
-      public creatorId: number,
+      public creatorId: string,
       public name: string,
       public interests: string[],
-      public participants: number[],
-      public banned: number[],
+      public participants: string[],
+      public banned: string[],
       // public timeOfCreation: string = `${new Date().toDateString()} ${new Date().toLocaleTimeString()} `,
       // public timeOfModification: TimeOfModificationType = null,
    ) { }
 
-   toString = () => {
-      console.log(`id:${this.id}, creatorId:${this.creatorId},
-        name${this.name}, timeOfCreation:
-        timeOfModification: `);
-   }
 }
 
 

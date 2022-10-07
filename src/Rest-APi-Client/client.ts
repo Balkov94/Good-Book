@@ -1,6 +1,6 @@
 import { ClubClass, CommentClass, Identifiable, IdType, QuestionClass, UserClass } from "./shared-types";
 
-const API_BASE_URL="http://localhost:4000/api";
+const API_BASE_URL="http://localhost:8000/api";
 
 export interface ApiClient<K, V extends Identifiable<K>> {
     findAll(): Promise<V[]>;
@@ -60,8 +60,8 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
 
 // export const UserApi: ApiClient<IdType, UserClass> = new ApiClientImpl('users');
 // NEED REFACTORING have to CREATE CLASSES FOR in interfaces
-export const UserApi: ApiClient<IdType, any> = new ApiClientImpl('users');
-export const questionApi: ApiClient<IdType, QuestionClass> = new ApiClientImpl('questions');
-export const commentApi: ApiClient<IdType, CommentClass> = new ApiClientImpl('comments');
-export const bookApi: ApiClient<IdType, any> = new ApiClientImpl('books');
-export const clubApi: ApiClient<IdType, ClubClass> = new ApiClientImpl('clubs');
+export const UserApi: ApiClient<IdType, any> = new ApiClientImpl('AllUsers');
+export const questionApi: ApiClient<IdType, QuestionClass> = new ApiClientImpl('QuestionRoom');
+export const commentApi: ApiClient<IdType, CommentClass> = new ApiClientImpl('');
+export const bookApi: ApiClient<IdType, any> = new ApiClientImpl('ExchangePage');
+export const clubApi: ApiClient<IdType, ClubClass> = new ApiClientImpl('ReadingClubs');

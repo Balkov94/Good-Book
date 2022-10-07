@@ -8,7 +8,7 @@ import { UserApi } from '../../../Rest-APi-Client/client';
 interface IBookOwnerCardProps {
    toggleBookMenu: () => void,
    title: string,
-   ownerId: number,
+   ownerId: string,
 }
 // need interface for User full date
 interface IOwner {

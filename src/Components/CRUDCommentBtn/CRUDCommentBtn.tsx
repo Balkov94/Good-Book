@@ -26,7 +26,7 @@ function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
    // using same toggleBtn and form - 1.Add comment 2.Edit comment
    return (
       <>
-         {/* Btns for Add / Edit */}
+         {/* Btns switch text for Add / Edit */}
          {
             editComment===undefined
                ? (

@@ -21,7 +21,7 @@ function ReadingClubs() {
          <div className={styles.bClubsMainContainer}>
             <div className={styles.listClubsContainer}>
                <h1>&#x1f4da; Book Clubs:</h1>
-               <Link to={"createClub"} >
+               <Link to={"Reading-Club-Form"} >
                   <Button variant='contained' color="success">
                      <BookmarkAddIcon />
                      Create Club

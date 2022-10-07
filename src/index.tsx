@@ -15,9 +15,10 @@ import AllUsersPage from './Components/AllUsersPage/AllUsersPage';
 import MyProfile from './Components/MyProfilePage/MyProfile';
 import ClubRoom from './Components/ReadingClubs/ClubRoom/ClubRoom';
 import IndexClubRoom from './Components/ReadingClubs/IndexClubRoom/IndexClubRoom';
-import CreateClubForm from './Components/ReadingClubs/CreateClubForm/CreateClubForm';
+import CRUDClubForm from './Components/ReadingClubs/CRUDClubForm/CRUDClubForm';
 import AddComment from './Components/CRUDCommentBtn/CRUDCommentBtn';
 import CRUDQFormComponent from './Components/QuestionRoom/CRUDQFormComponent/CRUDQFormComponent';
+import ErrorPage from './Components/ErrorPage/ErrorPage';
 
 
 const root = ReactDOM.createRoot(
@@ -42,14 +43,14 @@ root.render(
                <Route path="" element={<IndexClubRoom />} />
                <Route path=":clubId" element={<ClubRoom />} />
             </Route>
-            <Route path="ReadingClubs/createClub" element={<CreateClubForm />} />
+            <Route path="ReadingClubs/Reading-Club-Form" element={<CRUDClubForm />} />
             <Route path="ExchangePage" element={<ExchangerPage />} />
             <Route path="AboutUs" element={<AboutUs />} />
             <Route path="Login" element={<LoginPage />} />
             <Route path="Register" element={<RegisterPage />} />
             <Route path="AllUsers" element={<AllUsersPage />} />
             <Route path="MyProfile" element={<MyProfile />} />
-            <Route path="*" element={<h1 style={{ color: "red", textAlign: "center", fontSize: "40px" }}>Error 404</h1>} />
+            <Route path="*"  element={<ErrorPage />}/>
          </Routes>
       </BrowserRouter>
    </React.StrictMode>

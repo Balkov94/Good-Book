@@ -103,22 +103,20 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
       // get date from form data and useParams 
       // !!! logged user - > assume  its id1 for now (still dont have global state)
       let [paramsValue1] = Object.values(params)// get params value (ex. [:question2, club12])
-      let discussionId = Number(paramsValue1?.replace(/\D/g, "")); //get only the Id 
+      let discussionId = String(paramsValue1?.replace(/\D/g, "")); //get only the Id 
       const comment = new CommentClass(
          undefined,
-         1,
+         "1",
          discussionId,
          (paramsValue1!.includes("club") ? true : false),
          data.content,
 
       );
-
+        
       // add comment to the DB
       toggleForm();
       commentApi.create(comment)
          .then(resCommentObj => {
-            console.log("response res");
-            console.log(resCommentObj);
             onUpdateCommentList(resCommentObj);
          });
 

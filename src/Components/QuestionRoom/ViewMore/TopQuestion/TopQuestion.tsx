@@ -28,6 +28,7 @@ function TopQuestion({ id, creatorId, questionPic, title, content, username, fna
 
          {/* EDIT QUESTION Btn  goes to CRUDQFOrmComponent */}
          <Link to={`/QuestionRoom/${params.questionId}/edit`}
+         // <Link to={`/QuestionRoom/${params.questionId}`}
             state={{ id, questionPic, title, content,creatorId}}
          >
             <div className={styles.editQBtnContainer}>

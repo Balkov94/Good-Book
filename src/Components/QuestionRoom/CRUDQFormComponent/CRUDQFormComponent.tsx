@@ -131,10 +131,21 @@ export default function CRUDQFormComponent() {
 
       // Create Or Edit Question in the DB
       if (location !== null) {
-         questionApi.update(newQuestion)
-            .then(res => {
-               navigate(-2)
-            })
+      //    questionApi.update(newQuestion)
+      //       .then(res => {
+      //          navigate(-2)
+      //       })
+         // console.log(newQuestion)
+         fetch(`http://localhost:8000/api/questionRoom/question${newQuestion.id}`,{
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newQuestion)
+         })
+         .then(res=>{
+            navigate(-2);
+            console.log(res);      
+         })
+         
       }
       else {
          questionApi.create(newQuestion)

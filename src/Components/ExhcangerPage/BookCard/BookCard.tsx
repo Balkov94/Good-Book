@@ -5,8 +5,8 @@ import InfoIcon from '@mui/icons-material/Info';
 
 
 export interface IBookCardProps {
-   id: number,
-   ownerId: number,
+   id: string,
+   ownerId: string,
    title: string,
    bookPic: string,
 }

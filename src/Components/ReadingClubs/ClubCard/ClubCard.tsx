@@ -9,11 +9,11 @@ import { IdType } from '../../../Rest-APi-Client/shared-types';
 const chipColor = ["DarkSlateBlue", "CadetBlue", "DodgerBlue", "ForestGreen", "OrangeRed", "CornflowerBlue"];
 export interface IClubCard {
    id: IdType,
-   creatorId: number,
+   creatorId: string,
    name: string,
    interests: string[],
-   participants: number[], //arr usersIds
-   banned: number[]
+   participants: string[], //arr usersIds
+   banned: string[]
 }
 
 
@@ -37,7 +37,7 @@ function ClubCard({ id, creatorId, name, interests, participants, banned }: IClu
          <div className={styles.membersContainer}>
             <SupervisedUserCircleIcon /> {participants.length}
             <Link
-               to={`/ReadingClubs/:club${id}`}
+               to={`/ReadingClubs/club${id}`}
                state={{ id, creatorId, name, interests, participants, banned }}>
                <Button size="small" variant="contained" color="info">Sign in</Button>
             </Link>

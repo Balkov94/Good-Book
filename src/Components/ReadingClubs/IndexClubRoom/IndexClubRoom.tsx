@@ -14,12 +14,12 @@ function IndexClubRoom() {
    const [memberList, setmemberList] = useState<IClubCard[]>();
 
    useEffect(() => {
-      const loggedUserId = 1;
+      const loggedUserId = "1";
       const leaderClubs: any = [];
       const memberClubs: IClubCard[] = [];
+      
       clubApi.findAll()
          .then((clubs: IClubCard[]) => {
-
             clubs.forEach(club => {
                if (club.creatorId === loggedUserId) {
                   leaderClubs.push(club)

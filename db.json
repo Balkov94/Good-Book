@@ -33,31 +33,40 @@
   ],
   "questions": [
     {
-      "id": 2,
       "creatorId": 1,
-      "title": "long Title asdk ksaldk mjlkasm",
-      "content": "long Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmlong Title asdk ksaldk mjlkasmds",
-      "questionPic": "https://cdn.ozone.bg/media/description/o/s/os_widget_mid_354h268_01_monitori_new_7406.jpg",
-      "timeOfCreation": "Sun Oct 02 2022 2:50:41 PM ",
-      "timeOfModification": null
-    }
-  ],
-  "comments": [
-    {
-      "creatorId": 1,
-      "discussionId": 2,
-      "isClub": false,
-      "content": "1",
-      "timeOfCreation": "Sun Oct 02 2022 2:45:16 PM ",
+      "title": "QUESTION 1",
+      "content": "Question 1 content",
+      "questionPic": "https://cdn.ozone.bg/media/catalog/product/cache/1/small_image/178x222/9df78eab33525d08d6e5fb8d27136e95/p/a/5230acc78f732cbe0167e8c9bd64c5bf/palno-rakovodstvo-po-yoga-s-ilyustratsii-dopalneno-izdanie-20.jpg",
+      "timeOfCreation": "Thu Oct 06 2022 11:44:32 AM ",
       "timeOfModification": null,
       "id": 1
     },
     {
       "creatorId": 1,
-      "discussionId": 2,
+      "title": "Question 2",
+      "content": "Question 2 Content",
+      "questionPic": "https://cdn.ozone.bg/media/catalog/product/cache/1/small_image/178x222/9df78eab33525d08d6e5fb8d27136e95/d/i/d1aa09ca977d8de7727fd246c9286913/dior-meki-koritsi-20.jpg",
+      "timeOfCreation": "Thu Oct 06 2022 11:45:10 AM ",
+      "timeOfModification": null,
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "creatorId": 1,
+      "discussionId": 1,
       "isClub": false,
-      "content": "2",
-      "timeOfCreation": "Sun Oct 02 2022 2:45:18 PM ",
+      "content": "Q1 C1",
+      "timeOfCreation": "Thu Oct 06 2022 11:46:41 AM ",
+      "timeOfModification": null,
+      "id": 1
+    },
+    {
+      "creatorId": 1,
+      "discussionId": 1,
+      "isClub": false,
+      "content": "Q1 C2",
+      "timeOfCreation": "Thu Oct 06 2022 11:46:50 AM ",
       "timeOfModification": null,
       "id": 2
     },
@@ -65,28 +74,46 @@
       "creatorId": 1,
       "discussionId": 2,
       "isClub": false,
-      "content": "3",
-      "timeOfCreation": "Sun Oct 02 2022 2:45:19 PM ",
+      "content": "Q2 C2",
+      "timeOfCreation": "Thu Oct 06 2022 11:47:07 AM ",
       "timeOfModification": null,
       "id": 3
     },
     {
       "creatorId": 1,
-      "discussionId": 4,
-      "isClub": true,
-      "content": "1",
-      "timeOfCreation": "Mon Oct 03 2022 6:16:56 PM ",
+      "discussionId": 2,
+      "isClub": false,
+      "content": "Q2 C2",
+      "timeOfCreation": "Thu Oct 06 2022 11:47:16 AM ",
       "timeOfModification": null,
       "id": 4
     },
     {
       "creatorId": 1,
-      "discussionId": 4,
+      "discussionId": 1,
       "isClub": true,
-      "content": "2",
-      "timeOfCreation": "Mon Oct 03 2022 6:16:58 PM ",
+      "content": "Club1 c1",
+      "timeOfCreation": "Thu Oct 06 2022 11:50:51 AM ",
       "timeOfModification": null,
       "id": 5
+    },
+    {
+      "creatorId": 1,
+      "discussionId": 1,
+      "isClub": true,
+      "content": "Club1 c2",
+      "timeOfCreation": "Thu Oct 06 2022 11:51:02 AM ",
+      "timeOfModification": null,
+      "id": 6
+    },
+    {
+      "creatorId": 1,
+      "discussionId": 2,
+      "isClub": true,
+      "content": "Club2 c1",
+      "timeOfCreation": "Thu Oct 06 2022 11:51:14 AM ",
+      "timeOfModification": null,
+      "id": 7
     }
   ],
   "clubs": [
@@ -119,32 +146,6 @@
       "banned": [
         1
       ]
-    },
-    {
-      "creatorId": 1,
-      "name": "11",
-      "interests": [
-        "22",
-        "33"
-      ],
-      "participants": [
-        1
-      ],
-      "banned": [],
-      "id": 3
-    },
-    {
-      "creatorId": 1,
-      "name": "22",
-      "interests": [
-        "22",
-        "22"
-      ],
-      "participants": [
-        1
-      ],
-      "banned": [],
-      "id": 4
     }
   ],
   "books": [

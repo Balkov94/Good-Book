@@ -1,4 +1,4 @@
-import styles from './CreateClubForm.module.css';
+import styles from './CRUDClubForm.module.css';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,11 +12,10 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ClubClass } from '../../../Rest-APi-Client/shared-types';
 import { clubApi } from '../../../Rest-APi-Client/client';
-
-
+import { IClubCard } from '../ClubCard/ClubCard';
 
 
 export interface ICreateClubFormInputs {
@@ -117,47 +116,55 @@ const formsMUIoverride = {
    },
 }
 
-export default function CreateClubForm() {
+export default function CRUDClubForm() {
+   // 1.Get props from Link state, 
+   //If not null ->  update / null - > create
+   const location: IClubCard = useLocation().state;
+   let navigate = useNavigate();
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ICreateClubFormInputs>({
       defaultValues: {
-         clubName: "",
-         interest1: "",
-         interest2: "",
-         interest3: "",
-         interest4: "",
-         interest5: "",
-         interest6: "",
+         clubName: location?.name || "",
+         interest1: location?.interests[0] || "",
+         interest2: location?.interests[1] || "",
+         interest3: location?.interests[2] || "",
+         interest4: location?.interests[3] || "",
+         interest5: location?.interests[4] || "",
+         interest6: location?.interests[5] || "",
       },
       mode: "onChange",
       resolver: yupResolver(schema)
    });
 
-   const navigate = useNavigate();
    const sendSubmit = (data: ICreateClubFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
       }
 
       const interestsArr = [data.interest1, data.interest2, data.interest3, data.interest4, data.interest5, data.interest6]
-      const falidInterestsArr = interestsArr.filter(x => x !== "");
+      const validInterests = interestsArr.filter(x => x !== "");
       const newClub = new ClubClass(
-         undefined,
-         1, //logged user
+         location?.id || undefined,
+         location?.creatorId || "1", //logged user
          data.clubName,
-         (falidInterestsArr as string[]),
-         [1,],  //paricipants + logged user
-         [],  //banned
+         (validInterests as string[]),
+         location?.participants || ["1",],  //paricipants + logged user
+         location?.banned || [],  //banned
       )
-
-      clubApi.create(newClub)
-         .then(res => {
-            console.log(res);
-            navigate(-1);
-         })
-
+      // location!==null => update // create
+      if (location) {
+         clubApi.update(newClub)
+            .then(res => {
+               navigate("/ReadingClubs");
+            })
+      }
+      else {
+         clubApi.create(newClub)
+            .then(res => {
+               navigate(-1);
+            })
+      }
    };
-   // back button(used in X to close create Form)
-  
+
    return (
       <ThemeProvider theme={theme}>
          <Container className={styles.mainContainer}>
@@ -175,7 +182,9 @@ export default function CreateClubForm() {
                   <span>&#128218;</span>
                </Avatar>
                <Typography component="h1" variant="h5">
-                  Creating Reading Club
+                  {
+                     location ? `Edit ${location.name} club...` : "Creating Reading Club"
+                  }
                </Typography>
 
                {/* FORM ______________________________________________________ */}
@@ -232,7 +241,7 @@ export default function CreateClubForm() {
                            fullWidth
                            id="interest1"
                            name="interest1"
-                           placeholder=" &#128187; Front-end"
+                           placeholder="&#128187; Front-end"
                            value={value}
                            onChange={onChange}
                            error={errors.interest1?.message ? true : false}
@@ -249,7 +258,7 @@ export default function CreateClubForm() {
                            fullWidth
                            id="interest2"
                            name="interest2"
-                           placeholder="🧩 Boardgames"
+                           placeholder="🧩 Board games"
                            value={value}
                            onChange={onChange}
                            error={errors.interest2?.message ? true : false}
@@ -327,9 +336,14 @@ export default function CreateClubForm() {
                   />
 
                   <Button type="submit" fullWidth variant="contained"
-                     disabled={(isValid && isDirty) === false} sx={{ mt: 3, mb: 2 }}
+                     disabled={(isValid && isDirty) === false} sx={{ mt: 3, mb: 1 }}
                   >
-                     Create Club
+                     {location ? "Save changed" : "Create club"}
+                  </Button>
+                  <Button  fullWidth variant="outlined" color="secondary"
+                      onClick={() => navigate(-1)} sx={{ mt: 1, mb: 3 }}
+                  >
+                     Cancel
                   </Button>
 
                </Box>

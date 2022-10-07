@@ -29,8 +29,8 @@ const formsMUIoverride = {
    dispay: "flex",
    justifyContent: "center",
    alignItems: "center",
-   maxWidth:"90%",
-   minWidth:"90%",
+   maxWidth: "90%",
+   minWidth: "90%",
 
    '& .MuiTextField-root': {
       bgcolor: "rgb(10,25,41)",
@@ -101,18 +101,16 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
          event.preventDefault();
       }
 
-      const updatedComment = { 
-          ...editComment,
-          content: data.content,
-          timeOfModification :`${new Date().toDateString()} ${new Date().toLocaleTimeString()} `
-         };
+      const updatedComment = {
+         ...editComment,
+         content: data.content,
+         timeOfModification: `${new Date().toDateString()} ${new Date().toLocaleTimeString()} `
+      };
 
       // add comment to the DB
       toggleForm();
       commentApi.update(updatedComment)
          .then(resCommentObj => {
-            console.log("response res");
-            console.log(resCommentObj);
             onUpdateCommentList(resCommentObj)
             // onCreateComment(resCommentObj);
          });
@@ -122,8 +120,8 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
    const deleteComment = () => {
       commentApi.deleteById(editComment.id)
          .then(res => {
-            onUpdateCommentList({...editComment,content:`_this_entity_was_deleted`});
-            console.log({...editComment,content:undefined});
+            onUpdateCommentList({ ...editComment, content: `_this_entity_was_deleted` });
+            console.log({ ...editComment, content: undefined });
          })
 
    };
@@ -137,9 +135,9 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                height: "fit-content",
                borderRadius: "15px",
                position: "relative",
-               border:"2px solid blue",
-               
-              
+               border: "2px solid blue",
+
+
             }}>
             <CssBaseline />
 
@@ -155,8 +153,8 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                   paddingLeft: "20px",
                   paddingRight: "20px",
                   // border: "2px solid gray",
-                  zIndex:"5000",
-                  border:"2px solid red",
+                  zIndex: "5000",
+                  border: "2px solid red",
                }}
             >
                <Avatar sx={{ m: 1, bgcolor: '#00a082' }}>
@@ -173,8 +171,8 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                      // border: "2px solid gray",
                      mt: 1,
                      ...formsMUIoverride,
-                     zIndex:"5000",
-                     border:"2px solid green"
+                     zIndex: "5000",
+                     border: "2px solid green"
                   }}
                >
                   <Controller

@@ -1,0 +1,37 @@
+.errorPageMainContainer{
+   margin-top:50px;
+   padding-top: 60px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   min-height: 92vh;
+   max-height: fit-content;
+   position: relative;
+   background-image: url("../QuestionRoom/ViewMore/paperBG.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 18px;
+   padding-bottom: 40px;
+}
+.errorPageMainContainer h1{
+   font-size: 30px;
+   margin-bottom: 40px;
+   font-family: cursive;
+   color: cadetblue;
+   font-weight: 800;
+}
+.errorPageMainContainer span{
+   color: red;
+   font-size: 40px;
+}
+.imgContainer{
+   box-shadow: 0px 0px 25px 5px rgb(14, 156, 95);
+   width: 400px;
+   overflow: hidden;
+   border-radius: 50%;
+}
+.imgContainer img{
+      width: 100%;
+}

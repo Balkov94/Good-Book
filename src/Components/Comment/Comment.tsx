@@ -11,12 +11,12 @@ import CRUDCommentBtn from '../CRUDCommentBtn/CRUDCommentBtn';
 export interface ICommentProps {
    // for sorting club or question
    id: IdType,
-   discussionId: number,
+   discussionId: string,
    isClub: boolean,
    //for rendering with author and index
    content: string,
    orderIndex?: number,
-   creatorId: number,
+   creatorId: string,
    timeOfCreation: string,
    timeOfModification: TimeOfModificationType
    // updater f

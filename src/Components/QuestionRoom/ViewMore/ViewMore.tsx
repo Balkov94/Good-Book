@@ -20,9 +20,8 @@ function ViewMore() {
       commentApi.findAll()
          .then((res: CommentClass[]) => {
             //!!! get only if commend isClub===false
-            const sortedComments = res.filter(c => (c.discussionId === id && c.isClub === false));
+            const sortedComments = res.filter(c => (c.discussionId == id && c.isClub === false));
             setcommentsList(sortedComments);
-
          })
    }, [id])
 

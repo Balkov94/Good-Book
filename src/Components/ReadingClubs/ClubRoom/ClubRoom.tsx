@@ -26,10 +26,11 @@ function ClubRoom() {
    const [clubComments, setClubComments] = useState<ICommentProps[]>();
    useEffect(() => {
       // ***simulate 3 real backend fetches by ID***
-      const creator = UserApi.findAll(); //here shoudl be fetch by creatorId
+      // Fetch all club data - 1.Creator-name,userPic 2.Participants - usernames,userPic ...
+      const creator = UserApi.findAll(); //fetch Users get CLUB CREATOR
       const allParticipants = UserApi.findAll(); //shoud be foreach id -> fetch user (mb with limit 5 users)
       const allBanned = UserApi.findAll(); // ...
-      const comments = commentApi.findAll();
+      const comments = commentApi.findAll(); //fetch all comments put in commentsList only for curr Club
       Promise.all([creator, allParticipants, allBanned, comments])
          .then((res: any) => {
             creator.then(c => {
@@ -101,8 +102,12 @@ function ClubRoom() {
                      <h1>Club name: {name} </h1>
                   </div>
                   <div>
-                     <Button className={styles.editClubBtn} variant="contained">Edit</Button>
+                     {/* EDIT CLUB name or interests */}
                      {/* <Button className={styles.editClubBtn} variant="contained">Delete</Button> */}
+                     <Link to="/ReadingClubs/Reading-Club-Form" 
+                     state={{id, name, interests, participants, banned, creatorId }}>
+                        <Button className={styles.editClubBtn} variant="outlined" color="warning">Edit</Button>
+                     </Link>
                   </div>
                </div>
                <div>
