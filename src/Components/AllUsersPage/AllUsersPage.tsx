@@ -11,7 +11,6 @@ function AllUsersPage() {
    useEffect(()=>{
       UserApi.findAll()
       .then(res=>{
-         console.log(res)
          setAllUsers(res);
       })
    },[])

@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { IFormData } from "../../RegisterPage/RegisterForm/RegisterForm";
+import { IRegisterData } from "../../RegisterPage/RegisterForm/RegisterForm";
 // react-form-hook (controller)    +  YUP Validation
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,7 +16,7 @@ import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { useNavigate } from 'react-router-dom';
 
 export interface ILoginFormProps {
-   handleLoginData?: (formData?: Partial<IFormData>) => void;
+   handleLoginData?: (formData?: Partial<IRegisterData>) => void;
 }
 
 interface ILoginFormInputs {
@@ -183,6 +183,7 @@ export default function LoginForm({ handleLoginData }: ILoginFormProps) {
                            label="Password"
                            name="password"
                            placeholder='password'
+                           type="password"
                            value={value}
                            onChange={onChange}
                            error={errors.password?.message ? true : false}

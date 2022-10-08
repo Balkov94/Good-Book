@@ -19,7 +19,9 @@
      
   
 }
-
+.cardMenu a p{
+   color: white;
+}
 .cardMenu p{
      padding-bottom: 14px;
      font-size: 20px;

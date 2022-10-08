@@ -20,6 +20,7 @@ import AddComment from './Components/CRUDCommentBtn/CRUDCommentBtn';
 import CRUDQFormComponent from './Components/QuestionRoom/CRUDQFormComponent/CRUDQFormComponent';
 import ErrorPage from './Components/ErrorPage/ErrorPage';
 import CRUDBookFormComponent from './Components/ExhcangerPage/CRUDBookForm/CRUDBookFormComponent';
+import EditUsersFormComponent from './Components/EditUsersComponent/EditUsersForm';
 
 
 const root = ReactDOM.createRoot(
@@ -52,6 +53,8 @@ root.render(
             <Route path="Login" element={<LoginPage />} />
             <Route path="Register" element={<RegisterPage />} />
             <Route path="AllUsers" element={<AllUsersPage />} />
+            <Route path="AllUsers/Edit-form/:id" element={<EditUsersFormComponent/>} />
+            
             <Route path="MyProfile" element={<MyProfile />} />
             <Route path="*"  element={<ErrorPage />}/>
          </Routes>
