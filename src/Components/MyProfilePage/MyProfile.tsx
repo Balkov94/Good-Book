@@ -1,6 +1,9 @@
 import styles from './MyProfile.module.css';
 import MyProfileCard from './MyProfileCard/MyProfileCard';
 import MyBooks from './MyBooks/MyBooks';
+import Button from '@mui/material/Button';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { Link } from 'react-router-dom';
 
 function MyProfile() {
    //1.Fetch logged user data for MyPRofileCard
@@ -9,6 +12,14 @@ function MyProfile() {
          <h1>My profile:</h1>
          <MyProfileCard/>
          <h1>My books for exchange:</h1>
+         <div className={styles.addBookBtnContainer}>
+            <Link to="/ExchangePage/Book-Form">
+               <Button variant="contained" size="small" color="success">
+                  <MenuBookIcon style={{ marginRight: "6px" }} />
+                  Add a book to the exchange page
+               </Button>
+            </Link>
+         </div>
          <MyBooks/>
       </div>
    );

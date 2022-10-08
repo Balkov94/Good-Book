@@ -1,0 +1,26 @@
+.askQmainContainer{
+   margin-top:55px;
+   padding-top: 60px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   /* border:5px solid green; */
+   min-height: 90vh;
+   max-height: fit-content;
+   position: relative;
+   background-image: url("../../QuestionRoom/ViewMore/paperBG.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   line-height: 18px;
+}
+
+.textarea{
+   width: 100%;
+   background-color: black;
+   outline: gray;
+   font-size: 18px;
+   font-family: inherit;
+   resize: none;
+   padding: 18px;
+}

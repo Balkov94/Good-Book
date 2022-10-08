@@ -6,17 +6,18 @@ import styles from './ErrorPage.module.css';
 function ErrorPage() {
    const navigate = useNavigate();
    const [seconds, setSeconds] = useState<number>(5);
-
    useEffect(() => {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
          navigate(-1);
-      }, 5000)
-   });
+      }, 5000);
+      return () => clearTimeout(timer);
+   }, [navigate]);
 
    useEffect(() => {
-      setTimeout(() => {
-         setSeconds(second=>second-1);
-      }, 1000)
+      const timer = setTimeout(() => {
+         setSeconds(seconds => seconds - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
    });
 
    return (

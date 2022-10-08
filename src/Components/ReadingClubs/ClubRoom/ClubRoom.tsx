@@ -15,10 +15,9 @@ function ClubRoom() {
    //2.Fetch Club creator(user) by creatorId (JSON-server fetch all and sort, no Backend and BD)
    //3. Fetch all Participants !!!![]
    //4.Fetch all Banned !!!![]
-   //5.Fetch comments
-   const { id, name, interests, participants, banned, creatorId } = useLocation().state;
-   // console.log("check useLocation.state")
-   // console.log(useLocation().state)
+   const navigate = useNavigate();
+   const location = useLocation().state;
+   const { id, name, interests, participants, banned, creatorId } = location;
 
    const [clubCreator, setClubCreator] = useState<IQuestionAuthorHeaderProps>();
    const [participantsList, setParticipantsList] = useState<IQuestionAuthorHeaderProps[]>();
@@ -59,7 +58,7 @@ function ClubRoom() {
          })
    }, [creatorId, participants, banned, id])
 
-   const navigate = useNavigate();
+
 
    // UI updater functions __________________________// 
    const updateCommentList = (currComment: ICommentProps) => {
@@ -104,8 +103,8 @@ function ClubRoom() {
                   <div>
                      {/* EDIT CLUB name or interests */}
                      {/* <Button className={styles.editClubBtn} variant="contained">Delete</Button> */}
-                     <Link to="/ReadingClubs/Reading-Club-Form" 
-                     state={{id, name, interests, participants, banned, creatorId }}>
+                     <Link to="/ReadingClubs/Reading-Club-Form"
+                        state={{ id, name, interests, participants, banned, creatorId }}>
                         <Button className={styles.editClubBtn} variant="outlined" color="warning">Edit</Button>
                      </Link>
                   </div>

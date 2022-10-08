@@ -2,7 +2,8 @@ import styles from './BookCard.module.css';
 import { useState } from 'react';
 import BookOwnerCard from '../BookOwnerCard/BookOwnerCard';
 import InfoIcon from '@mui/icons-material/Info';
-
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 export interface IBookCardProps {
    id: string,
@@ -29,6 +30,13 @@ function BookCard({ id, ownerId, title, bookPic }: IBookCardProps) {
             </div>
             <InfoIcon className={styles.contactIcon} style={{ fontSize: "30px" }}
                onClick={toggleBookMenu} />
+            <div className={styles.removeBookBtnContainer}>
+               <Link to="/ExchangePage/Book-Form" state={{id, ownerId, title, bookPic}}>
+                  <Button variant="contained" color="warning" size="small">
+                     Edit book
+                  </Button>
+               </Link>
+            </div>
          </div>
          {
             bookMenu

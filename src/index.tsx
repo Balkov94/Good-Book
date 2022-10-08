@@ -19,6 +19,7 @@ import CRUDClubForm from './Components/ReadingClubs/CRUDClubForm/CRUDClubForm';
 import AddComment from './Components/CRUDCommentBtn/CRUDCommentBtn';
 import CRUDQFormComponent from './Components/QuestionRoom/CRUDQFormComponent/CRUDQFormComponent';
 import ErrorPage from './Components/ErrorPage/ErrorPage';
+import CRUDBookFormComponent from './Components/ExhcangerPage/CRUDBookForm/CRUDBookFormComponent';
 
 
 const root = ReactDOM.createRoot(
@@ -45,6 +46,8 @@ root.render(
             </Route>
             <Route path="ReadingClubs/Reading-Club-Form" element={<CRUDClubForm />} />
             <Route path="ExchangePage" element={<ExchangerPage />} />
+            <Route path="ExchangePage/Book-Form" element={<CRUDBookFormComponent />} />
+            
             <Route path="AboutUs" element={<AboutUs />} />
             <Route path="Login" element={<LoginPage />} />
             <Route path="Register" element={<RegisterPage />} />

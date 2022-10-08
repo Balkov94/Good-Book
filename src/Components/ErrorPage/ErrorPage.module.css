@@ -14,6 +14,7 @@
    background-attachment: fixed;
    line-height: 18px;
    padding-bottom: 40px;
+   width: 100%;
 }
 .errorPageMainContainer h1{
    font-size: 30px;

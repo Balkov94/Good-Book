@@ -88,5 +88,15 @@ export class ClubClass {
 
 }
 
+//3.BookClass
+export class BookClass {
+   constructor(
+      public id: IdType = undefined,
+      public ownerId: string,
+      public title: string,
+      public bookPic: string,
+   ) { }
+}
+
 
 
