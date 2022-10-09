@@ -1,27 +1,37 @@
 import UserCardMUI from '../UserCardMUI/UserCardMUI';
 import styles from './AllUsers.module.css';
-import {useEffect,useState} from 'react';
+import { useEffect, useState } from 'react';
 import { UserApi } from '../../Rest-APi-Client/client';
-import { UserClass } from '../../Rest-APi-Client/shared-types';
+import { IdType, UserClass } from '../../Rest-APi-Client/shared-types';
 
 function AllUsersPage() {
    // 1.!!! This page is visible only for Admin users
    // 2. Fetch all users
    const [allUsers, setAllUsers] = useState<UserClass[]>();
-   useEffect(()=>{
+   useEffect(() => {
       UserApi.findAll()
-      .then(res=>{
-         setAllUsers(res);
-      })
-   },[])
-   return (  
+         .then(res => {
+            setAllUsers(res);
+         })
+   }, [])
+
+   const handleDeleteUser = (forDelId: IdType) => {
+      UserApi.deleteById(forDelId)
+         .then(res => {
+            const filtred = allUsers?.filter(user => user.id !== forDelId)
+            setAllUsers(filtred);
+         })
+
+   };
+
+   return (
       <div className={styles.AllUsersWrapper}>
-            <h1>Users list:</h1>
-            {
-               allUsers?.map(user=>{
-                  return  <UserCardMUI key={user.id} user={user}/>
-               })
-            }        
+         <h1>Users list:</h1>
+         {
+            allUsers?.map(user => {
+               return <UserCardMUI key={user.id} user={user} onDelete={handleDeleteUser}/>
+            })
+         }
       </div>
    );
 }

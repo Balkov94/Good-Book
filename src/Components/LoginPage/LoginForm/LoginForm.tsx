@@ -14,9 +14,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { useNavigate } from 'react-router-dom';
+import { UserApi } from '../../../Rest-APi-Client/client';
 
 export interface ILoginFormProps {
-   handleLoginData?: (formData?: Partial<IRegisterData>) => void;
+   onLogin: (newLoggedUser:any) => void;
 }
 
 interface ILoginFormInputs {
@@ -81,7 +82,7 @@ const LoginFormMUIOverride = {
    },
 }
 
-export default function LoginForm({ handleLoginData }: ILoginFormProps) {
+export default function LoginForm({ onLogin }: ILoginFormProps) {
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ILoginFormInputs>({
       defaultValues: { username: "", password: "" },
       mode: "onChange",
@@ -94,9 +95,13 @@ export default function LoginForm({ handleLoginData }: ILoginFormProps) {
       if (event !== undefined) {
          event.preventDefault();
       }
-
-      console.log(data);
-      // handleLoginData(data);
+      UserApi.findAll()
+         .then(users => {
+            const newLogged = users.find(user => user.username === data.username && user.password === data.password);
+            if (newLogged) {
+               onLogin(newLogged);
+            }
+         })
    };
 
    let navigate = useNavigate();
@@ -109,9 +114,6 @@ export default function LoginForm({ handleLoginData }: ILoginFormProps) {
                height: "fit-content",
                borderRadius: "15px",
                position: "relative",
-               // border: "2px solid red",
-               // bgcolor:"black",
-               // zIndex:"1400",
             }}>
             <CssBaseline />
             <img src={require("../LoginPageImages/booksPile.png")} alt="booksPile" className={styles.absoluteImg1} />
@@ -138,15 +140,9 @@ export default function LoginForm({ handleLoginData }: ILoginFormProps) {
                   Login
                </Typography>
 
-               {/* FORM ______________________________________________________ */}
-               {/* !!! Controller syntax without GENERIC factory function */}
-               {/* PNG Absolute imgs */}
-
-
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
                   sx={{
-                     // border: "2px solid gray",
                      mt: 1,
                      ...LoginFormMUIOverride
                   }}
@@ -170,8 +166,6 @@ export default function LoginForm({ handleLoginData }: ILoginFormProps) {
                         />
                      )}
                   />
-                  {/* one way to show errors (react-from-hook) */}
-                  {/* <p>{errors.username?.message}</p> */}
                   <Controller
                      control={control}
                      name="password"
@@ -198,7 +192,7 @@ export default function LoginForm({ handleLoginData }: ILoginFormProps) {
                   </Button>
 
                   <Button variant="contained" color="success" fullWidth sx={{ mt: 0, mb: 2 }}
-                     onClick={()=>navigate("/Register")}
+                     onClick={() => navigate("/Register")}
                   >
                      Don't have an account? Go to register!
                   </Button>

@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import styles from './Header.module.css';
 import { Link, NavLink } from "react-router-dom";
+import { logged } from '../../App';
 
 const pages = ['Question Room', 'Reading Clubs', 'Exchange Page', 'About Us'];
 const settings = ['MyProfile', 'Logout'];
@@ -21,6 +22,10 @@ const settings = ['MyProfile', 'Logout'];
 const Header = () => {
    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+   const [loggedUser, setLoggedUser] = React.useContext(logged);
+   console.log(loggedUser)
+   
 
    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
       setAnchorElNav(event.currentTarget);
@@ -187,7 +192,7 @@ const Header = () => {
                <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                      <IconButton onClick={toggleUserMenu} sx={{ p: 0, m: 0 }}>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                        <Avatar alt="Remy Sharp" src={loggedUser.userPic} />
                      </IconButton>
                   </Tooltip>
                   <Menu

@@ -169,8 +169,10 @@ export default function EditUsersFormComponent() {
          data.phone,
          data.role,
          data.userPic,
-         data.description
+         data.description,
       )
+      newUser.timeOfModification=`${new Date().toDateString()} ${new Date().toLocaleTimeString()}`;
+      
       fetch(`http://localhost:8000/api/AllUsers/Edit-form/${user.id}`, {
          method: 'PUT',
          headers: { 'Content-Type': 'application/json' },

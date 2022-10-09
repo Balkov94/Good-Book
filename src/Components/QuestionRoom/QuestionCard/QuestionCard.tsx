@@ -5,28 +5,27 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Link } from 'react-router-dom';
 import { IdType, TimeOfModificationType } from '../../../Rest-APi-Client/shared-types';
 
-
 // i for question data
 export interface IQuestionCardProps {
    questionPic: string,
    title: string,
    content: string,
-   creatorId: number,
+   creatorId: string,
    id: IdType,
-   // timeOfCreation?:string,
-   // timeOfModification?:TimeOfModificationType,
+   timeOfCreation: string,
+   timeOfModification: TimeOfModificationType,
 
 
 }
 // i for user data (question creator)
-export interface IQuestionAuthorHeaderProps{
-   username:string,
-   fname:string,
-   lname:string,
-   userPic:string
+export interface IQuestionAuthorHeaderProps {
+   username: string,
+   fname: string,
+   lname: string,
+   userPic: string,
 }
 
-function QuestionCard({questionPic, title, content, id, creatorId ,username,fname,lname,userPic}: IQuestionCardProps & IQuestionAuthorHeaderProps) {
+function QuestionCard({ questionPic, title, content, id, creatorId, username, fname, lname, userPic }: IQuestionCardProps & IQuestionAuthorHeaderProps) {
    return (
       <>
          <div className={styles.mainContainer}>
@@ -37,7 +36,7 @@ function QuestionCard({questionPic, title, content, id, creatorId ,username,fnam
             <div className={styles.questionContainer}>
                <div className={styles.questionAuthor}>
                   {/* Question Creator(user) data */}
-                  <QuestionAuthorHeader {...{username,fname,lname,userPic}}/>
+                  <QuestionAuthorHeader {...{ username, fname, lname, userPic }} />
                </div>
                <div className={styles.bookTitleContainer}>
                   <h3>Book title:</h3>
@@ -50,10 +49,10 @@ function QuestionCard({questionPic, title, content, id, creatorId ,username,fnam
                <div className={styles.btnContainer}>
 
                   <Link
-                      // ViewMore component -> Outlet is located QuestionRoom
+                     // ViewMore component -> Outlet is located QuestionRoom
                      // to={`/QuestionRoom/:question${id}`}
                      to={`/QuestionRoom/question${id}`}
-                     state={{ id,creatorId, questionPic, title, content,username,fname,lname,userPic }}>
+                     state={{ id, creatorId, questionPic, title, content, username, fname, lname, userPic }}>
                      <Button variant="contained" color="warning" className={styles.ViewMoreBtn}>
                         view more...
                      </Button>

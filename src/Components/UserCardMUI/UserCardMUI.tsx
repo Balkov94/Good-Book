@@ -12,58 +12,53 @@ import styles from './UserCardMUI.module.css';
 import { IRegisterData } from '../RegisterPage/RegisterForm/RegisterForm';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { UserApi } from '../../Rest-APi-Client/client';
+import { IdType } from '../../Rest-APi-Client/shared-types';
 
 interface ExpandMoreProps extends IconButtonProps {
    expand: boolean;
 }
 
 interface IUserCardMUIProps {
-   // user?: IUserCardMUIProps;
    user: IRegisterData;
-   // handleDeleteUser?: (userID: number) => void;
-   // handleEditUser?: (user: any) => void;
+   onDelete: (forDelId: IdType) => void;
+
 }
 // export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: IUserCardMUIProps) {
-export default function UserCardMUI({ user }: IUserCardMUIProps) {
+export default function UserCardMUI({ user, onDelete }: IUserCardMUIProps) {
    const [cardMenu, setCardMenu] = React.useState(false);
    const [editMode, setEditMode] = React.useState(false);
    // on/OFF option menu on card (menu->1.Edit 2.Delete)
-   const navigate=useNavigate();
+   const navigate = useNavigate();
    const handleCardMenu = () => {
       setCardMenu(cardMenu => !cardMenu);
    }
-   const handleDeleteUser = () => {
-      UserApi.deleteById(user.id)
-         .then(res => {
-            console.log(res);
-            // navigate("/AllUsers");
-         })
-   }
+
 
    return (
       <>
-         <Card sx={{
-            zoom: "0.8",
-            maxWidth: 345,
-            paddingBottom: "20px", position: "relative",
-            bgcolor: "black!important",
-            border: "1px solid gray",
-            boxShadow: "15px 15px 15px -2px gray",
-            transition: "all 0.5s",
-            color: "white",
-            cursor: "default",
-            '& MuiCardHeader-subheader': {
-               color: "white"
-            },
-            '& :hoover .MuiCard-root': {
-               border: "2px solid red"
-            },
-            '&:hover': {
-               boxShadow: "25px 25px 15px -2px rgb(171, 170, 170)",
-               transform: "scale(1.05)",
-            },
+         <Card
+            sx={{
+               zoom: "0.8",
+               maxWidth: 345,
+               paddingBottom: "20px", position: "relative",
+               bgcolor: "black!important",
+               border: "1px solid gray",
+               boxShadow: "15px 15px 15px -2px gray",
+               transition: "all 0.5s",
+               color: "white",
+               cursor: "default",
+               '& MuiCardHeader-subheader': {
+                  color: "white"
+               },
+               '& :hoover .MuiCard-root': {
+                  border: "2px solid red"
+               },
+               '&:hover': {
+                  boxShadow: "25px 25px 15px -2px rgb(171, 170, 170)",
+                  transform: "scale(1.05)",
+               },
 
-         }}>
+            }}>
 
             <CardHeader sx={{
                color: "white",
@@ -109,7 +104,7 @@ export default function UserCardMUI({ user }: IUserCardMUIProps) {
                         <p>Edit user</p>
                      </Link>
 
-                     <p onClick={handleDeleteUser}>Delete user</p>
+                     <p onClick={() => onDelete(user.id)}>Delete user</p>
                   </div>
                )
             }
