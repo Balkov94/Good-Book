@@ -14,7 +14,7 @@ import * as yup from "yup";
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ClubClass } from '../../../Rest-APi-Client/shared-types';
-import { clubApi } from '../../../Rest-APi-Client/client';
+import { clubApi, commentApi } from '../../../Rest-APi-Client/client';
 import { IClubCard } from '../ClubCard/ClubCard';
 
 
@@ -164,6 +164,13 @@ export default function CRUDClubForm() {
             })
       }
    };
+
+   const onDelete=()=>{
+      clubApi.deleteById(location.id)
+      .then(res => {
+         navigate(-1);
+      })
+   }
 
    return (
       <ThemeProvider theme={theme}>
@@ -340,11 +347,24 @@ export default function CRUDClubForm() {
                   >
                      {location ? "Save changed" : "Create club"}
                   </Button>
-                  <Button  fullWidth variant="outlined" color="secondary"
-                      onClick={() => navigate(-1)} sx={{ mt: 1, mb: 3 }}
+                  <Button fullWidth variant="outlined" color="secondary"
+                     onClick={() => navigate(-1)} sx={{ mt: 1, mb: 3 }}
                   >
                      Cancel
                   </Button>
+                  {
+                     location &&
+                     (
+                        <Button fullWidth variant="contained" color="error"
+                           onClick={onDelete} sx={{ mt: 1, mb: 3 }}
+                        >
+                           Delete reading club
+                        </Button>
+                
+                     )
+
+
+                  }
 
                </Box>
             </Box>

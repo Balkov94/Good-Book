@@ -1,14 +1,11 @@
-
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IQuestionAuthorHeaderProps } from './QuestionCard';
 
 function QuestionAuthorHeader({ username, fname, lname, userPic }: IQuestionAuthorHeaderProps) {
-
+   
    return (
       <Card sx={{
          maxWidth: 345,
@@ -29,11 +26,7 @@ function QuestionAuthorHeader({ username, fname, lname, userPic }: IQuestionAuth
                   src={userPic} aria-label="recipe">
                </Avatar>
             }
-            //   action={
-            //     <IconButton aria-label="settings">
-            //       <MoreVertIcon />
-            //     </IconButton>
-            //   }
+       
             title={username}
             subheader={`${fname}  ${lname}`}
          />

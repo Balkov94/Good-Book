@@ -1,13 +1,13 @@
 import QuestionAuthorHeader from '../../QuestionCard/QuestionAuthorHeader';
-import { IQuestionAuthorHeaderProps, IQuestionCardProps } from '../../QuestionCard/QuestionCard';
 import styles from './TopQuestion.module.css';
 import Button from '@mui/material/Button';
 import { Link, useParams } from 'react-router-dom';
+import { IEntireQuestionData } from '../../QuestionRoom';
 
-function TopQuestion({ id, creatorId, questionPic, title, content, username, fname, lname, userPic,}: IQuestionCardProps & IQuestionAuthorHeaderProps) {
+function TopQuestion({ id, creatorId, questionPic, title, content, username, fname, lname, userPic, }
+   : IEntireQuestionData) {
 
    const params = useParams();
-
 
    return (
       <div className={styles.tqCard}>
@@ -28,8 +28,8 @@ function TopQuestion({ id, creatorId, questionPic, title, content, username, fna
 
          {/* EDIT QUESTION Btn  goes to CRUDQFOrmComponent */}
          <Link to={`/QuestionRoom/${params.questionId}/edit`}
-         // <Link to={`/QuestionRoom/${params.questionId}`}
-            state={{ id, questionPic, title, content,creatorId}}
+            // <Link to={`/QuestionRoom/${params.questionId}`}
+            state={{ id, questionPic, title, content, creatorId }}
          >
             <div className={styles.editQBtnContainer}>
                <Button variant="outlined" color="warning">Edit Question</Button>

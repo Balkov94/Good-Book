@@ -24,7 +24,7 @@ const Header = () => {
    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
    const [loggedUser, setLoggedUser] = React.useContext(logged);
-   console.log(loggedUser)
+   // console.log(loggedUser)
    
 
    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {

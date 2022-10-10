@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import CRUDCommentBtn from '../../CRUDCommentBtn/CRUDCommentBtn';
-import { CommentClass, IdType } from '../../../Rest-APi-Client/shared-types';
+import { CommentClass} from '../../../Rest-APi-Client/shared-types';
 
 
 

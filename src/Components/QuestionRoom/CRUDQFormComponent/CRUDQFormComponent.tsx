@@ -121,7 +121,7 @@ export default function CRUDQFormComponent() {
       }
       const newQuestion = new QuestionClass(
          location?.id || undefined,
-         location?.creatorId || 1,//logged user if new Q
+         location?.creatorId || "1" ,//logged user if new Q
          data.title,
          data.content,
          `${data.questionPic === ""
@@ -131,11 +131,6 @@ export default function CRUDQFormComponent() {
 
       // Create Or Edit Question in the DB
       if (location !== null) {
-         //    questionApi.update(newQuestion)
-         //       .then(res => {
-         //          navigate(-2)
-         //       })
-         // console.log(newQuestion)
          fetch(`http://localhost:8000/api/questionRoom/question${newQuestion.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -149,7 +144,8 @@ export default function CRUDQFormComponent() {
       else {
          questionApi.create(newQuestion)
             .then(res => {
-               navigate(-1)
+               console.log(res);
+               navigate(-1);
             })
       }
    };
