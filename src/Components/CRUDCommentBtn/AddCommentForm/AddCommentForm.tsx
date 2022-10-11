@@ -32,8 +32,8 @@ const formsMUIoverride = {
    dispay: "flex",
    justifyContent: "center",
    alignItems: "center",
-   maxWidth:"90%",
-   minWidth:"90%",
+   maxWidth: "90%",
+   minWidth: "90%",
 
    '& .MuiTextField-root': {
       bgcolor: "rgb(10,25,41)",
@@ -102,17 +102,16 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
       }
       // get date from form data and useParams 
       // !!! logged user - > assume  its id1 for now (still dont have global state)
-      let [paramsValue1] = Object.values(params)// get params value (ex. [:question2, club12])
-      let discussionId = String(paramsValue1?.replace(/\D/g, "")); //get only the Id 
+      let [paramsValue1] = Object.values(params)
+      // !!! MONGO ID INCLUDE LETTER AND NUMBERS!!!
+      let discussionId = String(paramsValue1?.slice(-24));
       const comment = new CommentClass(
          undefined,
          "1",
          discussionId,
          (paramsValue1!.includes("club") ? true : false),
          data.content,
-
       );
-        
       // add comment to the DB
       toggleForm();
       commentApi.create(comment)

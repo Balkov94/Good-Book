@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 import { bookApi } from "../../../Rest-APi-Client/client";
 function BooksWrapper() {
    //1. fetch all Books
-   const [booksList, setBooksList] = useState<IBookCardProps[] | undefined>();
+   const [booksList, setBooksList] = useState<IBookCardProps[]>();
    useEffect(() => {
       bookApi.findAll()
          .then(res => {
-            setBooksList(res)
+            setBooksList(res);
          })
    }, [])
-   
+
    return (
       <div className={styles.booksWrapper}>
          {

@@ -29,7 +29,7 @@ function QuestionRoom() {
       Promise.all([questions, users]).then((values) => {
          const questions = (values[0]);
          const users = (values[1]);
-         const questionCardData:any = questions.map((qData, i) => {
+         const questionCardData:any = questions.map((qData) => {
             return {
                ...(users.find(user => user.id === qData.creatorId)),
                ...qData
@@ -45,7 +45,7 @@ function QuestionRoom() {
       <>
          <div className={styles.mainQuestionRoomContainer}>
             <div className={styles.mainTitleContainer}>❔Quest<span style={{ color: "#922B21" }}>&#191;</span>ons Room ❔ </div>
-
+            
             <div className={styles.qWraper}>
                {
                   questionsList.map(q => {

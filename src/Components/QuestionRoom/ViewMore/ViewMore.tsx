@@ -5,9 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import CRUDCommentBtn from '../../CRUDCommentBtn/CRUDCommentBtn';
-import { CommentClass} from '../../../Rest-APi-Client/shared-types';
-
-
+import { CommentClass } from '../../../Rest-APi-Client/shared-types';
 
 function ViewMore() {
    // 1. get state (props from QuestioCard) -> LInk state props / useLocation
@@ -15,15 +13,15 @@ function ViewMore() {
       = useLocation().state;
    const [commentsList, setcommentsList] = useState<ICommentProps[]>();
    // 2. From id(question) fetch all comments !*id(question) === discussionId(comment)
-   
    useEffect(() => {
       commentApi.findAll()
          .then((res: CommentClass[]) => {
-            //!!! get only if commend isClub===false
-            const sortedComments = res.filter(c => (c.discussionId == id && c.isClub === false));
+            const sortedComments = res.filter(c => (c.discussionId === id && c.isClub === false));
             setcommentsList(sortedComments);
          })
    }, [id])
+
+
 
    // UI updater functions // 
    const updateCommentList = (currComment: ICommentProps) => {

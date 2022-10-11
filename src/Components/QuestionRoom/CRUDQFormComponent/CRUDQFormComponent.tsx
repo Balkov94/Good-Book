@@ -137,6 +137,7 @@ export default function CRUDQFormComponent() {
             body: JSON.stringify(newQuestion)
          })
             .then(res => {
+               console.log(res);
                navigate(-2);
             })
 

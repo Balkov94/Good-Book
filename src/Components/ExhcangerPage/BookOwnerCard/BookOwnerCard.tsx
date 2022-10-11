@@ -4,30 +4,21 @@ import EmailIcon from '@mui/icons-material/Email';
 import CallIcon from '@mui/icons-material/Call';
 import { useEffect, useState } from 'react';
 import { UserApi } from '../../../Rest-APi-Client/client';
+import { UserClass } from '../../../Rest-APi-Client/shared-types';
 
 interface IBookOwnerCardProps {
    toggleBookMenu: () => void,
    title: string,
    ownerId: string,
 }
-// need interface for User full date
-interface IOwner {
-   fname: string,
-   lname: string,
-   mail: string,
-   phone: string,
-   userPic: string,
-   description: string,
 
-}
 function BookOwnerCard({ toggleBookMenu, title, ownerId, }: IBookOwnerCardProps) {
-   //1. Fetch user (by ownerId),JSON-Server so fetch all an sort by props
-   const [owner, setOwner] = useState<IOwner>();
+   const [owner, setOwner] = useState<UserClass>();
    useEffect(() => {
-      UserApi.findAll()
-         .then(res => {
-            const user = res.find(u => u.id === ownerId);
-            setOwner(user);
+      fetch(`http://localhost:8000/api/AllUsers/${ownerId}`)
+         .then(res => res.json())
+         .then((data: UserClass) => {
+            setOwner(data);
          })
    }, [ownerId])
 
@@ -54,7 +45,7 @@ function BookOwnerCard({ toggleBookMenu, title, ownerId, }: IBookOwnerCardProps)
                   <p>phone number: </p>
                   <p>{owner?.phone}</p>
                </div>
-               <p style={{marginTop:"8px"}}>Description: {owner?.description}</p>
+               <p style={{ marginTop: "8px" }}>Description: {owner?.description}</p>
             </div>
             <div className={styles.ownerIconsContainer}>
                <a href={"mailto:" + owner?.mail} >

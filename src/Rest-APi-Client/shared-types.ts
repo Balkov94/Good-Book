@@ -3,9 +3,6 @@ export interface Identifiable<K> {
 }
 export type IdType = number | string | undefined;
 
-// export enum GenderEnum {
-//      Male = 1, Female,
-// }
 export enum RoleEnum {
    User = 1, Admin,
 }
@@ -13,7 +10,6 @@ export enum StatusEnum {
    Active = 1, Deactivated,
 }
 
-// export type DescriptionType = string |""
 export type DescriptionType = string
 export type TimeOfModificationType = string | null
 
@@ -36,12 +32,6 @@ export class UserClass {
    ) { }
 
 }
-
-// export function toIsoDate(date: Date) {
-//    return date.toISOString().split('T')[0];
-// }
-
-
 
 //2.CommentClass
 export class CommentClass {
@@ -82,8 +72,6 @@ export class ClubClass {
       public interests: string[],
       public participants: string[],
       public banned: string[],
-      // public timeOfCreation: string = `${new Date().toDateString()} ${new Date().toLocaleTimeString()} `,
-      // public timeOfModification: TimeOfModificationType = null,
    ) { }
 
 }

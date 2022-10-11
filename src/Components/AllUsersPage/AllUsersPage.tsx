@@ -29,7 +29,7 @@ function AllUsersPage() {
          <h1>Users list:</h1>
          {
             allUsers?.map(user => {
-               return <UserCardMUI key={user.id} user={user} onDelete={handleDeleteUser}/>
+               return <UserCardMUI key={user.id} user={user} onDelete={handleDeleteUser} />
             })
          }
       </div>
