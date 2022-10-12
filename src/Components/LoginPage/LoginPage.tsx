@@ -6,17 +6,16 @@ import LoginForm from './LoginForm/LoginForm';
 import styles from './LoginPage.module.css';
 
 function LoginPage() {
-   const [loggedUser, setLoggedUser] =useContext(logged);
-   const navigate=useNavigate();
 
-   const handleLogin=(newLoggedUser:UserClass)=>{
+   const [loggedUser, setLoggedUser] = useContext(logged);
+   const navigate = useNavigate();
+   const handleLogin = (newLoggedUser: UserClass) => {
       setLoggedUser(newLoggedUser);
       navigate("/QuestionRoom");
    }
-
    return (
       <div className={styles.LoginPageMainContainer}>
-         <LoginForm  onLogin={handleLogin}/>
+         <LoginForm onLogin={handleLogin} />
       </div>
    );
 }

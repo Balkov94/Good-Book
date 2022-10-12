@@ -4,13 +4,19 @@ import MyBooks from './MyBooks/MyBooks';
 import Button from '@mui/material/Button';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { logged } from '../../App';
 
 function MyProfile() {
    //1.Fetch logged user data for MyPRofileCard
+   const [loggedUser, setLoggedUser] = useContext(logged);
+   
+
+
    return (
       <div className={styles.MyProfileMainContainer}>
          <h1>My profile:</h1>
-         <MyProfileCard/>
+         <MyProfileCard loggedUser={loggedUser}/>
          <h1>My books for exchange:</h1>
          <div className={styles.addBookBtnContainer}>
             <Link to="/ExchangePage/Book-Form">

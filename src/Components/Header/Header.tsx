@@ -13,8 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 import styles from './Header.module.css';
-import { Link, NavLink } from "react-router-dom";
-import { logged } from '../../App';
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { guest, logged } from '../../App';
 
 const pages = ['Question Room', 'Reading Clubs', 'Exchange Page', 'About Us'];
 const settings = ['MyProfile', 'Logout'];
@@ -24,15 +24,7 @@ const Header = () => {
    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
    const [loggedUser, setLoggedUser] = React.useContext(logged);
-   // console.log(loggedUser)
-   
-
-   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorElNav(event.currentTarget);
-   };
-   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorElUser(event.currentTarget);
-   };
+   console.log(loggedUser)
 
    const handleCloseNavMenu = () => {
       setAnchorElNav(null);
@@ -57,6 +49,13 @@ const Header = () => {
       else {
          setAnchorElUser(event.currentTarget);
       }
+   }
+
+   const navigate = useNavigate();
+   const handleLogout = () => {
+      navigate("/");
+      handleCloseUserMenu();
+      setLoggedUser(guest);
    }
 
 
@@ -93,7 +92,6 @@ const Header = () => {
                      aria-label="account of current user"
                      aria-controls="menu-appbar"
                      aria-haspopup="true"
-                     // onClick={handleOpenNavMenu}
                      onClick={toggleNavMenu}
                      color="inherit"
                   >
@@ -151,8 +149,6 @@ const Header = () => {
                   </Link>
                </Typography>
 
-
-
                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                   {/* BIG SCREEN NAV __________________________ */}
                   {
@@ -173,7 +169,7 @@ const Header = () => {
 
                </Box>
                {/* USER MENU ____________________________________*/}
-               {/* HERE CHECK LOGGED OR NOT for hader buttons */}
+               {/* HERE CHECK LOGGED OR NOT for haader buttons */}
                {
                   // if not logged
                   <>
@@ -183,20 +179,14 @@ const Header = () => {
 
                   </>
                }
-               {
-                  // lock pages for guest
-                  // <div className={styles.lockCoverDiv}>
 
-                  // </div>
-               }
                <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                      <IconButton onClick={toggleUserMenu} sx={{ p: 0, m: 0 }}>
-                        <Avatar alt="Remy Sharp" src={loggedUser.userPic} />
+                        <Avatar alt="Logged user" src={loggedUser.userPic} />
                      </IconButton>
                   </Tooltip>
                   <Menu
-                     // fix bc of zoom ot entire APP - ml:"20%" 
                      sx={{ mt: '40px', }}
                      id="menu-appbar"
                      anchorEl={anchorElUser}
@@ -212,14 +202,15 @@ const Header = () => {
                      open={Boolean(anchorElUser)}
                      onClose={handleCloseUserMenu}
                   >
-                     {settings.map((setting) => (
-                        <Link to={setting} key={setting}>
-                           <MenuItem onClick={handleCloseUserMenu}>
-                              <Typography textAlign="center">{setting}</Typography>
-                           </MenuItem>
-                        </Link>
+                     <Link to="MyProfile">
+                        <MenuItem onClick={handleCloseUserMenu}>
+                           <Typography textAlign="center">My Profile</Typography>
+                        </MenuItem>
+                     </Link>
 
-                     ))}
+                     <MenuItem onClick={handleLogout}>
+                        <Typography textAlign="center">Logout</Typography>
+                     </MenuItem>
                   </Menu>
                </Box>
             </Toolbar>

@@ -12,7 +12,7 @@ import styles from './UserCardMUI.module.css';
 import { IRegisterData } from '../RegisterPage/RegisterForm/RegisterForm';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { UserApi } from '../../Rest-APi-Client/client';
-import { IdType } from '../../Rest-APi-Client/shared-types';
+import { IdType, RoleEnum, StatusEnum } from '../../Rest-APi-Client/shared-types';
 
 interface ExpandMoreProps extends IconButtonProps {
    expand: boolean;
@@ -65,8 +65,7 @@ export default function UserCardMUI({ user, onDelete }: IUserCardMUIProps) {
                '& .MuiTypography-body2.MuiCardHeader-subheader': { opacity: "0.5" },
             }}
                avatar={
-                  // avatar color depends on user.gender
-                  <Avatar sx={{ bgcolor: blue[800] }} aria-label="recipe">
+                  <Avatar sx={{ bgcolor:`${user.role==2 ? "#f7ba00":"#0080de"}`,color:`${user.role==2 ? "black":"white"}`}} aria-label="recipe">
                      {`${(user!.fname[0] + user!.lname[0]).toUpperCase()}`}
                   </Avatar>
                }
@@ -98,9 +97,8 @@ export default function UserCardMUI({ user, onDelete }: IUserCardMUIProps) {
                cardMenu &&
                (
                   <div className={styles.cardMenu}>
-                     <Link to={`/AllUsers/Edit-form/${user.id}`}
-                        state={user}
-                     >
+                     {/* EditUsersForm */}
+                     <Link to={`/AllUsers/Edit-form${user.id}`} state={user} >
                         <p>Edit user</p>
                      </Link>
 
@@ -109,19 +107,18 @@ export default function UserCardMUI({ user, onDelete }: IUserCardMUIProps) {
                )
             }
             <CardContent sx={{ fontSize: "16px" }}>
-               <p style={{ paddingBottom: "10px", fontSize: "20px", color: "lightgreen" }}>
-                  Status:{user?.status}
+               <p style={{ paddingBottom: "10px", fontSize: "20px",color:`${user.status==1 ? "lightgreen":"gray"}`}}>  
+                  Status:{StatusEnum[user?.status]}
                </p>
-               <p style={{ paddingBottom: "10px", fontSize: "20px", color: "green" }}>
-                  Role: {user?.role}
+               <p style={{ paddingBottom: "10px", fontSize: "20px", color:`${user.role==2 ? "#f7ba00":"white"}`}}>
+                  Role: {RoleEnum[user?.role]}
                </p>
                <p style={{ paddingBottom: "10px", marginTop: "38px" }}>
                   Created on: {user?.timeOfCreation}
                </p>
                <p style={{ paddingBottom: "0px", marginBottom: "0px" }}>
-                  Edited on:{user?.timeOfModification}
+                  Edited on:{user?.timeOfModification===null?"none":user?.timeOfModification}
                </p>
-
             </CardContent>
          </Card>
 
