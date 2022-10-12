@@ -18,7 +18,7 @@ import ControllerTextFieldInput from '../../ControllerTextFieldInput/ControllerT
 import styles from './RegisterForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import { UserApi } from '../../../Rest-APi-Client/client';
-
+import { toast } from 'react-toastify';
 
 const theme = createTheme();
 const RegisterFormMUIOverride = {
@@ -180,14 +180,17 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
          data.userPic,
          data.description
       )
-      console.log(newUser);
-
+     
       UserApi.create(newUser)
          .then(res => {
             console.log(res);
+            toast("Successful registration 💛.",{type:"success"})
+            navigate("/Login");
          })
-      // console.log(newUser);
-      // handleCreateUser(newUser)
+         .catch(()=>{
+            toast("Fail to register.",{type:"error"});
+         })
+    
    }
 
    return (

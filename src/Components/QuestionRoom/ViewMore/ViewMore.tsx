@@ -1,14 +1,16 @@
 import Comment, { ICommentProps } from '../../Comment/Comment';
 import TopQuestion from './TopQuestion/TopQuestion';
 import styles from './ViewMore.module.css';
-import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import CRUDCommentBtn from '../../CRUDCommentBtn/CRUDCommentBtn';
 import { CommentClass } from '../../../Rest-APi-Client/shared-types';
+import { logged } from '../../../App';
+import Button from '@mui/material/Button';
 
 function ViewMore() {
-   // 1. get state (props from QuestioCard) -> LInk state props / useLocation
+   // 1. get state (props from QuestioCard) -> Link state props / useLocation
    const { id, creatorId, questionPic, title, content, username, fname, lname, userPic }
       = useLocation().state;
    const [commentsList, setcommentsList] = useState<ICommentProps[]>();
@@ -21,7 +23,7 @@ function ViewMore() {
          })
    }, [id])
 
-
+   const [loggedUser, setLoggedUser] = useContext(logged);
 
    // UI updater functions // 
    const updateCommentList = (currComment: ICommentProps) => {
@@ -87,9 +89,17 @@ function ViewMore() {
             </>
          </div>
          {/* add comment for ReadingClubs -> ClubRoom  */}
-         <div className={styles.addCommentContainer}>
-            <CRUDCommentBtn onUpdateCommentList={(updateCommentList)} />
-         </div>
+         {
+            loggedUser.id === "guest"
+               ? <div className={styles.addCommentContainer}>
+                  <Link to="/Login">
+                     <Button variant='contained'>Add comment</Button>
+                  </Link>
+               </div>
+               : <div className={styles.addCommentContainer}>
+                  <CRUDCommentBtn onUpdateCommentList={(updateCommentList)} />
+               </div>
+         }
       </div>
    );
 }

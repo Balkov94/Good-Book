@@ -1,4 +1,3 @@
-
 import QuestionCard from './QuestionCard/QuestionCard';
 import styles from './QuestionRoom.module.css';
 import { useEffect, useState } from 'react';
@@ -7,6 +6,11 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { IdType } from '../../Rest-APi-Client/shared-types';
+import { logged } from '../../App';
+import { useContext } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export interface IEntireQuestionData {
    id: IdType,
@@ -22,6 +26,8 @@ export interface IEntireQuestionData {
 
 function QuestionRoom() {
    const [questionsList, setQuestionsList] = useState<IEntireQuestionData[]>([]);
+   const [loggedUser, setLoggedUser] = useContext(logged);
+
    useEffect(() => {
       const questions = questionApi.findAll();
       const users = UserApi.findAll();
@@ -29,7 +35,7 @@ function QuestionRoom() {
       Promise.all([questions, users]).then((values) => {
          const questions = (values[0]);
          const users = (values[1]);
-         const questionCardData:any = questions.map((qData) => {
+         const questionCardData: any = questions.map((qData) => {
             return {
                ...(users.find(user => user.id === qData.creatorId)),
                ...qData
@@ -45,7 +51,7 @@ function QuestionRoom() {
       <>
          <div className={styles.mainQuestionRoomContainer}>
             <div className={styles.mainTitleContainer}>❔Quest<span style={{ color: "#922B21" }}>&#191;</span>ons Room ❔ </div>
-            
+
             <div className={styles.qWraper}>
                {
                   questionsList.map(q => {
@@ -56,7 +62,7 @@ function QuestionRoom() {
                         title={q.title}
                         content={q.content}
                         creatorId={q.creatorId}
-                      
+
                         username={q.username}
                         fname={q.fname}
                         lname={q.lname}
@@ -66,13 +72,25 @@ function QuestionRoom() {
                }
             </div>
          </div>
-  
-         <Link to="/QuestionRoom/createQuestion">
-            <div className={styles.askQContainer}>
-               <Button variant="contained"><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
-            </div>
-         </Link>
+         {
+            loggedUser.id === "guest"
+               ?
+                  <div className={styles.askQContainer}>
+                     <Button variant="contained" 
+                     onClick={()=>toast("Please log in first 🙂",{type:"info"})}
+                     ><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
+                  </div>
+          
+               :
+               <Link to="/QuestionRoom/createQuestion">
+                  <div className={styles.askQContainer}>
+                     <Button variant="contained"><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
+                  </div>
+               </Link>
 
+
+         }
+      
       </>
 
    );

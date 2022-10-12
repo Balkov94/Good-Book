@@ -15,7 +15,7 @@ import * as yup from "yup";
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { useNavigate } from 'react-router-dom';
 import { UserApi } from '../../../Rest-APi-Client/client';
-
+import { toast } from 'react-toastify';
 export interface ILoginFormProps {
    onLogin: (newLoggedUser:any) => void;
 }
@@ -101,7 +101,11 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
             if (newLogged) {
                onLogin(newLogged);
             }
+            else{
+               toast("Wrong username or password",{type:"info"});
+            }         
          })
+         .catch(()=>toast("Fail to connet to the server",{type:"error"}))
    };
 
    let navigate = useNavigate();

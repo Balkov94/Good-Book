@@ -11,8 +11,6 @@ function MyProfile() {
    //1.Fetch logged user data for MyPRofileCard
    const [loggedUser, setLoggedUser] = useContext(logged);
    
-
-
    return (
       <div className={styles.MyProfileMainContainer}>
          <h1>My profile:</h1>

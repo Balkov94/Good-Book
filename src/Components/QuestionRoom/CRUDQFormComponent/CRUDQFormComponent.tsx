@@ -16,11 +16,12 @@ import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { TextareaAutosize } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { QuestionClass } from '../../../Rest-APi-Client/shared-types';
 import { commentApi, questionApi } from '../../../Rest-APi-Client/client';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { logged } from '../../../App';
 
 interface ILoginFormInputs {
    title: string,
@@ -103,6 +104,7 @@ export default function CRUDQFormComponent() {
    // get PROPS by Link-> state -> useLocation.state React-router
    const location = useLocation().state;
    let navigate = useNavigate();
+   const [loggedUser, setLoggedUser] = useContext(logged);
 
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ILoginFormInputs>({
       defaultValues: {
@@ -115,13 +117,14 @@ export default function CRUDQFormComponent() {
 
    });
 
+
    const sendSubmit = (data: ILoginFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
       }
       const newQuestion = new QuestionClass(
          location?.id || undefined,
-         location?.creatorId || "1" ,//logged user if new Q
+         location?.creatorId || loggedUser.id ,
          data.title,
          data.content,
          `${data.questionPic === ""
@@ -152,8 +155,6 @@ export default function CRUDQFormComponent() {
    };
 
    const deleteQuestion = () => {
-      // delete question and its comments
-      // NEED FIX not to make so many requests
       commentApi.findAll()
          .then(allComments => {
             const commentForDelete = allComments.filter(c => c.discussionId === location.id);

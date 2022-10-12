@@ -3,11 +3,14 @@ import styles from './TopQuestion.module.css';
 import Button from '@mui/material/Button';
 import { Link, useParams } from 'react-router-dom';
 import { IEntireQuestionData } from '../../QuestionRoom';
+import { logged } from '../../../../App';
+import { useContext } from 'react';
 
 function TopQuestion({ id, creatorId, questionPic, title, content, username, fname, lname, userPic, }
    : IEntireQuestionData) {
 
    const params = useParams();
+   const [loggedUser, setLoggedUser] = useContext(logged);
 
    return (
       <div className={styles.tqCard}>
@@ -25,17 +28,17 @@ function TopQuestion({ id, creatorId, questionPic, title, content, username, fna
                <p>{content}</p>
             </div>
          </div>
+         {
+            loggedUser.id === creatorId
+            &&
+            <Link to={`/QuestionRoom/${params.questionId}/edit`}
+               state={{ id, questionPic, title, content, creatorId }}>
+               <div className={styles.editQBtnContainer}>
+                  <Button variant="outlined" color="warning">Edit Question</Button>
+               </div>
+            </Link>
 
-         {/* EDIT QUESTION Btn  goes to CRUDQFOrmComponent */}
-         <Link to={`/QuestionRoom/${params.questionId}/edit`}
-            // <Link to={`/QuestionRoom/${params.questionId}`}
-            state={{ id, questionPic, title, content, creatorId }}
-         >
-            <div className={styles.editQBtnContainer}>
-               <Button variant="outlined" color="warning">Edit Question</Button>
-            </div>
-         </Link>
-
+         }
       </div>
    );
 }

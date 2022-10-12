@@ -16,6 +16,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ClubClass } from '../../../Rest-APi-Client/shared-types';
 import { clubApi, commentApi } from '../../../Rest-APi-Client/client';
 import { IClubCard } from '../ClubCard/ClubCard';
+import { logged } from '../../../App';
+import { useContext } from 'react';
 
 
 export interface ICreateClubFormInputs {
@@ -134,6 +136,7 @@ export default function CRUDClubForm() {
       mode: "onChange",
       resolver: yupResolver(schema)
    });
+   const [loggedUser, setLoggedUser] = useContext(logged);
 
    const sendSubmit = (data: ICreateClubFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
@@ -144,11 +147,11 @@ export default function CRUDClubForm() {
       const validInterests = interestsArr.filter(x => x !== "");
       const newClub = new ClubClass(
          location?.id || undefined,
-         location?.creatorId || "1", //logged user
+         location?.creatorId || loggedUser.id,
          data.clubName,
          (validInterests as string[]),
-         location?.participants || ["1",],  //paricipants + logged user
-         location?.banned || [],  //banned
+         location?.participants || [loggedUser.id,],
+         location?.banned || [],
       )
       // location!==null => update // create
       if (location) {

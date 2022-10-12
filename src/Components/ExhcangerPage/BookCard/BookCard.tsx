@@ -1,9 +1,10 @@
 import styles from './BookCard.module.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import BookOwnerCard from '../BookOwnerCard/BookOwnerCard';
 import InfoIcon from '@mui/icons-material/Info';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { logged } from '../../../App';
 
 export interface IBookCardProps {
    id: string,
@@ -14,6 +15,7 @@ export interface IBookCardProps {
 
 function BookCard({ id, ownerId, title, bookPic }: IBookCardProps) {
    const [bookMenu, setBookMenu] = useState<boolean>(false);
+   const [loggedUser, setLoggedUser] = useContext(logged);
 
    const toggleBookMenu = () => {
       setBookMenu(bookMenu => !bookMenu);
@@ -28,14 +30,21 @@ function BookCard({ id, ownerId, title, bookPic }: IBookCardProps) {
             <div className={styles.titleContainer}>
                <h1>{title}</h1>
             </div>
-            <InfoIcon className={styles.contactIcon} style={{ fontSize: "30px" }}
-               onClick={toggleBookMenu} />
+            {
+               loggedUser.id !== ownerId
+               && <InfoIcon className={styles.contactIcon} style={{ fontSize: "30px" }}
+                  onClick={toggleBookMenu} />
+            }
             <div className={styles.removeBookBtnContainer}>
-               <Link to="/ExchangePage/Book-Form" state={{id, ownerId, title, bookPic}}>
-                  <Button variant="contained" color="warning" size="small">
-                     Edit book
-                  </Button>
-               </Link>
+               {
+                  loggedUser.id === ownerId
+                  &&
+                  <Link to="/ExchangePage/Book-Form" state={{ id, ownerId, title, bookPic }}>
+                     <Button variant="contained" color="warning" size="small">
+                        Edit book
+                     </Button>
+                  </Link>
+               }
             </div>
          </div>
          {

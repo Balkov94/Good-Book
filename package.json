@@ -24,6 +24,7 @@
     "react-material-ui-carousel": "^3.4.2",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.8",
     "remark-gfm": "^3.0.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.7.4",

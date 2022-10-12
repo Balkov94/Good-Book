@@ -1,21 +1,23 @@
 import BookCard, { IBookCardProps } from '../../ExhcangerPage/BookCard/BookCard';
 import styles from './MyBooks.module.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { bookApi } from '../../../Rest-APi-Client/client';
+import { logged } from '../../../App';
+import { toast } from 'react-toastify';
 
 function MyBooks() {
-   //1. Fetch logged user Book (for enxhange)
-   //! lets exprct user with id1 is logged now
    const [booksList, setBooksList] = useState<IBookCardProps[]>();
+   const [loggedUser, setLoggedUser] = useContext(logged);
    useEffect(() => {
-      // JSON-Server - get all books and sort by userId
-      const loggedUser = "1"
       bookApi.findAll()
          .then((allbooks: IBookCardProps[]) => {
-            const sorted = allbooks.filter(b => b.ownerId === loggedUser);
+            const sorted = allbooks.filter(b => b.ownerId === loggedUser.id);
             setBooksList(sorted)
          })
-   }, [])
+         .catch(() => {
+            toast("Operation fail", { type: "error" });
+         })
+   }, [loggedUser])
 
    return (
       <div className={styles.myBooksWrapper}>

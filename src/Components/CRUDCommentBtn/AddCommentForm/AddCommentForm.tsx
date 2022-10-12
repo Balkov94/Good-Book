@@ -16,7 +16,9 @@ import { CommentClass } from '../../../Rest-APi-Client/shared-types';
 import { useParams } from 'react-router-dom';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import { ICommentProps } from '../../Comment/Comment';
-
+import { useContext } from 'react';
+import { logged } from '../../../App';
+import { toast } from 'react-toastify';
 
 interface IAddCommentFormInputs {
    content: string,
@@ -94,6 +96,7 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
    });
 
    const params = useParams();
+   const [loggedUser, setLoggedUser] = useContext(logged);
 
    const sendSubmit = (data: IAddCommentFormInputs,
       event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
@@ -101,13 +104,12 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
          event.preventDefault();
       }
       // get date from form data and useParams 
-      // !!! logged user - > assume  its id1 for now (still dont have global state)
       let [paramsValue1] = Object.values(params)
       // !!! MONGO ID INCLUDE LETTER AND NUMBERS!!!
       let discussionId = String(paramsValue1?.slice(-24));
       const comment = new CommentClass(
          undefined,
-         "1",
+         loggedUser.id,
          discussionId,
          (paramsValue1!.includes("club") ? true : false),
          data.content,
@@ -117,7 +119,10 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
       commentApi.create(comment)
          .then(resCommentObj => {
             onUpdateCommentList(resCommentObj);
-         });
+         })
+         .catch(()=>{
+            toast("Operation fail 😶",{type:"error"})
+         })
 
    }
    return (

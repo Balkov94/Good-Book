@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// react-form-hook (controller)    +  YUP Validation
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -16,7 +15,7 @@ import { CommentClass } from '../../../Rest-APi-Client/shared-types';
 import { useParams } from 'react-router-dom';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import { ICommentProps } from '../../Comment/Comment';
-import { CLIENT_RENEG_LIMIT } from 'tls';
+import { toast } from 'react-toastify';
 
 
 const schema = yup.object({
@@ -107,13 +106,14 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
          timeOfModification: `${new Date().toDateString()} ${new Date().toLocaleTimeString()} `
       };
 
-      // add comment to the DB
       toggleForm();
       commentApi.update(updatedComment)
          .then(resCommentObj => {
             onUpdateCommentList(resCommentObj)
-            // onCreateComment(resCommentObj);
-         });
+         })
+         .catch(()=>{
+            toast("Operation fail 😶",{type:"error"})
+         })
 
    }
 
@@ -121,7 +121,6 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
       commentApi.deleteById(editComment.id)
          .then(res => {
             onUpdateCommentList({ ...editComment, content: `_this_entity_was_deleted` });
-            console.log({ ...editComment, content: undefined });
          })
 
    };
@@ -140,7 +139,6 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
 
             }}>
             <CssBaseline />
-
             <Box
                sx={{
                   height: "520px",
@@ -152,7 +150,6 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                   borderRadius: "15px",
                   paddingLeft: "20px",
                   paddingRight: "20px",
-                  // border: "2px solid gray",
                   zIndex: "5000",
                   border: "2px solid red",
                }}
@@ -168,7 +165,6 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
                   sx={{
-                     // border: "2px solid gray",
                      mt: 1,
                      ...formsMUIoverride,
                      zIndex: "5000",
@@ -190,7 +186,6 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                            value={value}
                            cols={35}
                            maxLength={1000}
-                           // rows={10}
                            onChange={onChange}
                         />
                      )}
@@ -200,7 +195,7 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                      <p>{errors.content.message}</p>
 
                   }
-
+   
                   <Button type="submit" fullWidth variant="contained"
                      disabled={(isValid && isDirty) === false} sx={{ mt: "20px", mb: "4px" }}>
                      Save

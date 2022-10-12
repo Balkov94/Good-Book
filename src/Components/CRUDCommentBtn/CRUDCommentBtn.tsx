@@ -6,7 +6,6 @@ import AddCommentForm from './AddCommentForm/AddCommentForm';
 import { CommentClass, IdType } from '../../Rest-APi-Client/shared-types';
 import EditCommentForm from './EditCommentForm/EditCommentForm';
 
-
 interface IAddEditCommentBtn {
    onUpdateCommentList?: (newComment: ICommentProps) => void,
    // if id and content passed -> Edit
@@ -14,15 +13,10 @@ interface IAddEditCommentBtn {
 }
 
 function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
-
    const [commentForm, setCommentForm] = useState(false);
    const toggleCommentForm = () => {
-      
-
-      
       setCommentForm(commentForm => !commentForm);
    }
-
    // using same toggleBtn and form - 1.Add comment 2.Edit comment
    return (
       <>
@@ -69,7 +63,6 @@ function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
                      toggleForm={toggleCommentForm}
                      editComment={editComment}
                      onUpdateCommentList={onUpdateCommentList}
-
                   />
                </div>
             )

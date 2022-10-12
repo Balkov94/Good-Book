@@ -2,17 +2,16 @@ import Comment, { ICommentProps } from '../../Comment/Comment';
 import styles from './ClubRoom.module.css';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { commentApi, UserApi } from '../../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../../QuestionRoom/QuestionCard/QuestionCard';
 import { Button } from '@mui/material';
 import AddComment from '../../CRUDCommentBtn/CRUDCommentBtn';
 
-
 function ClubRoom() {
    //1.Get passed by link status data from ClubCard
-   //2.Fetch Club creator(user) by creatorId (JSON-server fetch all and sort, no Backend and BD)
+   //2.Fetch Club creator(user) by creatorId
    //3. Fetch all Participants !!!![]
    //4.Fetch all Banned !!!![]
    const navigate = useNavigate();
@@ -98,29 +97,31 @@ function ClubRoom() {
             <div className={styles.clubDataText}>
                <div className={styles.titleAndBtns}>
                   <div>
-                     <h1>Club name: {name} </h1>
+                     <h1>CLUB: {name} </h1>
                   </div>
                   <div>
-                     {/* EDIT CLUB name or interests */}
-                     {/* <Button className={styles.editClubBtn} variant="contained">Delete</Button> */}
                      <Link to="/ReadingClubs/Reading-Club-Form"
                         state={{ id, name, interests, participants, banned, creatorId }}>
-                        <Button className={styles.editClubBtn} variant="outlined" color="warning">Edit</Button>
+                        <Button className={styles.editClubBtn} variant="outlined" color="warning">
+                           Edit
+                        </Button>
                      </Link>
                   </div>
                </div>
                <div>
-                  <h2>Club leader: {clubCreator?.username}</h2>
-                  <h2>Members: {participants.length}</h2>
+                  <h2>Club leader: 👑  {clubCreator?.username}</h2>
+                  <h2>Members: &#128511;  {participants.length}</h2>
                </div>
             </div>
 
             <div className={styles.clubMembersWrapper}>
                {
                   participantsList?.map((p: IQuestionAuthorHeaderProps) => {
-                     return <Tooltip key={`${p.username}${p.lname}`} title={p.username}>
-                        <Avatar alt={p.username} src={p.userPic} />
-                     </Tooltip>
+                     return (
+                        <Tooltip key={`${p.username}${p.lname}`} title={p.username}>
+                           <Avatar alt={p.username} src={p.userPic} />
+                        </Tooltip>
+                     )
                   })
                }
             </div>
@@ -168,10 +169,7 @@ function ClubRoom() {
          <div className={styles.addCommentContainer}>
             <AddComment onUpdateCommentList={updateCommentList} />
          </div>
-
       </div>
-
-
    );
 }
 

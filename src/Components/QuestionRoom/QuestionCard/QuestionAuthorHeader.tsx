@@ -9,6 +9,7 @@ function QuestionAuthorHeader({ username, fname, lname, userPic }: IQuestionAuth
    return (
       <Card sx={{
          maxWidth: 345,
+         minWidth:208,
          color: "white",
          '& .MuiTypography-root.MuiTypography-body2.MuiCardHeader-title': {
             fontSize: "18px",

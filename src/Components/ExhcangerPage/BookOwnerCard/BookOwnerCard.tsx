@@ -3,8 +3,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import EmailIcon from '@mui/icons-material/Email';
 import CallIcon from '@mui/icons-material/Call';
 import { useEffect, useState } from 'react';
-import { UserApi } from '../../../Rest-APi-Client/client';
 import { UserClass } from '../../../Rest-APi-Client/shared-types';
+import { toast } from 'react-toastify';
 
 interface IBookOwnerCardProps {
    toggleBookMenu: () => void,
@@ -19,6 +19,9 @@ function BookOwnerCard({ toggleBookMenu, title, ownerId, }: IBookOwnerCardProps)
          .then(res => res.json())
          .then((data: UserClass) => {
             setOwner(data);
+         })
+         .catch(() => {
+            toast("Operation fail", { type: "error" })
          })
    }, [ownerId])
 
