@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 import { ICommentProps } from '../Comment/Comment';
 import AddCommentForm from './AddCommentForm/AddCommentForm';
-import { CommentClass, IdType } from '../../Rest-APi-Client/shared-types';
+import { CommentClass} from '../../Rest-APi-Client/shared-types';
 import EditCommentForm from './EditCommentForm/EditCommentForm';
 
 interface IAddEditCommentBtn {

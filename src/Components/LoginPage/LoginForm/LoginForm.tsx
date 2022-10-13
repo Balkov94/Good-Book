@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { IRegisterData } from "../../RegisterPage/RegisterForm/RegisterForm";
 // react-form-hook (controller)    +  YUP Validation
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -103,6 +102,7 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
             }
             else{
                toast("Wrong username or password",{type:"info"});
+               toast.clearWaitingQueue();
             }         
          })
          .catch(()=>toast("Fail to connet to the server",{type:"error"}))

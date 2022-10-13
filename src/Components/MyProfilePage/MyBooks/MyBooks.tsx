@@ -6,7 +6,7 @@ import { logged } from '../../../App';
 import { toast } from 'react-toastify';
 
 function MyBooks() {
-   const [booksList, setBooksList] = useState<IBookCardProps[]>();
+   const [booksList, setBooksList] = useState<IBookCardProps[]>([]);
    const [loggedUser, setLoggedUser] = useContext(logged);
    useEffect(() => {
       bookApi.findAll()
@@ -33,6 +33,15 @@ function MyBooks() {
                   />
                )
             })
+         }
+         {
+            booksList?.length < 1
+            && 
+            <div className={styles.noBooksContainer}>
+            <h1>Don't have any books for exchange.</h1>
+            <h1>Why don't you add some? </h1>
+            
+            </div>
          }
       </div>
    );

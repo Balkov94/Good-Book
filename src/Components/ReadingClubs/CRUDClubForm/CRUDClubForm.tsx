@@ -14,10 +14,11 @@ import * as yup from "yup";
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ClubClass } from '../../../Rest-APi-Client/shared-types';
-import { clubApi, commentApi } from '../../../Rest-APi-Client/client';
+import { clubApi} from '../../../Rest-APi-Client/client';
 import { IClubCard } from '../ClubCard/ClubCard';
 import { logged } from '../../../App';
 import { useContext } from 'react';
+import { toast } from 'react-toastify';
 
 
 export interface ICreateClubFormInputs {
@@ -156,23 +157,28 @@ export default function CRUDClubForm() {
       // location!==null => update // create
       if (location) {
          clubApi.update(newClub)
-            .then(res => {
+            .then(() => {
                navigate("/ReadingClubs");
             })
+            .catch(() => toast(`Operation fail`, { type: "error" }))
       }
       else {
          clubApi.create(newClub)
-            .then(res => {
+            .then(() => {
+               toast(`Successful creation - ${newClub.name}`, { type: "success" });
                navigate(-1);
             })
+            .catch(() => toast(`Deletion fail`, { type: "error" }))
       }
    };
 
-   const onDelete=()=>{
+   const onDelete = () => {
       clubApi.deleteById(location.id)
-      .then(res => {
-         navigate(-1);
-      })
+         .then(res => {
+            navigate("/ReadingClubs");
+            toast(`Successful deletion - ${location.name}`, { type: "success" });
+         })
+         .catch(() => toast(`Deletion fail`, { type: "error" }))
    }
 
    return (
@@ -181,7 +187,6 @@ export default function CRUDClubForm() {
             <CssBaseline />
             <Box
                sx={{
-                  // border: "1px solid green",
                   marginTop: 8,
                   display: 'flex',
                   flexDirection: 'column',
@@ -363,7 +368,7 @@ export default function CRUDClubForm() {
                         >
                            Delete reading club
                         </Button>
-                
+
                      )
 
 

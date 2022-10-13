@@ -30,14 +30,18 @@ function MyProfileCard({ loggedUser }: IMyProfileCard) {
             </div>
 
          </div>
+         {
+            loggedUser.status === 1
+            &&
+            <Link to={`/AllUsers/Edit-form${loggedUser.id}`} state={loggedUser}>
+               <Button variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  className={styles.editProfileBtn}
+               >  edit profile
+               </Button>
+            </Link>
+         }
 
-         <Link to={`/AllUsers/Edit-form${loggedUser.id}`} state={loggedUser}>
-            <Button variant="contained"
-               sx={{ mt: 3, mb: 2 }}
-               className={styles.editProfileBtn}
-            >  edit profile
-            </Button>
-         </Link>
 
       </div>
    );

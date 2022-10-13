@@ -1,5 +1,4 @@
 .mainFormContainer{
-   /* border: 5px solid red; */
    width: 100%;
    min-height: 100vh;
    height: 100%;
@@ -11,11 +10,6 @@
    left:0px;
    right:0px;
    bottom:0px;
-   /* z-index: 5000;
-   background-color: gray; */
-
-   /* z-index: 100!important; */
-   /* background-color: black; */
 }
 
 .stop-scrolling {

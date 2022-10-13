@@ -3,51 +3,44 @@ import styles from './ClubRoom.module.css';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { commentApi, UserApi } from '../../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../../QuestionRoom/QuestionCard/QuestionCard';
 import { Button } from '@mui/material';
 import AddComment from '../../CRUDCommentBtn/CRUDCommentBtn';
+import { logged } from '../../../App';
 
 function ClubRoom() {
    //1.Get passed by link status data from ClubCard
-   //2.Fetch Club creator(user) by creatorId
-   //3. Fetch all Participants !!!![]
-   //4.Fetch all Banned !!!![]
    const navigate = useNavigate();
    const location = useLocation().state;
    const { id, name, interests, participants, banned, creatorId } = location;
-
+   const [loggedUser, setLoggedUser] = useContext(logged);
    const [clubCreator, setClubCreator] = useState<IQuestionAuthorHeaderProps>();
    const [participantsList, setParticipantsList] = useState<IQuestionAuthorHeaderProps[]>();
    const [bannedList, setBannedList] = useState<IQuestionAuthorHeaderProps[]>();
    const [clubComments, setClubComments] = useState<ICommentProps[]>();
    useEffect(() => {
-      // ***simulate 3 real backend fetches by ID***
       // Fetch all club data - 1.Creator-name,userPic 2.Participants - usernames,userPic ...
-      const creator = UserApi.findAll(); //fetch Users get CLUB CREATOR
-      const allParticipants = UserApi.findAll(); //shoud be foreach id -> fetch user (mb with limit 5 users)
-      const allBanned = UserApi.findAll(); // ...
-      const comments = commentApi.findAll(); //fetch all comments put in commentsList only for curr Club
+      const creator = UserApi.findAll();
+      const allParticipants = UserApi.findAll();
+      const allBanned = UserApi.findAll();
+      const comments = commentApi.findAll();
       Promise.all([creator, allParticipants, allBanned, comments])
          .then((res: any) => {
             creator.then(c => {
                const creator = c.find(c => c.id === creatorId);
                setClubCreator(creator);
-               // console.log(creator);
-
             })
 
             allParticipants.then(c => {
                const allParticipants = c.filter(c => participants.includes(c.id));
                setParticipantsList(allParticipants);
-               // console.log(allParticipants);
             })
 
             allBanned.then(c => {
                const allBanned = c.filter(c => banned.includes(c.id));
                setBannedList(allBanned);
-               // console.log(allBanned);
             })
 
             comments.then((comments: ICommentProps[]) => {
@@ -61,7 +54,6 @@ function ClubRoom() {
 
    // UI updater functions __________________________// 
    const updateCommentList = (currComment: ICommentProps) => {
-      // delete from UI
       if (currComment.content === "_this_entity_was_deleted") {
          setClubComments(clubComments => {
             return (
@@ -69,7 +61,6 @@ function ClubRoom() {
             )
          })
       }
-      // Update edited comment
       else {
          if (clubComments?.some(comment => comment.id === currComment?.id)) {
             setClubComments(clubComments => {
@@ -83,13 +74,11 @@ function ClubRoom() {
                )
             });
          }
-         // Update list with new created comment
          else {
             setClubComments(clubComments => [...(clubComments || []), currComment]);
          }
       }
    }
-
 
    return (
       <div className={styles.clubroomMainContainer}>
@@ -100,12 +89,16 @@ function ClubRoom() {
                      <h1>CLUB: {name} </h1>
                   </div>
                   <div>
-                     <Link to="/ReadingClubs/Reading-Club-Form"
-                        state={{ id, name, interests, participants, banned, creatorId }}>
-                        <Button className={styles.editClubBtn} variant="outlined" color="warning">
-                           Edit
-                        </Button>
-                     </Link>
+                     {
+                        (loggedUser.id === creatorId && loggedUser.status === 1)
+                        &&
+                        <Link to="/ReadingClubs/Reading-Club-Form"
+                           state={{ id, name, interests, participants, banned, creatorId }}>
+                           <Button className={styles.editClubBtn} variant="outlined" color="warning">
+                              Edit
+                           </Button>
+                        </Link>
+                     }
                   </div>
                </div>
                <div>
@@ -137,7 +130,7 @@ function ClubRoom() {
                &&
                (<div className={styles.noCommentsContainer}>
                   <h2>There aren't any comments.</h2>
-                  <h2>Why don't you write the first one? 🤔</h2>
+                  <h2>Why don't you write one? 🤔</h2>
                   <div>
                      <img src={require("./ClubRoomImgs/ledArrow.png")} alt="arrow" />
                   </div>

@@ -37,7 +37,7 @@ function BookCard({ id, ownerId, title, bookPic }: IBookCardProps) {
             }
             <div className={styles.removeBookBtnContainer}>
                {
-                  loggedUser.id === ownerId
+                  (loggedUser.id === ownerId && loggedUser.status === 1)
                   &&
                   <Link to="/ExchangePage/Book-Form" state={{ id, ownerId, title, bookPic }}>
                      <Button variant="contained" color="warning" size="small">

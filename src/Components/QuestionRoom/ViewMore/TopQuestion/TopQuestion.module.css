@@ -12,12 +12,8 @@
    gap: 10px;
    background-color: black;
    border-radius: 0px 5px 5px 5px;
-   /* border-bottom: 4px solid rgb(237, 0, 0); */
    box-shadow: 5px 15px 25px 5px #888888;
-
    color: white;
-   
-
    position: relative;
 }
 .qAuthor{
@@ -27,7 +23,6 @@
    
 }
 .bookImgContainer{
-   /* border: 2px solid red; */
    min-width: 176px;
    max-width: 176px;
    height: fit-content;
@@ -43,7 +38,6 @@
    max-width: 1200px;
    min-height: 220px;
    max-height: fit-content;
-   /* border: 2px solid green; */
    padding:0px 18px 18px 18px;
 }
 .bookTitle{
@@ -57,7 +51,6 @@
    font-size: 18px;
    padding-top: 18px;
    max-height: fit-content;
-   /* border: 2px solid red; */
    width: 100%;
    word-wrap: break-word;
 }

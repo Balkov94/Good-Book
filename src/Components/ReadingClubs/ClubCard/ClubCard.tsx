@@ -3,8 +3,8 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import { Link } from 'react-router-dom';
-import { IdType } from '../../../Rest-APi-Client/shared-types';
-import { useContext } from 'react';
+import { ClubClass, IdType } from '../../../Rest-APi-Client/shared-types';
+import { useContext, useState } from 'react';
 import { logged } from '../../../App';
 import { toast } from 'react-toastify';
 
@@ -15,32 +15,15 @@ export interface IClubCard {
    creatorId: string,
    name: string,
    interests: string[],
-   participants: string[], //arr usersIds
-   banned: string[]
+   participants: string[], banned: string[],
+
+   onsignInToClub: (club: ClubClass) => void,
 }
 
-function ClubCard({ id, creatorId, name, interests, participants, banned }: IClubCard) {
+function ClubCard({ id, creatorId, name, interests, participants, banned, onsignInToClub }: IClubCard) {
    const [loggedUser, setLoggedUser] = useContext(logged);
 
-   const toastMsg = () => {
-      toast("You are not a member!", { type: "warning" })
-   }
-
-   const signIn = () => {
-      fetch(`http://localhost:8000/api/ReadingClubs/${id}`, {
-         method: "PUT",
-         headers: {
-            "Content-Type": "application/json"
-         },
-         body: JSON.stringify(
-            {
-               // id, creatorId, name, interests, banned,
-               // participants.push(loggedUser.id)
-            })
-      })
-   }
-
-
+   
    return (
       <div className={styles.bClubCardMainContainer}>
          <div className={styles.nameContainer}>{name}</div>
@@ -65,11 +48,16 @@ function ClubCard({ id, creatorId, name, interests, participants, banned }: IClu
                      <Link
                         to={`/ReadingClubs/club${id}`}
                         state={{ id, creatorId, name, interests, participants, banned }}>
-                        <Button size="small" variant="contained" color="info">Enter club room</Button>
+                        <Button size="small" variant="contained" color="info">
+                           Enter room
+                        </Button>
                      </Link>
                   )
                   : (
-                     <Button size="small" variant="contained" color="success">Sign in</Button>
+                     <Button size="small" variant="contained" color="warning"
+                        onClick={() => onsignInToClub({ id, creatorId, name, interests, participants, banned })}>
+                        become a member
+                     </Button>
                   )
             }
          </div>

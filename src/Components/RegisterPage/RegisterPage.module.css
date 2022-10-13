@@ -5,22 +5,13 @@
    height: 100%;
    padding-bottom: 100px;
    margin-top: 55px;
-   /* border: 4px solid rgb(91, 91, 91); */
 
    background-image: url("../QuestionRoom/ViewMore/paperBG.jpg");
    background-size: cover;
    background-repeat: no-repeat;
    background-attachment: fixed;
    line-height: 18px;
-   /* border: 2px solid red; */
    overflow: hidden; 
    padding-left: auto;
    padding-right: auto;
 }
-
-/* Mobile  */
-/* @media only screen and (max-width: 600px) {
-   .registerPageMainContainer{
-     zoom: 1;
-   }
- } */

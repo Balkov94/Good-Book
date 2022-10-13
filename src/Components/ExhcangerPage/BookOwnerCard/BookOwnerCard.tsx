@@ -37,18 +37,18 @@ function BookOwnerCard({ toggleBookMenu, title, ownerId, }: IBookOwnerCardProps)
             </div>
             <div className={styles.ownerTextContainer}>
                <div className={styles.ownerTextContainerPLine}>
-                  <p>name:</p>
+                  <p>Name:</p>
                   <p>{`${owner?.fname} ${owner?.lname}`}</p>
                </div>
                <div className={styles.ownerTextContainerPLine}>
-                  <p>email:</p>
+                  <p>E-mail:</p>
                   <p>{owner?.mail}</p>
                </div>
                <div className={styles.ownerTextContainerPLine}>
-                  <p>phone number: </p>
+                  <p>Phone number: </p>
                   <p>{owner?.phone}</p>
                </div>
-               <p style={{ marginTop: "8px" }}>Description: {owner?.description}</p>
+               <p style={{ marginTop: "10px",color:"rgb(184,184,184)"}}>Description: {owner?.description}</p>
             </div>
             <div className={styles.ownerIconsContainer}>
                <a href={"mailto:" + owner?.mail} >

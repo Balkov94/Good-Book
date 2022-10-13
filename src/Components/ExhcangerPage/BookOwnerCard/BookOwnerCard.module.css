@@ -1,13 +1,9 @@
 /* User information absolute container ________________________________________*/
-/* only cover the book wrapper to disable it! */
 .ownerInfCoverContainer{
    position: fixed;
    width: 86%;
-   /* height: 100vh; */
    height: 100%;
    top:0px;
-   /* background-color: bisque; */
-   /* border: 2px solid red; */
    z-index: 10;
    margin:auto;
    display: flex;
@@ -43,7 +39,6 @@
       border: 2px solid;
       border-image: linear-gradient(90deg, rgba(246,153,14,0.9616888991924895) 0%, rgba(19,13,221,1) 100%) 10 / 3px;
       box-shadow: 2px 40px 50px 0px rgb(10, 10, 10);
-      /* border-radius: 15px; */
       display: flex; 
       flex-direction: column;
       
@@ -66,14 +61,12 @@
    padding: 8px 16px 28px 16px;
    line-height: normal;
    font-size: 20px;
-   /* border: 2px solid red; */
 }
 .ownerTextContainerPLine{
    display: flex;
    justify-content: space-between;
 }
 .ownerIconsContainer{
-   /* border:2px solid gray; */
    height: 40px;
    width: 100%;
    display: flex;

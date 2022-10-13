@@ -1,4 +1,3 @@
-import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Paper} from '@mui/material';
 import styles from './carousel.module.css';
@@ -9,10 +8,10 @@ export function WelcomeCarousel(props: any) {
          name: "./bfind.jpg",
       },
       {
-         name: "./bproject.jpg",
+         name: "./bhelp.jpg",
       },
       {
-         name: "./bhelp.jpg",
+         name: "./bproject.jpg",
       },
       {
          name: "./bookBuddie.jpg",
@@ -49,12 +48,6 @@ function Item(props: any) {
          <img className={styles.carouselImg}
             src={require(`${(props.item.name)}`)}
             alt="commercials" />
-         {/* <h2>{props.item.name}</h2>
-            <p>{props.item.description}</p> */}
-
-         {/* <Button className="CheckButton">
-                Check it out!
-            </Button> */}
       </Paper>
    )
 }

@@ -56,8 +56,6 @@ function ViewMore() {
       }
    }
 
-
-
    return (
       <div className={styles.mainViewMoreContainer}>
          <div className={styles.opacityFixerDiv}>

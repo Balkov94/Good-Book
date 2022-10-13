@@ -7,17 +7,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { IRegisterData } from "../../RegisterPage/RegisterForm/RegisterForm";
 // react-form-hook (controller)    +  YUP Validation
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { TextareaAutosize } from '@mui/material';
-import { useContext, useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
+import { useContext } from 'react';
 import { QuestionClass } from '../../../Rest-APi-Client/shared-types';
 import { commentApi, questionApi } from '../../../Rest-APi-Client/client';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -287,7 +284,6 @@ export default function CRUDQFormComponent() {
                      )}
                   />
 
-                  {/*  */}
                   <Controller
                      control={control}
                      name="questionPic"

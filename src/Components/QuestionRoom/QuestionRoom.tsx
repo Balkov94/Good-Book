@@ -75,22 +75,23 @@ function QuestionRoom() {
          {
             loggedUser.id === "guest"
                ?
-                  <div className={styles.askQContainer}>
-                     <Button variant="contained" 
-                     onClick={()=>toast("Please log in first 🙂",{type:"info"})}
-                     ><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
-                  </div>
-          
+               <div className={styles.askQContainer}>
+                  <Button variant="contained"
+                     onClick={() => toast("Please log in first 🙂", { type: "info" })}
+                  ><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
+               </div>
+
                :
                <Link to="/QuestionRoom/createQuestion">
                   <div className={styles.askQContainer}>
-                     <Button variant="contained"><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
+                     <Button variant="contained">
+                        <HelpOutlineIcon style={{ marginRight: "4px" }} />
+                        Ask Question
+                     </Button>
                   </div>
                </Link>
 
-
          }
-      
       </>
 
    );

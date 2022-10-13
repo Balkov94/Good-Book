@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { FormControl, InputLabel, MenuItem, Select, TextareaAutosize } from '@mui/material';
+import { FormControl, InputLabel,TextareaAutosize } from '@mui/material';
 import { DescriptionType, IdType, RoleEnum, StatusEnum, TimeOfModificationType, UserClass, } from '../../../Rest-APi-Client/shared-types';
 // react-form-hook (controller)    +  YUP Validation
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
@@ -185,10 +185,11 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
          .then(res => {
             console.log(res);
             toast("Successful registration 💛.",{type:"success"})
-            navigate("/Login");
+            navigate("/Login",{ replace: true });
          })
          .catch(()=>{
             toast("Fail to register.",{type:"error"});
+            toast.clearWaitingQueue();
          })
     
    }
@@ -223,7 +224,6 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                <Box component="form" noValidate
                   onSubmit={handleSubmit(sendFormData)}
                   sx={{
-                     // border:"2px solid green",
                      width: "420px",
                      paddingLeft: "26px",
                      paddingRight: "26px",

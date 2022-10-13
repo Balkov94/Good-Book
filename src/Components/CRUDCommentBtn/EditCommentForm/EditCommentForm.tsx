@@ -12,7 +12,6 @@ import * as yup from "yup";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import { CommentClass } from '../../../Rest-APi-Client/shared-types';
-import { useParams } from 'react-router-dom';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import { ICommentProps } from '../../Comment/Comment';
 import { toast } from 'react-toastify';

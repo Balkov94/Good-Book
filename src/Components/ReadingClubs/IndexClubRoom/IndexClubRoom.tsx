@@ -1,20 +1,20 @@
 import styles from './IndexClubRoom.module.css';
 import { useContext, useEffect, useState } from 'react';
 import { clubApi, } from '../../../Rest-APi-Client/client';
-import { IClubCard } from '../ClubCard/ClubCard';
-import { Link, Outlet} from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { logged } from '../../../App';
 import { toast } from 'react-toastify';
+import { ClubClass } from '../../../Rest-APi-Client/shared-types';
 
 function IndexClubRoom() {
-   const [leaderList, setLeaderList] = useState<IClubCard[]>();
-   const [memberList, setmemberList] = useState<IClubCard[]>();
+   const [leaderList, setLeaderList] = useState<ClubClass[]>();
+   const [memberList, setmemberList] = useState<ClubClass[]>();
    const [loggedUser, setLoggedUser] = useContext(logged);
    useEffect(() => {
-      const leaderClubs: IClubCard[] = [];
-      const memberClubs: IClubCard[] = [];
+      const leaderClubs: ClubClass[] = [];
+      const memberClubs: ClubClass[] = [];
       clubApi.findAll()
-         .then((clubs: IClubCard[]) => {
+         .then((clubs: ClubClass[]) => {
             clubs.forEach(club => {
                if (club.creatorId === loggedUser.id) {
                   leaderClubs.push(club)

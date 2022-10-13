@@ -9,6 +9,10 @@
    margin: auto;
    margin-top: 30px;
    height: fit-content;
-   /* border: 1px solid red; */
    width: 100%;
+}
+.noBooksContainer{
+   width: 100%;
+   text-align: center;
+   font-size: 20px;
 }

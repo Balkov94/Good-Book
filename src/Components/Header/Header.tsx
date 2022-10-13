@@ -23,7 +23,7 @@ const Header = () => {
    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
    const [loggedUser, setLoggedUser] = React.useContext(logged);
-  
+
    const handleCloseNavMenu = () => {
       setAnchorElNav(null);
    };
@@ -61,8 +61,11 @@ const Header = () => {
       <AppBar position="fixed" sx={{
          zIndex: "2000",
          top: "0",
+
       }}>
-         <Container maxWidth={false} sx={{ backgroundColor: "#f7ba00", marginBottom: "0px", padding: "0px", width: "100%" }}>
+         <Container maxWidth={false} sx={{
+            backgroundColor: "#f7ba00", marginBottom: "0px", padding: "0px", width: "100%",
+         }}>
             <Toolbar disableGutters>
 
                <Link to="/">
@@ -84,7 +87,9 @@ const Header = () => {
                   </Typography>
                </Link>
 
-               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, zIndex: "2000" }}>
+               <Box sx={{
+                  flexGrow: 1, display: { xs: 'flex', md: 'none' }, zIndex: "2000"
+               }}>
                   <IconButton
                      size="large"
                      aria-label="account of current user"
@@ -112,6 +117,7 @@ const Header = () => {
                      onClose={handleCloseNavMenu}
                      sx={{
                         display: { xs: 'block', md: 'none' },
+
                      }}
                   >
                      {/* !!! MOBILE menu _____________________________*/}
@@ -192,8 +198,8 @@ const Header = () => {
                {/* USER MENU ____________________________________*/}
                {/* HERE CHECK LOGGED OR NOT for haader buttons */}
                {
-                  loggedUser.status == 1 && loggedUser.role == 2
-                  && <Link to="/AllUsers"><Button variant="contained">ALL USERS</Button></Link>
+                  loggedUser.status === 1 && loggedUser.role === 2
+                  && <Link to="/AllUsers"><Button variant="contained" color="info" size="small" >USERS</Button></Link>
                }
                {
                   loggedUser.id === "guest"

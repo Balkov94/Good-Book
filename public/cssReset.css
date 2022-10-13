@@ -1,7 +1,3 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 body{
      background-color: black;
      /* override for header MUI component */
@@ -11,7 +7,6 @@ body{
 }
 *{
      box-sizing: border-box;
-     /* color: white; */
 }
 ul li{
    color: black !important;
@@ -23,6 +18,7 @@ ul li:hover{
 }
 div .MuiPaper-root{
    background-color: gray;
+   padding-right: 0px!important;
 }
 
 .MuiFormHelperText-root{
@@ -31,7 +27,8 @@ div .MuiPaper-root{
 a {
    text-decoration: none;
 }
-/* HACK AUTOFILL !!!!! WORKING */
+/* HACK AUTOFILL COLOR !!!!! WORKING */
+/* All browser autofill now is the same color as MUI Forms */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -39,13 +36,6 @@ input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
     transition-delay: background-color 5000s, color 5000s;
 }
-
-
-/* .Mui-disabled{
-   color:rgb(230, 162, 4) !important;
-
-}  */
-
 
 
 html, body, div, span, applet, object, iframe,

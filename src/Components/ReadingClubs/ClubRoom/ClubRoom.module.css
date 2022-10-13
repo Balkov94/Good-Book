@@ -1,11 +1,13 @@
 .clubroomMainContainer {
    height: 100%;
-   /* border: 2px solid blue; */
+   border: 2px solid blue;
    padding: 40px 20px;
-   background-image: url("./ClubRoomImgs/clubRoom2.jpg");
+   background-image: url("./ClubRoomImgs/fall3.jpg");
    background-attachment: fixed;
    background-repeat: no-repeat;
-   background-size: cover;
+   /* background-size: cover; */
+   background-size: contain;
+   background-size: 100% 100%;
    line-height: 24px;
    color: white;
    top: 55px;

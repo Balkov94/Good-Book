@@ -15,7 +15,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useLocation, useNavigate } from 'react-router-dom';
 import ControllerTextFieldInput from '../ControllerTextFieldInput/ControllerTextFieldInput';
-import { UserApi } from '../../Rest-APi-Client/client';
 import { logged } from '../../App';
 import { useContext } from 'react';
 
@@ -189,9 +188,6 @@ export default function EditUsersFormComponent() {
          })
    }
 
-   // Logged user Options
-   let isAdminUsingForm = true;
-
    return (
       <ThemeProvider theme={theme} >
          <Container component="main" maxWidth="xs" style={{ position: "relative", display: "flex", justifyContent: "center" }}>
@@ -214,13 +210,12 @@ export default function EditUsersFormComponent() {
                }}
             >
                <Avatar sx={{ m: 1, bgcolor: '#ffc244' }}><AppRegistrationIcon style={{ fontSize: "32px" }} /></Avatar>
-               <Typography component="h1" variant="h5">  Register </Typography>
+               <Typography component="h1" variant="h5">  Editing profile ... </Typography>
 
                {/* FORM ______________________________________________________________ */}
                <Box component="form" noValidate
                   onSubmit={handleSubmit(sendFormData)}
                   sx={{
-                     // border:"2px solid green",
                      width: "420px",
                      paddingLeft: "26px",
                      paddingRight: "26px",

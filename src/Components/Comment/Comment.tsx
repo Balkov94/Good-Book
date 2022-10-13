@@ -2,11 +2,13 @@ import styles from './Comment.module.css';
 import Avatar from '@mui/material/Avatar';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserApi } from '../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../QuestionRoom/QuestionCard/QuestionCard';
 import { IdType, TimeOfModificationType } from '../../Rest-APi-Client/shared-types';
 import CRUDCommentBtn from '../CRUDCommentBtn/CRUDCommentBtn';
+import { toast } from 'react-toastify';
+import { logged } from '../../App';
 
 export interface ICommentProps {
    // for sorting club or question
@@ -23,26 +25,19 @@ export interface ICommentProps {
    onUpdateCommentList?: (comment: ICommentProps) => void,
 }
 
-// i will need id,discussionId,isClub for DELETE,EDIT when got DB and Back-end
-function Comment({ id, discussionId, isClub, creatorId, content, orderIndex, timeOfCreation, timeOfModification, onUpdateCommentList }: ICommentProps) {
-   //1. Fetch creator data for the Comment card
-   // *** using JSON-server so need fetch all andsort than just single fetch by ID
+function Comment({ id, discussionId, isClub, creatorId, content,
+   orderIndex, timeOfCreation, timeOfModification, onUpdateCommentList }: ICommentProps) {
+
+   const [loggedUser, setLoggedUser] = useContext(logged);
    const [commentCreator, setCommentCreator] = useState<IQuestionAuthorHeaderProps | undefined>();
    useEffect(() => {
-      UserApi.findAll()
-         .then(res => {
-            const user = res.find(user => user.id === creatorId);
+      UserApi.findById(creatorId)
+         .then(user => {
             setCommentCreator(user);
          })
+         .catch(() => toast("Something went wrong", { type: "warning" }))
+
    }, [creatorId]);
-
-   // 1.put content to useState -> when change content reRender comment
-   // 2.By passed id to AddEditComment component update the comment in DB
-   // ***  signle source is OK comment always comes from parent no handle operations there
-   /// ** Parent component (ClubRoom) is responsible only for fething
-
-   // fix for Z-index - onClick change btn marginBottom and block scroll window
-   
 
    return (
       <div className={styles.commentContainer}>
@@ -50,13 +45,12 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex, tim
             <div className={styles.commentImgUsername}>
                <Avatar alt="user" src={commentCreator?.userPic}
                   sx={{
-                     // override avatarMui zIndex fix styles bug
                      'MuiAvatar-root': {
-                        zIndex:"none",
+                        zIndex: "none",
                      }
                   }}
                />
-               <h1 style={{zIndex:"0"}}>{`${commentCreator?.fname} ${commentCreator?.lname}`}</h1>
+               <h1 style={{ zIndex: "0" }}>{`${commentCreator?.fname} ${commentCreator?.lname}`}</h1>
             </div>
             <div className={styles.commentDate}>
                {
@@ -74,22 +68,24 @@ function Comment({ id, discussionId, isClub, creatorId, content, orderIndex, tim
          {/* rating icons => not itegrated */}
          <div className={styles.commentFooterActions}>
             <div className={styles.likesContainer}>
-               <ThumbUpIcon />100
+               <ThumbUpIcon />99
             </div>
             <div className={styles.likesContainer}>
-               <ThumbDownIcon />15
+               <ThumbDownIcon />1
             </div>
 
-            {/*Edit comment in ReadingClubs->ClubRoom*/}
-
-            <div className={styles.commentEditBtn}>
-               <CRUDCommentBtn
-                  onUpdateCommentList={onUpdateCommentList}
-                  editComment={{ id, discussionId, isClub, creatorId, content, timeOfCreation, timeOfModification }}
-               />
-            </div>
+            {/*Edit comment in ReadingClubs-> ClubRoom*/}
+            {
+               loggedUser.id === creatorId
+               &&
+               <div className={styles.commentEditBtn}>
+                  <CRUDCommentBtn
+                     onUpdateCommentList={onUpdateCommentList}
+                     editComment={{ id, discussionId, isClub, creatorId, content, timeOfCreation, timeOfModification }}
+                  />
+               </div>
+            }
          </div>
-
       </div >
    );
 }

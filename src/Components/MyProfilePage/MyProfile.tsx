@@ -4,13 +4,23 @@ import MyBooks from './MyBooks/MyBooks';
 import Button from '@mui/material/Button';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { logged } from '../../App';
+import { toast } from 'react-toastify';
 
 function MyProfile() {
    //1.Fetch logged user data for MyPRofileCard
    const [loggedUser, setLoggedUser] = useContext(logged);
    
+   useEffect(() => {
+      if(loggedUser.status===2){
+         toast("Your profile is DEACTIVATED.",{type:"warning"});
+         toast("Your actions are restricted.",{type:"warning"});
+         toast.clearWaitingQueue();
+      }
+   }, [loggedUser]);
+
+
    return (
       <div className={styles.MyProfileMainContainer}>
          <h1>My profile:</h1>

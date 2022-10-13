@@ -1,6 +1,5 @@
 .bClubsMainContainer{
    width: 100%;
-   /* height depends on ClubRoom component styles */
    display: flex;
    flex-direction: row;
    border: 2px solid black;
@@ -11,12 +10,10 @@
    line-height: 24px;
    position: relative;
    overflow-x: hidden;
-   /* border: 2px solid Green; */
 }
 
 
 .listClubsContainer{
-   /* border: 2px solid gray; */
    min-width: 344px;
    max-width: 344px;
    max-height: 100%;
@@ -31,7 +28,6 @@
    bottom:0;
    position: fixed;
    left: 0px;
-   /* z-index: 20;  */
    z-index: 0; 
 
    margin-top: 70px;
@@ -46,10 +42,3 @@
    
 }
 
-/* Mobile */
-/* @media only screen and (max-width: 1200px) {
-   .listClubsContainer{
-      margin-top: 70px;
-      zoom: 0.7;
-   }
-} */
