@@ -198,7 +198,7 @@ const Header = () => {
                {/* USER MENU ____________________________________*/}
                {/* HERE CHECK LOGGED OR NOT for haader buttons */}
                {
-                  loggedUser.status === 1 && loggedUser.role === 2
+                  loggedUser.status == 1 && loggedUser.role == 2
                   && <Link to="/AllUsers"><Button variant="contained" color="info" size="small" >USERS</Button></Link>
                }
                {

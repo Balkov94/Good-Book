@@ -20,6 +20,7 @@ import ErrorPage from "./Components/ErrorPage/ErrorPage";
 import { RoleEnum, UserClass } from "./Rest-APi-Client/shared-types";
 import { createContext, useContext, useState } from "react";
 import ToastComponent from "./Components/ToastComponent/ToastComponent";
+import Footer from "./Components/Footer/Footer";
 
 export const guest = new UserClass(
    "guest",
@@ -82,6 +83,7 @@ function App() {
                <Route path="MyProfile" element={<MyProfile />} />
                <Route path="*" element={<ErrorPage />} />
             </Routes>
+            <Footer/>
          </logged.Provider>
       </div>
 

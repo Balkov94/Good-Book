@@ -218,7 +218,6 @@ export default function EditUsersFormComponent() {
                   <Grid container spacing={1}>
                      <Grid item xs={12} sm={6}>
                         <ControllerTextFieldInput
-                           autoFocus={true}
                            name="fname"
                            label="First name"
                            control={control}

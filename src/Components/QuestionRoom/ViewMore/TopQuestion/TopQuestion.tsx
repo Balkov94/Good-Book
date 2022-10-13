@@ -22,7 +22,7 @@ function TopQuestion({ id, creatorId, questionPic, title, content, username, fna
          </div>
          <div className={styles.textContainer}>
             <div className={styles.bookTitle}>
-               <h1>Book title:{title}</h1>
+               <h1>Book title: {title}</h1>
             </div>
             <div className={styles.questionText}>
                <p>{content}</p>

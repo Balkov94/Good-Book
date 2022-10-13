@@ -3,21 +3,24 @@
      justify-content: space-between;    
      align-items: center;
      width: 100%;
-     height: 50px;
+     height: 40px;
      padding-top: 8px;
      padding-bottom: 8px;
      background-color: black;
      vertical-align: baseline;
      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
-     font-size: 18px;
+     font-size: 14px;
      vertical-align: baseline;
      padding-top: 12px;
      padding-bottom: 12px;
      color: rgb(203, 200, 200);
-     border-top: 1px solid gray;
-     position: absolute;
+     /* border-top: 1px solid gray; */
+     position: fixed;
      bottom:0px;
      left: 0;
+     z-index: 200;
+     opacity: 0.8;
+     box-shadow: -2px 0px 45px 5px black;
     
 }
 .footerTextContainer{
@@ -43,8 +46,14 @@
    gap: 20px 20px!important;
    color: white!important;
 }
+.iconsContainer svg{
+   width: 18px;
+   height: 18px;
+   
+}
 .iconsStyles{
-   border: 2px solid white;
+   font-size: 8px;
+   border: 1px solid white;
    border-radius: 25px;
    display: flex;
    justify-content: center;
@@ -55,6 +64,7 @@
 }
 a:active, a:visited,a:link{
    color:white;
+   font-size: 8px;
 }
 .iconsStyles:hover{
    background-color:rgb(82, 82, 82); 
