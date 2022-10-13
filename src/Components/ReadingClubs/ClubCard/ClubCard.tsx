@@ -4,9 +4,8 @@ import Chip from '@mui/material/Chip';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import { Link } from 'react-router-dom';
 import { ClubClass, IdType } from '../../../Rest-APi-Client/shared-types';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { logged } from '../../../App';
-import { toast } from 'react-toastify';
 
 const chipColor = ["DarkSlateBlue", "CadetBlue", "DodgerBlue",
    "ForestGreen", "OrangeRed", "CornflowerBlue"];
@@ -23,7 +22,7 @@ export interface IClubCard {
 function ClubCard({ id, creatorId, name, interests, participants, banned, onsignInToClub }: IClubCard) {
    const [loggedUser, setLoggedUser] = useContext(logged);
 
-   
+
    return (
       <div className={styles.bClubCardMainContainer}>
          <div className={styles.nameContainer}>{name}</div>
@@ -39,6 +38,7 @@ function ClubCard({ id, creatorId, name, interests, participants, banned, onsign
                })
             }
          </div>
+
          <div className={styles.membersContainer}>
             <SupervisedUserCircleIcon />
             {participants.length}

@@ -6,9 +6,6 @@
    gap: 12px;
    padding: 18px 12px;
    font-family: inherit;
-   border: "1px soldi red";
-   border: 5px solid red;
-
    position: absolute;
    z-index: 1000;
    top: 0;

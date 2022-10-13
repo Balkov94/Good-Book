@@ -77,7 +77,10 @@ function QuestionRoom() {
                ?
                <div className={styles.askQContainer}>
                   <Button variant="contained"
-                     onClick={() => toast("Please log in first 🙂", { type: "info" })}
+                     onClick={() => {
+                        toast("Please log in first 🙂", { type: "info" })
+                        toast.clearWaitingQueue()
+                     }}
                   ><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
                </div>
 

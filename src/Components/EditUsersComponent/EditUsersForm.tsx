@@ -17,6 +17,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ControllerTextFieldInput from '../ControllerTextFieldInput/ControllerTextFieldInput';
 import { logged } from '../../App';
 import { useContext } from 'react';
+import { phoneRegExp } from '../RegisterPage/RegisterForm/RegisterForm';
+
 
 
 
@@ -87,23 +89,17 @@ export interface IEditUserData {
    timeOfCreation: string,
    timeOfModification: TimeOfModificationType,
 }
-
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-const schema = yup.object({
+const editUserSchema = yup.object({
    fname: yup.string().required("Required field.").min(2, "First name must be at least 2 characters.").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
    lname: yup.string().required("Required field.").min(2, "Last name must be at least 2 characters.").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
    username: yup.string().required().min(5).max(15).matches(/^[a-zA-Z-0-9]+$/, "Only letters and numbers"),
    mail: yup.string().required().email(),
-   phone: yup.string().required().matches(phoneRegExp, "Please enter a valid phone number"),
-   password: yup.string().required().min(8).max(15)
+   phone: yup.string().min(10).required().matches(phoneRegExp, "Please enter a valid phone number"),
+   password: yup.string().required().min(5).max(15)
       .matches(/^.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?].*$/, "At Least one special character.")
       .matches(/^.*[0-9].*$/, "At Least one digit"),
-   confirmPassword: yup.string().required().min(8).max(15)
-      .oneOf([yup.ref('password'), null], 'Passwords must match!'),
-   gender: yup.string(),
    role: yup.string(),
-   status: yup.string(),
-   picture: yup.lazy((value: any) =>
+   userPic: yup.lazy((value: any) =>
       /^data/.test(value)
          ? yup.string()
             .trim()
@@ -112,7 +108,6 @@ const schema = yup.object({
                'Must be a valid data URI',
             )
             .required()
-         // : yup.string().trim().url('Must be a valid URL').required("Picture url is required!"),
          : (value.length > 0
             ? yup.string().trim().url('Must be a valid URL').required("Picture url is required!")
             : yup.string().notRequired())
@@ -120,9 +115,6 @@ const schema = yup.object({
    description: yup.string().max(512),
 }).required();
 
-const schemaTest = yup.object({
-   description: yup.string().max(512),
-}).required();
 export default function EditUsersFormComponent() {
    const navigate = useNavigate();
    const user: IEditUserData = useLocation().state;
@@ -144,10 +136,11 @@ export default function EditUsersFormComponent() {
          description: user.description,
       },
       mode: "onChange",
-      resolver: yupResolver(schemaTest)
+      resolver: yupResolver(editUserSchema)
 
    });
-
+ 
+   
    const sendFormData = (data: IEditUserData, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
@@ -182,8 +175,7 @@ export default function EditUsersFormComponent() {
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(newUser)
       })
-         .then(res => {
-            console.log(res);
+         .then(() => {
             navigate(-1);
          })
    }
@@ -230,7 +222,7 @@ export default function EditUsersFormComponent() {
                            name="fname"
                            label="First name"
                            control={control}
-                           rules={{ maxLength: 15 }}
+                           maxLength={15}
                            error={errors.fname?.message}
 
                         ></ControllerTextFieldInput>
@@ -240,6 +232,7 @@ export default function EditUsersFormComponent() {
                            name="lname"
                            label="Last name"
                            control={control}
+                           maxLength={15}
                            error={errors.lname?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
@@ -250,7 +243,6 @@ export default function EditUsersFormComponent() {
                            label="Email"
                            control={control}
                            maxLength={30}
-                           // rules={{ maxLength: 30 }}
                            error={errors.mail?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
@@ -260,16 +252,16 @@ export default function EditUsersFormComponent() {
                            name="phone"
                            label="Phone"
                            control={control}
-                           rules={{ maxLength: 15 }}
+                           maxLength={10}
                            error={errors.phone?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
 
                      <Grid item xs={12} sx={{
-                        '& .MuiInputBase-input':{
-                           backgroundColor:" #202020",    
+                        '& .MuiInputBase-input': {
+                           backgroundColor: " #202020",
                         }
-                       }}>
+                     }}>
                         <ControllerTextFieldInput
                            name="username"
                            label="Username"
@@ -287,6 +279,7 @@ export default function EditUsersFormComponent() {
                                  name="password"
                                  label="Password"
                                  control={control}
+                                 maxLength={15}
                                  error={errors.password?.message}
                               ></ControllerTextFieldInput>
                            </Grid>
@@ -294,7 +287,7 @@ export default function EditUsersFormComponent() {
                         )
                      }
                      {
-                        loggedUser.role===2
+                        (loggedUser.role === 2 && loggedUser.status === 1)
                         &&
                         <>
                            <Grid item xs={12} sm={6}>
@@ -308,7 +301,7 @@ export default function EditUsersFormComponent() {
                                           value={value}
                                           label="Status"
                                           onChange={onChange}
-                                          style={{width:"180px"}}
+                                          style={{ width: "180px" }}
                                        >
                                           <MenuItem value={StatusEnum.Active}>Active</MenuItem>
                                           <MenuItem value={StatusEnum.Deactivated}>Deactivated</MenuItem>
@@ -319,7 +312,7 @@ export default function EditUsersFormComponent() {
                            </Grid>
 
                            <Grid item xs={12} sm={6}>
-                              <FormControl sx={{marginBottom:"18px"}}>
+                              <FormControl sx={{ marginBottom: "18px" }}>
                                  <InputLabel >Role</InputLabel>
                                  <Controller
                                     control={control}
@@ -329,7 +322,7 @@ export default function EditUsersFormComponent() {
                                           value={value}
                                           label="Role"
                                           onChange={onChange}
-                                          style={{width:"180px"}}
+                                          style={{ width: "180px" }}
                                        >
                                           <MenuItem value={RoleEnum.User}>User</MenuItem>
                                           <MenuItem value={RoleEnum.Admin}>Admin</MenuItem>
@@ -374,7 +367,8 @@ export default function EditUsersFormComponent() {
                   </Grid>
 
 
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={(isValid && isDirty) === false}>
+                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
+                     disabled={(isValid && isDirty) === false}>
                      Save changes
                   </Button>
 

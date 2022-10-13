@@ -50,6 +50,7 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
             const resp = await fetch(url, options);
             if(resp.status >= 400) {
                 return Promise.reject(resp.body);
+                
             }
             return resp.json();
         } catch(err) {

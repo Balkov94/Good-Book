@@ -24,9 +24,9 @@ interface ILoginFormInputs {
    password: string
 }
 
-const schema = yup.object({
+const loginValidationSchema = yup.object({
    username: yup.string().required().min(5).max(15).matches(/^[a-zA-Z-0-9]+$/, "Only letters and numbers"),
-   password: yup.string().required().min(8).max(15),
+   password: yup.string().required().min(5).max(15),
 }).required();
 
 const theme = createTheme();
@@ -85,7 +85,7 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
    const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ILoginFormInputs>({
       defaultValues: { username: "", password: "" },
       mode: "onChange",
-      resolver: yupResolver(schema)
+      resolver: yupResolver(loginValidationSchema)
 
    });
 
@@ -162,6 +162,7 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
                            id="username"
                            label="Username"
                            name="username"
+                           inputProps={{ maxLength: 15 }}
                            placeholder='username'
                            value={value}
                            onChange={onChange}
@@ -180,6 +181,7 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
                            id="password"
                            label="Password"
                            name="password"
+                           inputProps={{ maxLength: 15 }}
                            placeholder='password'
                            type="password"
                            value={value}

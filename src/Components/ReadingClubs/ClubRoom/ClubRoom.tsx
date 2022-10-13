@@ -16,6 +16,7 @@ function ClubRoom() {
    const location = useLocation().state;
    const { id, name, interests, participants, banned, creatorId } = location;
    const [loggedUser, setLoggedUser] = useContext(logged);
+
    const [clubCreator, setClubCreator] = useState<IQuestionAuthorHeaderProps>();
    const [participantsList, setParticipantsList] = useState<IQuestionAuthorHeaderProps[]>();
    const [bannedList, setBannedList] = useState<IQuestionAuthorHeaderProps[]>();
@@ -80,6 +81,7 @@ function ClubRoom() {
       }
    }
 
+
    return (
       <div className={styles.clubroomMainContainer}>
          <div className={styles.clubDataContainer}>
@@ -102,8 +104,8 @@ function ClubRoom() {
                   </div>
                </div>
                <div>
-                  <h2>Club leader: 👑  {clubCreator?.username}</h2>
                   <h2>Members: &#128511;  {participants.length}</h2>
+                  <h2>Club leader: 👑  {clubCreator?.username}</h2>
                </div>
             </div>
 

@@ -26,7 +26,7 @@ interface IBookFormInputs {
 }
 
 const schema = yup.object({
-   title: yup.string().required().min(2).max(30),
+   title: yup.string().required().min(2).max(100),
    bookPic: yup.lazy((value: any) =>
       /^data/.test(value)
          ? yup.string()
@@ -36,7 +36,6 @@ const schema = yup.object({
                'Must be a valid data URI',
             )
             .required()
-         // : yup.string().trim().url('Must be a valid URL').required("Picture url is required!"),
          : (value.length > 0
             ? yup.string().trim().url('Must be a valid URL').required("Picture url is required!")
             : yup.string().notRequired())
@@ -226,6 +225,7 @@ export default function CRUDBookFormComponent() {
                            label="Book title"
                            name="title"
                            placeholder='Book title'
+                           inputProps={{ maxLength: 100 }}
                            value={value}
                            onChange={onChange}
                            error={errors.title?.message ? true : false}
@@ -269,7 +269,6 @@ export default function CRUDBookFormComponent() {
                         />
                      )}
                   />
-
 
                   <Button type="submit" fullWidth variant="contained"
                      disabled={(isValid && isDirty) === false} sx={{ mt: "60px", mb: 2 }}

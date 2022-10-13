@@ -36,28 +36,24 @@ function ReadingClubs() {
          },
          body: JSON.stringify(updatedClub)
       })
-         .then(res => res.json())
          .then(res => {
             const copyClubList = clubsList.slice();
             const clubIndex = copyClubList.findIndex(c => c.id === club.id);
             copyClubList.splice(clubIndex, 1,updatedClub);
             setClubsList(copyClubList);
-
-            console.log(res);
-            toast("Signed in", { type: "success" });
+            toast(`Signed in to ${updatedClub.name} club`, { type: "success" });
+            toast.clearWaitingQueue();
          })
          .catch(res => {
-            console.log(res);
             toast("Signing fail", { type: "error" });
          })
-
    }
 
    return (
       <>
          <div className={styles.bClubsMainContainer}>
             <div className={styles.listClubsContainer}>
-               <h1>&#x1f4da; Book Clubs:</h1>
+               <h1>&#x1f4da; Reading Clubs:</h1>
                <Link to={"Reading-Club-Form"} >
                   <Button variant='contained' color="success">
                      <BookmarkAddIcon />

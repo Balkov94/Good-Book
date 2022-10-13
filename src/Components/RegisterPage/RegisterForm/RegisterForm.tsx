@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { FormControl, InputLabel,TextareaAutosize } from '@mui/material';
+import { FormControl, InputLabel, TextareaAutosize } from '@mui/material';
 import { DescriptionType, IdType, RoleEnum, StatusEnum, TimeOfModificationType, UserClass, } from '../../../Rest-APi-Client/shared-types';
 // react-form-hook (controller)    +  YUP Validation
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
@@ -19,16 +19,13 @@ import styles from './RegisterForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import { UserApi } from '../../../Rest-APi-Client/client';
 import { toast } from 'react-toastify';
+import { ifError } from 'assert';
 
 const theme = createTheme();
 const RegisterFormMUIOverride = {
    dispay: "flex",
    justifyContent: "center",
    alignItems: "center",
-   // '& .MuiContainer-root':{
-   //    maxWidth:"100%",
-   // },
-
    '& .MuiTextField-root': {
       bgcolor: "rgb(10,25,41)",
       marginBottom: "24px",
@@ -36,7 +33,6 @@ const RegisterFormMUIOverride = {
       zoom: "0.8",
    },
    '& .MuiInputBase-input': {
-      // color: "white",
       fontSize: "20px",
       bgcolor: "rgb(10,25,41)",
    },
@@ -103,21 +99,20 @@ export interface IRegisterFormProps {
    // with diff props depends on creation
 }
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-const schema = yup.object({
+export const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+ const userValidationSchama = yup.object({
    fname: yup.string().required("Required field.").min(2, "First name must be at least 2 characters.").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
    lname: yup.string().required("Required field.").min(2, "Last name must be at least 2 characters.").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
    username: yup.string().required().min(5).max(15).matches(/^[a-zA-Z-0-9]+$/, "Only letters and numbers"),
    mail: yup.string().required().email(),
-   phone: yup.string().required().matches(phoneRegExp, "Please enter a valid phone number"),
-   password: yup.string().required().min(8).max(15)
+   phone: yup.string().min(10).required().matches(phoneRegExp, "Please enter a valid phone number"),
+   password: yup.string().required().min(5).max(15)
       .matches(/^.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?].*$/, "At Least one special character.")
       .matches(/^.*[0-9].*$/, "At Least one digit"),
-   confirmPassword: yup.string().required().min(8).max(15)
+   confirmPassword: yup.string().required().min(5).max(15)
       .oneOf([yup.ref('password'), null], 'Passwords must match!'),
-   gender: yup.string(),
    role: yup.string(),
-   picture: yup.lazy((value: any) =>
+   userPic: yup.lazy((value: any) =>
       /^data/.test(value)
          ? yup.string()
             .trim()
@@ -126,7 +121,6 @@ const schema = yup.object({
                'Must be a valid data URI',
             )
             .required()
-         // : yup.string().trim().url('Must be a valid URL').required("Picture url is required!"),
          : (value.length > 0
             ? yup.string().trim().url('Must be a valid URL').required("Picture url is required!")
             : yup.string().notRequired())
@@ -134,10 +128,8 @@ const schema = yup.object({
    description: yup.string().max(512),
 }).required();
 
-const schemaTest = yup.object({
-   description: yup.string().max(512),
-}).required();
-export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, handleShowCreateForm }: IRegisterFormProps) {
+
+export default function RegisterFormMUI() {
    const { handleSubmit, control, formState: { errors, isValid, isDirty }, } = useForm<IRegisterData>({
       defaultValues: {
          fname: "",
@@ -152,7 +144,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
          description: "",
       },
       mode: "onChange",
-      resolver: yupResolver(schemaTest)
+      resolver: yupResolver(userValidationSchama)
 
    });
 
@@ -166,7 +158,6 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
       const currPicture = data.userPic;
       if (currPicture === "") {
          data.userPic = `data:image/jpeg;base64,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`;
-         // data.picture = require(`../../images/mavatar.png`);
       }
       const newUser = new UserClass(
          undefined,
@@ -180,18 +171,16 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
          data.userPic,
          data.description
       )
-     
+
       UserApi.create(newUser)
          .then(res => {
-            console.log(res);
-            toast("Successful registration 💛.",{type:"success"})
-            navigate("/Login",{ replace: true });
+            toast("Successful registration 💛.", { type: "success" })
+            navigate("/Login", { replace: true });
          })
          .catch(()=>{
-            toast("Fail to register.",{type:"error"});
-            toast.clearWaitingQueue();
-         })
-    
+            toast("Username or email is already taken.", { type: "error" });
+           toast.clearWaitingQueue();
+         })     
    }
 
    return (
@@ -238,7 +227,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                            name="fname"
                            label="First name"
                            control={control}
-                           rules={{ maxLength: 15 }}
+                           maxLength={15}
                            error={errors.fname?.message}
 
                         ></ControllerTextFieldInput>
@@ -248,6 +237,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                            name="lname"
                            label="Last name"
                            control={control}
+                           maxLength={15}
                            error={errors.lname?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
@@ -258,7 +248,6 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                            label="Email"
                            control={control}
                            maxLength={30}
-                           // rules={{ maxLength: 30 }}
                            error={errors.mail?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
@@ -268,7 +257,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                            name="phone"
                            label="Phone"
                            control={control}
-                           rules={{ maxLength: 15 }}
+                           maxLength={10}
                            error={errors.phone?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
@@ -278,6 +267,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                            name="username"
                            label="Username"
                            control={control}
+                           maxLength={15}
                            error={errors.username?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
@@ -288,6 +278,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                            label="Password"
                            control={control}
                            type="password"
+                           maxLength={15}
                            error={errors.password?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
@@ -297,6 +288,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                            label="Repeat password"
                            control={control}
                            type="password"
+                           maxLength={15}
                            error={errors.confirmPassword?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
@@ -305,6 +297,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, ha
                            name="userPic"
                            label="Picture (URL)"
                            control={control}
+                           type="search"
                            error={errors.userPic?.message}
                            maxLength={10000}
                         ></ControllerTextFieldInput>

@@ -38,8 +38,12 @@
    border-radius: 0px 0px 5px 5px;
    cursor: pointer;
 }
+.titleContainer h1{
+   max-height: fit-content;
+   word-wrap: break-word;
+}
 .titleContainer:hover{
-      height: 60%;
+      height: 40%;
 }
 
 .contactIcon{

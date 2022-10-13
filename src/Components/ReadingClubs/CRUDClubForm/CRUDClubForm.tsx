@@ -236,6 +236,7 @@ export default function CRUDClubForm() {
                            name="clubName"
                            placeholder="Club name"
                            value={value}
+                           inputProps={{ maxLength: 22 }}
                            onChange={onChange}
                            error={errors.clubName?.message ? true : false}
                            helperText={errors.clubName?.message || ""}
@@ -258,6 +259,7 @@ export default function CRUDClubForm() {
                            name="interest1"
                            placeholder="&#128187; Front-end"
                            value={value}
+                           inputProps={{ maxLength: 25 }}
                            onChange={onChange}
                            error={errors.interest1?.message ? true : false}
                            helperText={errors.interest1?.message || ""}
@@ -274,6 +276,7 @@ export default function CRUDClubForm() {
                            id="interest2"
                            name="interest2"
                            placeholder="🧩 Board games"
+                           inputProps={{ maxLength: 25 }}
                            value={value}
                            onChange={onChange}
                            error={errors.interest2?.message ? true : false}
@@ -291,6 +294,7 @@ export default function CRUDClubForm() {
                            id="interest3"
                            name="interest3"
                            placeholder="👨‍🏫 Languages"
+                           inputProps={{ maxLength: 25 }}
                            value={value}
                            onChange={onChange}
                            error={errors.interest3?.message ? true : false}
@@ -308,6 +312,7 @@ export default function CRUDClubForm() {
                            id="interest4"
                            name="interest4"
                            placeholder="&#9917; Football"
+                           inputProps={{ maxLength: 25 }}
                            value={value}
                            onChange={onChange}
                            error={errors.interest4?.message ? true : false}
@@ -325,6 +330,7 @@ export default function CRUDClubForm() {
                            id="interest5"
                            name="interest5"
                            placeholder="💃 Dancing"
+                           inputProps={{ maxLength: 25 }}
                            value={value}
                            onChange={onChange}
                            error={errors.interest5?.message ? true : false}
@@ -342,6 +348,7 @@ export default function CRUDClubForm() {
                            id="interest6"
                            name="interest6"
                            placeholder="📷 Photography"
+                           inputProps={{ maxLength: 25 }}
                            value={value}
                            onChange={onChange}
                            error={errors.interest6?.message ? true : false}

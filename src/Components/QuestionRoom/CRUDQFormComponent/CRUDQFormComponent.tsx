@@ -38,7 +38,6 @@ const schema = yup.object({
                'Must be a valid data URI',
             )
             .required()
-         // : yup.string().trim().url('Must be a valid URL').required("Picture url is required!"),
          : (value.length > 0
             ? yup.string().trim().url('Must be a valid URL').required("Picture url is required!")
             : yup.string().notRequired())
@@ -137,7 +136,6 @@ export default function CRUDQFormComponent() {
             body: JSON.stringify(newQuestion)
          })
             .then(res => {
-               console.log(res);
                navigate(-2);
             })
 
@@ -145,7 +143,6 @@ export default function CRUDQFormComponent() {
       else {
          questionApi.create(newQuestion)
             .then(res => {
-               console.log(res);
                navigate(-1);
             })
       }
@@ -167,8 +164,6 @@ export default function CRUDQFormComponent() {
          })
    }
 
-
-
    return (
       <ThemeProvider theme={theme}>
          <Container component="main" maxWidth="md" className={styles.mainFormWrapper}
@@ -178,7 +173,6 @@ export default function CRUDQFormComponent() {
                height: "fit-content",
                borderRadius: "15px",
                position: "relative",
-               // border: "2px solid red",
                pt: "40px",
 
             }}>
@@ -235,6 +229,7 @@ export default function CRUDQFormComponent() {
                            name="title"
                            placeholder='Book title'
                            value={value}
+                           inputProps={{ maxLength: 30 }}
                            onChange={onChange}
                            error={errors.title?.message ? true : false}
                            helperText={errors.title?.message || ""}
@@ -254,7 +249,7 @@ export default function CRUDQFormComponent() {
                            name="content"
                            value={value}
                            cols={35}
-                           maxLength={1000}
+                           maxLength={512}
                            onChange={onChange}
                         />
                      )}

@@ -36,7 +36,6 @@ const formsMUIoverride = {
       zoom: "0.8",
    },
    '& .MuiInputBase-input': {
-      // color: "white",
       fontSize: "20px",
       bgcolor: "rgb(10,25,41)",
    },
@@ -133,9 +132,6 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                height: "fit-content",
                borderRadius: "15px",
                position: "relative",
-               border: "2px solid blue",
-
-
             }}>
             <CssBaseline />
             <Box
@@ -146,11 +142,11 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                   flexDirection: 'column',
                   alignItems: 'center',
                   backgroundColor: "black",
+                  border:"1px solid orange",
                   borderRadius: "15px",
                   paddingLeft: "20px",
                   paddingRight: "20px",
-                  zIndex: "5000",
-                  border: "2px solid red",
+                  zIndex: "800",
                }}
             >
                <Avatar sx={{ m: 1, bgcolor: '#00a082' }}>
@@ -167,7 +163,6 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
                      mt: 1,
                      ...formsMUIoverride,
                      zIndex: "5000",
-                     border: "2px solid green"
                   }}
                >
                   <Controller

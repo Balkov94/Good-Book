@@ -48,3 +48,19 @@
    top: 110px;
 }
 
+@media only screen and (max-width: 1200px) {
+   .qWraper{
+      flex-direction: row;
+      width: 100%;
+      gap: 50px 16px;
+      padding-left: 8px;
+      padding-right: 8px;
+   }
+}
+@media only screen and (max-width: 1000px) {
+      .qWraper{
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+      }
+ }

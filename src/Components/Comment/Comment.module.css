@@ -49,7 +49,6 @@
 .commentContent p{
    max-height: fit-content;
    word-wrap: break-word;
-   
 }
 .commentFooterActions{
    width: 100%;

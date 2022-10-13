@@ -28,7 +28,6 @@ const schema = yup.object({
    content: yup.string().required().min(1).max(1000),
 }).required();
 
-
 const theme = createTheme();
 const formsMUIoverride = {
    dispay: "flex",
@@ -134,10 +133,6 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
                height: "fit-content",
                borderRadius: "15px",
                position: "relative",
-
-               // border: "2px solid red",
-               // bgcolor:"black",
-               // zIndex:"1400",
             }}>
             <CssBaseline />
 
@@ -166,7 +161,6 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
                   sx={{
-                     // border: "2px solid gray",
                      mt: 1,
                      ...formsMUIoverride
                   }}
@@ -186,7 +180,6 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
                            value={value}
                            cols={35}
                            maxLength={1000}
-                           // rows={10}
                            onChange={onChange}
                         />
                      )}
