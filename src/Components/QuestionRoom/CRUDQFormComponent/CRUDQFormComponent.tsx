@@ -19,6 +19,7 @@ import { QuestionClass } from '../../../Rest-APi-Client/shared-types';
 import { commentApi, questionApi } from '../../../Rest-APi-Client/client';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { logged } from '../../../App';
+import { toast } from 'react-toastify';
 
 interface ILoginFormInputs {
    title: string,
@@ -27,7 +28,7 @@ interface ILoginFormInputs {
 }
 
 const schema = yup.object({
-   title: yup.string().required().min(2).max(30),
+   title: yup.string().required().min(2).max(100),
    content: yup.string().required().min(2).max(512),
    questionPic: yup.lazy((value: any) =>
       /^data/.test(value)
@@ -137,13 +138,15 @@ export default function CRUDQFormComponent() {
          })
             .then(res => {
                navigate(-2);
+               toast(`Updated question ${newQuestion.title}`,{type:"info"});
             })
 
       }
       else {
          questionApi.create(newQuestion)
-            .then(res => {
+            .then(() => {
                navigate(-1);
+               toast("You published a new question",{type:"success"});
             })
       }
    };
@@ -229,7 +232,7 @@ export default function CRUDQFormComponent() {
                            name="title"
                            placeholder='Book title'
                            value={value}
-                           inputProps={{ maxLength: 30 }}
+                           inputProps={{ maxLength: 100 }}
                            onChange={onChange}
                            error={errors.title?.message ? true : false}
                            helperText={errors.title?.message || ""}

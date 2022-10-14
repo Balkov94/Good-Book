@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { ClubClass, IdType } from '../../../Rest-APi-Client/shared-types';
 import { useContext } from 'react';
 import { logged } from '../../../App';
+import { toast } from 'react-toastify';
 
 const chipColor = ["DarkSlateBlue", "CadetBlue", "DodgerBlue",
    "ForestGreen", "OrangeRed", "CornflowerBlue"];
@@ -48,7 +49,11 @@ function ClubCard({ id, creatorId, name, interests, participants, banned, onsign
                      <Link
                         to={`/ReadingClubs/club${id}`}
                         state={{ id, creatorId, name, interests, participants, banned }}>
-                        <Button size="small" variant="contained" color="info">
+                        <Button size="small" variant="contained" color="info"
+                           onClick={() => {
+                              toast(`You are now in ${name} room`, { type: "info", position: "top-left" });
+                              toast.clearWaitingQueue();
+                           }}>
                            Enter room
                         </Button>
                      </Link>

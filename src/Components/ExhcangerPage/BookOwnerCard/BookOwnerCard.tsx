@@ -31,7 +31,7 @@ function BookOwnerCard({ toggleBookMenu, title, ownerId, }: IBookOwnerCardProps)
             <div className={styles.closeIconContainer}>
                <CloseIcon onClick={toggleBookMenu} />
             </div>
-            <h1>Book owner:</h1>
+            <h1>Book owner</h1>
             <div className={styles.ownerImgContainer}>
                <img src={owner?.userPic} alt="user" />
             </div>
@@ -48,7 +48,7 @@ function BookOwnerCard({ toggleBookMenu, title, ownerId, }: IBookOwnerCardProps)
                   <p>Phone number: </p>
                   <p>{owner?.phone}</p>
                </div>
-               <p style={{ marginTop: "10px",color:"rgb(184,184,184)"}}>Description: {owner?.description}</p>
+               <p style={{ marginTop: "10px", color: "rgb(184,184,184)" }}>Description: {owner?.description}</p>
             </div>
             <div className={styles.ownerIconsContainer}>
                <a href={"mailto:" + owner?.mail} >

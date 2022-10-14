@@ -58,7 +58,7 @@
 /* Add comment Btn */
 .addCommentContainer{
    position:  fixed;
-   bottom: 40px;
+   bottom: 80px;
    right: 60px;
-   border: 2ps soldi red;
 }
+

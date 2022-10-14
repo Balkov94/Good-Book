@@ -14,7 +14,8 @@ function ViewMore() {
    const { id, creatorId, questionPic, title, content, username, fname, lname, userPic }
       = useLocation().state;
    const [commentsList, setcommentsList] = useState<ICommentProps[]>();
-   // 2. From id(question) fetch all comments !*id(question) === discussionId(comment)
+   const [loggedUser, setLoggedUser] = useContext(logged);
+   
    useEffect(() => {
       commentApi.findAll()
          .then((res: CommentClass[]) => {
@@ -23,7 +24,6 @@ function ViewMore() {
          })
    }, [id])
 
-   const [loggedUser, setLoggedUser] = useContext(logged);
 
    // UI updater functions // 
    const updateCommentList = (currComment: ICommentProps) => {

@@ -133,10 +133,9 @@
 
 .addCommentContainer{
    position:  fixed;
-   bottom: 40px;
+   bottom: 80px;
    right: 60px;
-   border: 2ps soldi red;
    z-index: 1;
 }
-/* Mobile */
-@media only screen and (max-width: 1000px) {}
+
+

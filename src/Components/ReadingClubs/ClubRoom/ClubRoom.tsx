@@ -2,7 +2,7 @@ import Comment, { ICommentProps } from '../../Comment/Comment';
 import styles from './ClubRoom.module.css';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { commentApi, UserApi } from '../../../Rest-APi-Client/client';
 import { IQuestionAuthorHeaderProps } from '../../QuestionRoom/QuestionCard/QuestionCard';
@@ -51,8 +51,7 @@ function ClubRoom() {
          })
    }, [creatorId, participants, banned, id])
 
-
-
+  
    // UI updater functions __________________________// 
    const updateCommentList = (currComment: ICommentProps) => {
       if (currComment.content === "_this_entity_was_deleted") {

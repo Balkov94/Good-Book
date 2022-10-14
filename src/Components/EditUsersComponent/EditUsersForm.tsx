@@ -139,8 +139,8 @@ export default function EditUsersFormComponent() {
       resolver: yupResolver(editUserSchema)
 
    });
- 
-   
+
+
    const sendFormData = (data: IEditUserData, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
@@ -286,7 +286,7 @@ export default function EditUsersFormComponent() {
                         )
                      }
                      {
-                        (loggedUser.role === 2 && loggedUser.status === 1)
+                        (loggedUser.role == 2 && loggedUser.status == 1)
                         &&
                         <>
                            <Grid item xs={12} sm={6}>
