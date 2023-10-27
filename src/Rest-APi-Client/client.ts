@@ -8,8 +8,6 @@ export interface ApiClient<K, V extends Identifiable<K>> {
     create(entityWithoutId: Partial<V>): Promise<V>;
     update(entityWithoutId: V): Promise<V>;
     deleteById(id: K): Promise<V>;
-
-    
 }
 
 export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K, V> {
@@ -18,9 +16,11 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
     findAll(): Promise<V[]> {
         return this.handleRequest(`${API_BASE_URL}/${this.apiCollectionSuffix}`);
     }
+    
     findById(id: K): Promise<V> {
         return this.handleRequest(`${API_BASE_URL}/${this.apiCollectionSuffix}/${id}`);
     }
+
     create(entityWithoutId: Partial<V>): Promise<V> {
         return this.handleRequest(`${API_BASE_URL}/${this.apiCollectionSuffix}`, {
             method: 'POST',
@@ -30,6 +30,7 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
             body: JSON.stringify(entityWithoutId)
         });
     }
+
     update(entity: V): Promise<V> {
         return this.handleRequest(`${API_BASE_URL}/${this.apiCollectionSuffix}/${entity.id}`, {
             method: 'PUT',
@@ -39,6 +40,7 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
             body: JSON.stringify(entity)
         });
     }
+
     deleteById(id: K): Promise<V> {
         return this.handleRequest(`${API_BASE_URL}/${this.apiCollectionSuffix}/${id}`, {
             method: 'DELETE'
@@ -49,9 +51,9 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
         try {
             const resp = await fetch(url, options);
             if(resp.status >= 400) {
-                return Promise.reject(resp.body);
-                
+                return Promise.reject(resp.body);       
             }
+
             return resp.json();
         } catch(err) {
             return Promise.reject(err);

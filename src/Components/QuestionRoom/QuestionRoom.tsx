@@ -11,7 +11,6 @@ import { useContext } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 export interface IEntireQuestionData {
    id: IdType,
    questionPic: string,
@@ -44,7 +43,6 @@ function QuestionRoom() {
          })
          setQuestionsList(questionCardData);
       });
-
    }, []);
 
    return (
@@ -81,7 +79,8 @@ function QuestionRoom() {
                         toast("Please log in first 🙂", { type: "info" })
                         toast.clearWaitingQueue()
                      }}
-                  ><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
+                  >
+                     <HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
                </div>
 
                :

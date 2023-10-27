@@ -53,15 +53,13 @@ interface IContextType {
 export const logged = createContext<any>(guest);
 
 function App() {
-   // const [loggedUser, setLoggedUser] = useState<loggedType>(undefined);
    const [loggedUser, setLoggedUser] = useState<UserClass>(guest);
-
 
    return (
       <div>
          <logged.Provider value={[loggedUser, setLoggedUser]}>
             <Header />
-            <ToastComponent/>
+            <ToastComponent />
             <Routes>
                <Route index element={<WelcomeCarousel />} />
                <Route path="QuestionRoom" element={<QuestionRoom />} />
@@ -83,10 +81,9 @@ function App() {
                <Route path="MyProfile" element={<MyProfile />} />
                <Route path="*" element={<ErrorPage />} />
             </Routes>
-            <Footer/>
+            <Footer />
          </logged.Provider>
       </div>
-
    );
 }
 export default App;
