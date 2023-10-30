@@ -116,10 +116,11 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
       // add comment to the DB
       toggleForm();
       commentApi.create(comment)
-         .then(resCommentObj => {
+      .then(resCommentObj => {
             onUpdateCommentList(resCommentObj);
          })
-         .catch(()=>{
+         .catch((error)=>{
+            console.log(error);
             toast("Operation fail 😶",{type:"error"})
          })
 

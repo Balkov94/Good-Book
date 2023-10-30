@@ -1,6 +1,6 @@
 import { ClubClass, CommentClass, Identifiable, IdType, QuestionClass, UserClass } from "./shared-types";
 
-const API_BASE_URL="http://localhost:8000/api";
+const API_BASE_URL = "http://localhost:8000/api";
 
 export interface ApiClient<K, V extends Identifiable<K>> {
     findAll(): Promise<V[]>;
@@ -11,12 +11,12 @@ export interface ApiClient<K, V extends Identifiable<K>> {
 }
 
 export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K, V> {
-    constructor(public apiCollectionSuffix: string) {}
+    constructor(public apiCollectionSuffix: string) { }
 
     findAll(): Promise<V[]> {
         return this.handleRequest(`${API_BASE_URL}/${this.apiCollectionSuffix}`);
     }
-    
+
     findById(id: K): Promise<V> {
         return this.handleRequest(`${API_BASE_URL}/${this.apiCollectionSuffix}/${id}`);
     }
@@ -25,7 +25,8 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
         return this.handleRequest(`${API_BASE_URL}/${this.apiCollectionSuffix}`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'Authorization': 'testToken',
             },
             body: JSON.stringify(entityWithoutId)
         });
@@ -50,12 +51,12 @@ export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K,
     private async handleRequest(url: string, options?: RequestInit) {
         try {
             const resp = await fetch(url, options);
-            if(resp.status >= 400) {
-                return Promise.reject(resp.body);       
+            if (resp.status >= 400) {
+                return Promise.reject(resp.body);
             }
 
             return resp.json();
-        } catch(err) {
+        } catch (err) {
             return Promise.reject(err);
         }
     }

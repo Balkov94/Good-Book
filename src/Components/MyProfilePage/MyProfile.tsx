@@ -11,30 +11,30 @@ import { toast } from 'react-toastify';
 function MyProfile() {
    //1.Fetch logged user data for MyPRofileCard
    const [loggedUser, setLoggedUser] = useContext(logged);
-   
+
    useEffect(() => {
-      if(loggedUser.status===2){
-         toast("Your profile is DEACTIVATED.",{type:"warning"});
-         toast("Your actions are restricted.",{type:"warning"});
+      if (loggedUser.status === 2) {
+         toast("Your actions are restricted.", { type: "warning" });
          toast.clearWaitingQueue();
       }
-   }, [loggedUser]);
+   }, []);
 
 
    return (
       <div className={styles.MyProfileMainContainer}>
          <h1>My profile:</h1>
-         <MyProfileCard loggedUser={loggedUser}/>
+         <MyProfileCard loggedUser={loggedUser} />
          <h1>My books for exchange:</h1>
          <div className={styles.addBookBtnContainer}>
-            <Link to="/ExchangePage/Book-Form">
-               <Button variant="contained" size="small" color="success">
+            <Link to={loggedUser.status === 1 ? "/ExchangePage/Book-Form" : "#"} >
+               <Button variant="contained" size="small" color="success"
+                  disabled={loggedUser.status !== 1}>
                   <MenuBookIcon style={{ marginRight: "6px" }} />
                   Add a book to the exchange page
                </Button>
             </Link>
          </div>
-         <MyBooks/>
+         <MyBooks />
       </div>
    );
 }

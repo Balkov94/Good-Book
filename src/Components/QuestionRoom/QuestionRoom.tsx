@@ -45,6 +45,13 @@ function QuestionRoom() {
       });
    }, []);
 
+   useEffect(() => {
+      if (loggedUser.status === 2) {
+         toast("Your account is restircted", { type: "warning" })
+         toast.clearWaitingQueue();
+      }
+   }, []);
+
    return (
       <>
          <div className={styles.mainQuestionRoomContainer}>
@@ -82,17 +89,15 @@ function QuestionRoom() {
                   >
                      <HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
                </div>
-
                :
-               <Link to="/QuestionRoom/createQuestion">
+               <Link to={loggedUser.status === 1 ? "/QuestionRoom/createQuestion" : '#'}>
                   <div className={styles.askQContainer}>
-                     <Button variant="contained">
+                     <Button variant="contained" disabled={loggedUser.status !== 1}>
                         <HelpOutlineIcon style={{ marginRight: "4px" }} />
                         Ask Question
                      </Button>
                   </div>
                </Link>
-
          }
       </>
 
