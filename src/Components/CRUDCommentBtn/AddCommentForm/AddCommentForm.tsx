@@ -190,12 +190,10 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
                      <p>{errors.content.message}</p>
 
                   }
-
                   <Button type="submit" fullWidth variant="contained"
                      disabled={(isValid && isDirty) === false} sx={{ mt: "20px", mb: "4px" }}>
                      Post
                   </Button>
-
                   <Button fullWidth variant="outlined"
                      onClick={toggleForm}
                      sx={{ mt: "0px" }}>
