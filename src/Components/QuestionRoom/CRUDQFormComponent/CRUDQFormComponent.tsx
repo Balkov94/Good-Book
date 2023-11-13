@@ -114,14 +114,13 @@ export default function CRUDQFormComponent() {
 
    });
 
-
    const sendSubmit = (data: ILoginFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
       }
       const newQuestion = new QuestionClass(
          location?.id || undefined,
-         location?.creatorId || loggedUser.id ,
+         location?.creatorId || loggedUser.id,
          data.title,
          data.content,
          `${data.questionPic === ""
@@ -131,27 +130,36 @@ export default function CRUDQFormComponent() {
 
       // Create Or Edit Question in the DB
       if (location !== null) {
-         fetch(`http://localhost:8000/api/questionRoom/question${newQuestion.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newQuestion)
-         })
-            .then(res => {
+         questionApi.update(newQuestion)
+            .then((res) => {
+               if (!res) {
+                  throw Error();
+               }
                navigate(-2);
-               toast(`Updated question ${newQuestion.title}`,{type:"info"});
-            })
-
+               toast(`Updated question ${newQuestion.title}`, { type: "info" });
+            }).catch((e) => {
+               toast(`${"Edition was not successfull."}`, { type: "error" });
+               toast.clearWaitingQueue();
+            });
       }
       else {
          questionApi.create(newQuestion)
-            .then(() => {
+            .then((res) => {
+               if (!res) {
+                  throw new Error();
+               }
                navigate(-1);
-               toast("You published a new question",{type:"success"});
-            })
+               toast("You published a new question", { type: "success" });
+            }).catch((e) => {
+               toast(`${"Creation was not successfull."}`, { type: "error" });
+               toast.clearWaitingQueue();
+            });
       }
    };
 
    const deleteQuestion = () => {
+      // Delete all comment for curr Del Question
+
       commentApi.findAll()
          .then(allComments => {
             const commentForDelete = allComments.filter(c => c.discussionId === location.id);
@@ -159,11 +167,21 @@ export default function CRUDQFormComponent() {
          })
          .then(filtred => {
             filtred.forEach(c => commentApi.deleteById(c.id))
+         }).catch(error => {
+            console.log(error);
          })
 
       questionApi.deleteById(location.id)
-         .then(res => {
-            navigate(-2)
+         .then((res) =>{
+            navigate(-2);
+            if (!res) {
+               throw new Error();
+            }
+         })
+         .catch(error => {
+            console.log(error);
+            toast(`${"Deletion was not successfull."}`, { type: "error" });
+            toast.clearWaitingQueue();
          })
    }
 

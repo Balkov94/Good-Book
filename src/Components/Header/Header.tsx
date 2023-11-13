@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import styles from './Header.module.css';
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { guest, logged } from '../../App';
+import { guest, logged, token } from '../../App';
 
 const pages = ['Question Room', 'Reading Clubs', 'Exchange Page', 'About Us'];
 const settings = ['MyProfile', 'Logout'];
@@ -21,7 +21,8 @@ const settings = ['MyProfile', 'Logout'];
 const Header = () => {
    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
+   
+   const [authToken, setAuthToken] = React.useContext(token);
    const [loggedUser, setLoggedUser] = React.useContext(logged);
 
    const handleCloseNavMenu = () => {
@@ -54,6 +55,7 @@ const Header = () => {
       navigate("/");
       handleCloseUserMenu();
       setLoggedUser(guest);
+      setAuthToken('');
    }
 
 

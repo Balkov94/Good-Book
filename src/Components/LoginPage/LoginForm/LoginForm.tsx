@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserApi } from '../../../Rest-APi-Client/client';
 import { toast } from 'react-toastify';
 export interface ILoginFormProps {
-   onLogin: (newLoggedUser:any) => void;
+   onLogin: (newLoggedUser: any, token?: string) => void;
 }
 
 interface ILoginFormInputs {
@@ -86,7 +86,6 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
       defaultValues: { username: "", password: "" },
       mode: "onChange",
       resolver: yupResolver(loginValidationSchema)
-
    });
 
 
@@ -94,18 +93,30 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
       if (event !== undefined) {
          event.preventDefault();
       }
-      UserApi.findAll()
-         .then(users => {
-            const newLogged = users.find(user => user.username === data.username && user.password === data.password);
-            if (newLogged) {
-               onLogin(newLogged);
-            }
-            else{
-               toast("Wrong username or password",{type:"info"});
-               toast.clearWaitingQueue();
-            }         
+
+      fetch(" http://localhost:8000/api/Login", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(data),
+      }).then(res => {
+         console.log(res);
+         if (res.ok && res.status === 200) {
+            return res.json();
+         }
+         else {
+            throw new Error("Invalid username or password");
+         }
+      })
+         .then((data) => {
+            onLogin(data.data, data.token);
          })
-         .catch(()=>toast("Fail to connet to the server",{type:"error"}))
+         .catch((error) => {
+            console.error(error);
+            toast(`${error.message}`, { type: "info" });
+            toast.clearWaitingQueue();
+         })
    };
 
    let navigate = useNavigate();

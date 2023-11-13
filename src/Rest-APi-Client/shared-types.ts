@@ -4,10 +4,10 @@ export interface Identifiable<K> {
 export type IdType = number | string | undefined;
 
 export enum RoleEnum {
-   User = 1, Admin,
+   undefined,User = 1, Admin,
 }
 export enum StatusEnum {
-   Active = 1, Deactivated,
+   undefined,Active = 1, Deactivated,
 }
 
 export type DescriptionType = string

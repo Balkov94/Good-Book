@@ -18,7 +18,7 @@ import CRUDBookFormComponent from "./Components/ExhcangerPage/CRUDBookForm/CRUDB
 import EditUsersFormComponent from "./Components/EditUsersComponent/EditUsersForm";
 import ErrorPage from "./Components/ErrorPage/ErrorPage";
 import { RoleEnum, UserClass } from "./Rest-APi-Client/shared-types";
-import { createContext, useContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 import ToastComponent from "./Components/ToastComponent/ToastComponent";
 import Footer from "./Components/Footer/Footer";
 
@@ -51,37 +51,42 @@ interface IContextType {
    initial?: IGuestUser,
 }
 export const logged = createContext<any>(guest);
+// <type,Dispatch func to change the initial value>[init Value, func to change the init value -> proper way to create context with types]
+export const token = createContext<[string, Dispatch<SetStateAction<string>>]>(['', () => {}]);
 
 function App() {
    const [loggedUser, setLoggedUser] = useState<UserClass>(guest);
+   const [authToken, setAuthToken] = useState<string>('');
 
    return (
       <div>
          <logged.Provider value={[loggedUser, setLoggedUser]}>
-            <Header />
-            <ToastComponent />
-            <Routes>
-               <Route index element={<WelcomeCarousel />} />
-               <Route path="QuestionRoom" element={<QuestionRoom />} />
-               <Route path="QuestionRoom/:questionId" element={<ViewMore />} />
-               <Route path="QuestionRoom/createQuestion" element={<CRUDQFormComponent />} />
-               <Route path="QuestionRoom/:questionId/edit" element={<CRUDQFormComponent />} />
-               <Route path="ReadingClubs" element={<ReadingClubs />} >
-                  <Route path="" element={<IndexClubRoom />} />
-                  <Route path=":clubId" element={<ClubRoom />} />
-               </Route>
-               <Route path="ReadingClubs/Reading-Club-Form" element={<CRUDClubForm />} />
-               <Route path="ExchangePage" element={<ExchangerPage />} />
-               <Route path="ExchangePage/Book-Form" element={<CRUDBookFormComponent />} />
-               <Route path="AboutUs" element={<AboutUs />} />
-               <Route path="Login" element={<LoginPage />} />
-               <Route path="Register" element={<RegisterPage />} />
-               <Route path="AllUsers" element={<AllUsersPage />} />
-               <Route path="AllUsers/Edit-form:id" element={<EditUsersFormComponent />} />
-               <Route path="MyProfile" element={<MyProfile />} />
-               <Route path="*" element={<ErrorPage />} />
-            </Routes>
-            <Footer />
+            <token.Provider value={[authToken, setAuthToken]}>
+               <Header />
+               <ToastComponent />
+               <Routes>
+                  <Route index element={<WelcomeCarousel />} />
+                  <Route path="QuestionRoom" element={<QuestionRoom />} />
+                  <Route path="QuestionRoom/:questionId" element={<ViewMore />} />
+                  <Route path="QuestionRoom/createQuestion" element={<CRUDQFormComponent />} />
+                  <Route path="QuestionRoom/:questionId/edit" element={<CRUDQFormComponent />} />
+                  <Route path="ReadingClubs" element={<ReadingClubs />} >
+                     <Route path="" element={<IndexClubRoom />} />
+                     <Route path=":clubId" element={<ClubRoom />} />
+                  </Route>
+                  <Route path="ReadingClubs/Reading-Club-Form" element={<CRUDClubForm />} />
+                  <Route path="ExchangePage" element={<ExchangerPage />} />
+                  <Route path="ExchangePage/Book-Form" element={<CRUDBookFormComponent />} />
+                  <Route path="AboutUs" element={<AboutUs />} />
+                  <Route path="Login" element={<LoginPage />} />
+                  <Route path="Register" element={<RegisterPage />} />
+                  <Route path="AllUsers" element={<AllUsersPage />} />
+                  <Route path="AllUsers/Edit-form:id" element={<EditUsersFormComponent />} />
+                  <Route path="MyProfile" element={<MyProfile />} />
+                  <Route path="*" element={<ErrorPage />} />
+               </Routes>
+               <Footer />
+            </token.Provider>
          </logged.Provider>
       </div>
    );

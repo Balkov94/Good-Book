@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { IdType } from '../../Rest-APi-Client/shared-types';
 import { logged } from '../../App';
+import {token} from '../../App';
 import { useContext } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,7 +27,9 @@ export interface IEntireQuestionData {
 function QuestionRoom() {
    const [questionsList, setQuestionsList] = useState<IEntireQuestionData[]>([]);
    const [loggedUser, setLoggedUser] = useContext(logged);
+   const [authToken, setAuthToken] = useContext(token);
 
+   
    useEffect(() => {
       const questions = questionApi.findAll();
       const users = UserApi.findAll();
