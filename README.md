@@ -1,6 +1,10 @@
 *******************************************************************************
                 AKKODIS 2022 - TS / REACT / EXPRESS / MONGODB
 *******************************************************************************
+!!! IMPORTANT for SoftUni exam 19.12.2023
+    The actual project is in 'softuni' branch 
+
+
 GoodBook APP
 1.Users administration
 2.Forum page (question answers)
