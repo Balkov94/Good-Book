@@ -1,10 +1,11 @@
 import styles from './CRUDCommentBtn.module.css';
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ICommentProps } from '../Comment/Comment';
 import AddCommentForm from './AddCommentForm/AddCommentForm';
 import { CommentClass} from '../../Rest-APi-Client/shared-types';
 import EditCommentForm from './EditCommentForm/EditCommentForm';
+import { logged } from '../../App';
 
 interface IAddEditCommentBtn {
    onUpdateCommentList?: (newComment: ICommentProps) => void,
@@ -14,6 +15,7 @@ interface IAddEditCommentBtn {
 
 function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
    const [commentForm, setCommentForm] = useState(false);
+   const [loggedUser, setLoggedUser] = useContext(logged);
    const toggleCommentForm = () => {
       setCommentForm(commentForm => !commentForm);
    }
@@ -25,12 +27,14 @@ function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
             editComment===undefined
                ? (
                   <Button className={styles.editClubBtn} variant="contained" size="medium"
+                     disabled={loggedUser.status===2}
                      onClick={toggleCommentForm}>
                      comment
                   </Button>
                )
                : (
                   <Button className={styles.editClubBtn} variant="contained" size="small" color="info"
+                     disabled={loggedUser.status===2} 
                      onClick={toggleCommentForm}>
                      edit
                   </Button>

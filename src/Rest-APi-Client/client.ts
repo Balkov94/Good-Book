@@ -7,9 +7,7 @@ export interface ApiClient<K, V extends Identifiable<K>> {
     findById(id: K): Promise<V>;
     create(entityWithoutId: Partial<V>): Promise<V>;
     update(entityWithoutId: V): Promise<V>;
-    deleteById(id: K): Promise<V>;
-
-    
+    deleteById(id: K): Promise<V>;   
 }
 
 export class ApiClientImpl<K, V extends Identifiable<K>> implements ApiClient<K, V> {

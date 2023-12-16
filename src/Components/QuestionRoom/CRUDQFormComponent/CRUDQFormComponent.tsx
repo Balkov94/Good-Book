@@ -114,7 +114,6 @@ export default function CRUDQFormComponent() {
 
    });
 
-
    const sendSubmit = (data: ILoginFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
@@ -140,7 +139,6 @@ export default function CRUDQFormComponent() {
                navigate(-2);
                toast(`Updated question ${newQuestion.title}`,{type:"info"});
             })
-
       }
       else {
          questionApi.create(newQuestion)

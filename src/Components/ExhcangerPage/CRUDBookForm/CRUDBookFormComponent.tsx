@@ -170,7 +170,6 @@ export default function CRUDBookFormComponent() {
                position: "relative",
                // border: "2px solid red",
                pt: "40px",
-
             }}>
             <CssBaseline />
 
@@ -289,7 +288,6 @@ export default function CRUDBookFormComponent() {
                      >
                         <DeleteOutlineIcon /> Remove book
                      </Button>
-
                   }
                </Box>
             </Box>

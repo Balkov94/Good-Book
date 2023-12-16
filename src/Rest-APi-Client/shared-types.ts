@@ -47,7 +47,6 @@ export class CommentClass {
 
 }
 
-
 //2.QuestionClass
 export class QuestionClass {
    constructor(
@@ -60,8 +59,6 @@ export class QuestionClass {
       public timeOfModification: TimeOfModificationType = null,
    ) { }
 }
-
-
 
 //3.ClubClass
 export class ClubClass {

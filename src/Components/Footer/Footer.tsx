@@ -44,7 +44,6 @@ function Footer() {
                   )
                })
             }
-
          </div>
       </div>
    );

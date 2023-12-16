@@ -21,7 +21,7 @@ export interface IClubCard {
 }
 
 function ClubCard({ id, creatorId, name, interests, participants, banned, onsignInToClub }: IClubCard) {
-   const [loggedUser, setLoggedUser] = useContext(logged);
+   const [loggedUser] = useContext(logged);
 
 
    return (
