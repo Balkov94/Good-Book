@@ -16,11 +16,9 @@ import { commentApi } from '../../../Rest-APi-Client/client';
 import { ICommentProps } from '../../Comment/Comment';
 import { toast } from 'react-toastify';
 
-
 const schema = yup.object({
    content: yup.string().required().min(1).max(1000),
 }).required();
-
 
 const theme = createTheme();
 const formsMUIoverride = {
@@ -90,7 +88,6 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
       resolver: yupResolver(schema)
 
    });
-
 
    const sendSubmit = (data: IEditCommentFormInputs,
       event: React.BaseSyntheticEvent<object, any, any> | undefined) => {

@@ -86,7 +86,6 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
       defaultValues: { username: "", password: "" },
       mode: "onChange",
       resolver: yupResolver(loginValidationSchema)
-
    });
 
 
@@ -199,8 +198,7 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
 
                   <Button variant="contained" color="success" fullWidth sx={{ mt: 0, mb: 2 }}
                      onClick={() => navigate("/Register")}
-                  >
-                     Don't have an account? Go to register!
+                  > Don't have an account? Go to register!
                   </Button>
                </Box>
             </Box>

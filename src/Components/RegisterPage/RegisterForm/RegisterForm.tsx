@@ -19,7 +19,6 @@ import styles from './RegisterForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import { UserApi } from '../../../Rest-APi-Client/client';
 import { toast } from 'react-toastify';
-import { ifError } from 'assert';
 
 const theme = createTheme();
 const RegisterFormMUIOverride = {
@@ -95,7 +94,7 @@ export interface IRegisterFormProps {
    handleShowCreateForm?: () => void;
    isAdminUsingForm?: boolean;
    handleCreateUser?: (formData?: Partial<IRegisterData>) => void;
-   //*Register form is using in home-register & Admin->create new user
+   //*Register form is used in home-register & Admin->create new user
    // with diff props depends on creation
 }
 
