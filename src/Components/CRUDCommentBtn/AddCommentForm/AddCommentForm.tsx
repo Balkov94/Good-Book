@@ -12,12 +12,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import { CommentClass } from '../../../Rest-APi-Client/shared-types';
+import { authToken, CommentClass } from '../../../Rest-APi-Client/shared-types';
 import { useParams } from 'react-router-dom';
 import { commentApi } from '../../../Rest-APi-Client/client';
 import { ICommentProps } from '../../Comment/Comment';
 import { useContext } from 'react';
-import { logged } from '../../../App';
+import { logged, token } from '../../../App';
 import { toast } from 'react-toastify';
 
 interface IAddCommentFormInputs {
@@ -91,11 +91,11 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
       defaultValues: { content: "" },
       mode: "onChange",
       resolver: yupResolver(schema)
-
    });
 
    const params = useParams();
    const [loggedUser, setLoggedUser] = useContext(logged);
+   const [authToken, setAuthToken] = useContext(token);
 
    const sendSubmit = (data: IAddCommentFormInputs,
       event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
@@ -115,7 +115,8 @@ export default function AddCommentForm({ toggleForm, onUpdateCommentList }: IAdd
       );
       // add comment to the DB
       toggleForm();
-      commentApi.create(comment)
+      // request to BE for creating , try to add auth
+      commentApi.create(comment, authToken)
       .then(resCommentObj => {
             onUpdateCommentList(resCommentObj);
          })

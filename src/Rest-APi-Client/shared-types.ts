@@ -1,6 +1,9 @@
 export interface Identifiable<K> {
    id: K;
 }
+
+export type authToken = string | undefined;
+
 export type IdType = number | string | undefined;
 
 export enum RoleEnum {

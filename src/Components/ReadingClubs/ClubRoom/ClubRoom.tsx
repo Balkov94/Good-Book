@@ -54,8 +54,11 @@ function ClubRoom() {
   
    // UI updater functions __________________________// 
    const updateCommentList = (currComment: ICommentProps) => {
+      console.log(currComment);
       if (currComment.content === "_this_entity_was_deleted") {
          setClubComments(clubComments => {
+            console.log( 'delete' );
+            console.log(currComment);
             return (
                clubComments?.filter(c => c.id !== currComment.id)
             )

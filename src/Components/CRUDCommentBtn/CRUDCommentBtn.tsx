@@ -28,14 +28,14 @@ function AddComment({ onUpdateCommentList, editComment }: IAddEditCommentBtn) {
             editComment === undefined
                ? (
                   <Button className={styles.editClubBtn} variant="contained" size="medium"
-                     disabled={loggedUser.status == 2}
+                     disabled={loggedUser.status === 2}
                      onClick={toggleCommentForm}>
                      comment
                   </Button>
                )
                : (
                   <Button className={styles.editClubBtn} variant="contained" size="small" color="info"
-                     disabled={loggedUser.status == 2}
+                     disabled={loggedUser.status === 2}
                      onClick={toggleCommentForm}>
                      edit
                   </Button>

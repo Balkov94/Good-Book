@@ -101,7 +101,6 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
          },
          body: JSON.stringify(data),
       }).then(res => {
-         console.log(res);
          if (res.ok && res.status === 200) {
             return res.json();
          }
@@ -110,6 +109,8 @@ export default function LoginForm({ onLogin }: ILoginFormProps) {
          }
       })
          .then((data) => {
+            console.log('login response');
+            console.log(data);
             onLogin(data.data, data.token);
          })
          .catch((error) => {

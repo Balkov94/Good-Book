@@ -116,10 +116,15 @@ export default function EditCommentForm({ toggleForm, editComment, onUpdateComme
    }
 
    const deleteComment = () => {
-      commentApi.deleteById(editComment.id)
+      try {
+         commentApi.deleteById(editComment.id)
          .then(res => {
             onUpdateCommentList({ ...editComment, content: `_this_entity_was_deleted` });
-         })
+         })    
+      } catch (error) {
+         console.log(error)
+      }
+     
 
    };
 
