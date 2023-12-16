@@ -16,40 +16,40 @@ function ClubRoom() {
    const location = useLocation().state;
    const { id, name, interests, participants, banned, creatorId } = location;
    const [loggedUser, setLoggedUser] = useContext(logged);
-
    const [clubCreator, setClubCreator] = useState<IQuestionAuthorHeaderProps>();
    const [participantsList, setParticipantsList] = useState<IQuestionAuthorHeaderProps[]>();
    const [bannedList, setBannedList] = useState<IQuestionAuthorHeaderProps[]>();
    const [clubComments, setClubComments] = useState<ICommentProps[]>();
    useEffect(() => {
-      // Fetch all club data - 1.Creator-name,userPic 2.Participants - usernames,userPic ...
-      const creator = UserApi.findAll();
-      const allParticipants = UserApi.findAll();
-      const allBanned = UserApi.findAll();
-      const comments = commentApi.findAll();
-      Promise.all([creator, allParticipants, allBanned, comments])
-         .then((res: any) => {
-            creator.then(c => {
-               const creator = c.find(c => c.id === creatorId);
-               setClubCreator(creator);
-            })
+      const fetchData = async () => {
+         try {
+            const [creatorRes, participantsRes, bannedRes, commentsRes] = await Promise.all([
+               UserApi.findById(loggedUser.id),
+               UserApi.findAll(),
+               UserApi.findAll(),
+               commentApi.findAll()
+            ]);
+   
+            setClubCreator(creatorRes);
+            
+            const allParticipants = participantsRes.filter(c => participants.includes(c.id));
+            setParticipantsList(allParticipants);
+   
+            const allBanned = bannedRes.filter(c => banned.includes(c.id));
+            setBannedList(allBanned);
+   
+            const clubComments = commentsRes.filter(c => c.discussionId === id && c.isClub);
+            setClubComments(clubComments);
+         } catch (error) {
+            // Handle error fetching data
+            console.error('Error fetching data:', error);
+            // Optionally, you can set default or empty values for states affected by the failed requests
+         }
+      };
+   
+      fetchData();
+   }, [loggedUser.id, id, participants, banned]);
 
-            allParticipants.then(c => {
-               const allParticipants = c.filter(c => participants.includes(c.id));
-               setParticipantsList(allParticipants);
-            })
-
-            allBanned.then(c => {
-               const allBanned = c.filter(c => banned.includes(c.id));
-               setBannedList(allBanned);
-            })
-
-            comments.then((comments: ICommentProps[]) => {
-               const filtred = comments.filter(c => c.discussionId === id && c.isClub);
-               setClubComments(filtred);
-            })
-         })
-   }, [creatorId, participants, banned, id])
 
   
    // UI updater functions __________________________// 
