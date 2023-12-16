@@ -280,7 +280,7 @@ export default function EditUsersFormComponent() {
                         )
                      }
                      {
-                        (loggedUser.role === 2 && loggedUser.status ===1)
+                        (loggedUser.role == 2 && loggedUser.status ==1)
                         &&
                         <>
                            <Grid item xs={12} sm={6}>

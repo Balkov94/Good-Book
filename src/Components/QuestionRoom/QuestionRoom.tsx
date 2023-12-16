@@ -84,7 +84,7 @@ function QuestionRoom() {
                   ><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
                </div>
                :
-               <Link to={loggedUser.status===2 ? "#" : '/QuestionRoom/createQuestion}' }>
+               <Link to={loggedUser.status==2 ? "#" : '/QuestionRoom/createQuestion' }>
                   <div className={styles.askQContainer}>
                      <Button variant="contained" disabled={loggedUser.status===2}>
                         <HelpOutlineIcon style={{ marginRight: "4px" }} />

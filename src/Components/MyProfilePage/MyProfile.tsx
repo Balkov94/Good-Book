@@ -13,7 +13,7 @@ function MyProfile() {
    const [loggedUser, setLoggedUser] = useContext(logged);
    
    useEffect(() => {
-      if(loggedUser.status===2){
+      if(loggedUser.status==2){
          toast("Your profile is DEACTIVATED.",{type:"warning"});
          toast("Your actions are restricted.",{type:"warning"});
          toast.clearWaitingQueue();

@@ -31,7 +31,7 @@ function MyProfileCard({ loggedUser }: IMyProfileCard) {
 
          </div>
          {
-            loggedUser.status === 1
+            loggedUser.status == 1
             &&
             <Link to={`/AllUsers/Edit-form${loggedUser.id}`} state={loggedUser}>
                <Button variant="contained"
