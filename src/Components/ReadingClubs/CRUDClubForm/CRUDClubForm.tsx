@@ -137,7 +137,7 @@ export default function CRUDClubForm() {
       mode: "onChange",
       resolver: yupResolver(schema)
    });
-   const [loggedUser] = useContext(logged);
+   const [loggedUser, setLoggedUser] = useContext(logged);
 
    const sendSubmit = (data: ICreateClubFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
@@ -377,7 +377,10 @@ export default function CRUDClubForm() {
                         </Button>
 
                      )
+
+
                   }
+
                </Box>
             </Box>
          </Container>

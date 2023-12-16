@@ -1,4 +1,4 @@
-import ClubCard from './ClubCard/ClubCard';
+import ClubCard, { IClubCard } from './ClubCard/ClubCard';
 import styles from './ReadingClubs.module.css';
 import Button from '@mui/material/Button';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
@@ -11,7 +11,7 @@ import { useContext } from 'react';
 import { toast } from 'react-toastify';
 
 function ReadingClubs() {
-   const [loggedUser] = useContext(logged);
+   const [loggedUser, setLoggedUser] = useContext(logged);
    const [clubsList, setClubsList] = useState<ClubClass[]>([]);
    useEffect(() => {
       clubApi.findAll()

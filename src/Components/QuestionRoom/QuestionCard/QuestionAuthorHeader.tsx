@@ -27,6 +27,7 @@ function QuestionAuthorHeader({ username, fname, lname, userPic }: IQuestionAuth
                   src={userPic} aria-label="recipe">
                </Avatar>
             }
+       
             title={username}
             subheader={`${fname}  ${lname}`}
          />

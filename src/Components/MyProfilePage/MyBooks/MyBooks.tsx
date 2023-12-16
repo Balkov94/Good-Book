@@ -39,7 +39,8 @@ function MyBooks() {
             && 
             <div className={styles.noBooksContainer}>
             <h1>Don't have any books for exchange.</h1>
-            <h1>Why don't you add some? </h1> 
+            <h1>Why don't you add some? </h1>
+            
             </div>
          }
       </div>

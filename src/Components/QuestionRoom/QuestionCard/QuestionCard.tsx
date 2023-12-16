@@ -5,6 +5,7 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Link } from 'react-router-dom';
 import { IEntireQuestionData } from '../QuestionRoom';
 
+
 export interface IQuestionAuthorHeaderProps {
    username: string,
    fname: string,

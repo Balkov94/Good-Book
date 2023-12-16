@@ -20,6 +20,7 @@ function MyProfile() {
       }
    }, [loggedUser]);
 
+
    return (
       <div className={styles.MyProfileMainContainer}>
          <h1>My profile:</h1>

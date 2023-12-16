@@ -25,6 +25,7 @@ export function WelcomeCarousel(props: any) {
    ]
 
    return (
+
       <Carousel
          navButtonsAlwaysInvisible={true}
          indicators={false}

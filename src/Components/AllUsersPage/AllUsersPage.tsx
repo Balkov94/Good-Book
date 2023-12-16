@@ -24,6 +24,7 @@ function AllUsersPage() {
             const filtred = allUsers?.filter(user => user.id !== forDelId)
             setAllUsers(filtred);
          })
+
    };
 
    return (

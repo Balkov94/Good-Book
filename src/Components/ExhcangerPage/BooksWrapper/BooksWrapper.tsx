@@ -14,7 +14,9 @@ function BooksWrapper() {
 
    return (
       <div className={styles.booksWrapper}>
-         {booksList?.map(b => <BookCard key={b.id} id={b.id} ownerId={b.ownerId} title={b.title} bookPic={b.bookPic} />)}
+         {
+            booksList?.map(b => <BookCard key={b.id} id={b.id} ownerId={b.ownerId} title={b.title} bookPic={b.bookPic} />)
+         }
       </div>
    );
 }

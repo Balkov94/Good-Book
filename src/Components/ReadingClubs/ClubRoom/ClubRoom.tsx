@@ -12,9 +12,10 @@ import { logged } from '../../../App';
 
 function ClubRoom() {
    //1.Get passed by link status data from ClubCard
+   const navigate = useNavigate();
    const location = useLocation().state;
    const { id, name, interests, participants, banned, creatorId } = location;
-   const [loggedUser] = useContext(logged);
+   const [loggedUser, setLoggedUser] = useContext(logged);
    const [clubCreator, setClubCreator] = useState<IQuestionAuthorHeaderProps>();
    const [participantsList, setParticipantsList] = useState<IQuestionAuthorHeaderProps[]>();
    const [bannedList, setBannedList] = useState<IQuestionAuthorHeaderProps[]>();
@@ -40,7 +41,9 @@ function ClubRoom() {
             const clubComments = commentsRes.filter(c => c.discussionId === id && c.isClub);
             setClubComments(clubComments);
          } catch (error) {
+            // Handle error fetching data
             console.error('Error fetching data:', error);
+            // Optionally, you can set default or empty values for states affected by the failed requests
          }
       };
    
@@ -134,6 +137,7 @@ function ClubRoom() {
                   </div>
                </div>
                )
+
             }
             {
                clubComments?.map((comment, index) => {

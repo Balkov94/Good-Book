@@ -16,6 +16,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { guest, logged } from '../../App';
 
 const pages = ['Question Room', 'Reading Clubs', 'Exchange Page', 'About Us'];
+const settings = ['MyProfile', 'Logout'];
 
 const Header = () => {
    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);

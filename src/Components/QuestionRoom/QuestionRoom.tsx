@@ -26,7 +26,7 @@ export interface IEntireQuestionData {
 
 function QuestionRoom() {
    const [questionsList, setQuestionsList] = useState<IEntireQuestionData[]>([]);
-   const [loggedUser] = useContext(logged);
+   const [loggedUser, setLoggedUser] = useContext(logged);
 
    useEffect(() => {
       const questions = questionApi.findAll();
@@ -83,17 +83,20 @@ function QuestionRoom() {
                      }}
                   ><HelpOutlineIcon style={{ marginRight: "4px" }} />Ask Question</Button>
                </div>
+
                :
-               <Link to={loggedUser.status===2 ? "#" : '/QuestionRoom/createQuestion}' }>
+               <Link to="/QuestionRoom/createQuestion">
                   <div className={styles.askQContainer}>
-                     <Button variant="contained" disabled={loggedUser.status===2}>
+                     <Button variant="contained">
                         <HelpOutlineIcon style={{ marginRight: "4px" }} />
                         Ask Question
                      </Button>
                   </div>
                </Link>
+
          }
       </>
+
    );
 }
 
