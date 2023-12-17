@@ -18,7 +18,7 @@ function ExchangerPage() {
             and contact the owner &#129309;
          </h6>
          <div className={styles.addBookBtnContainer}>
-            <Link to={loggedUser.status==2 ? "#" : "/ExchangePage/Book-Form"}>
+            <Link to={loggedUser.status==2 ? "#" : "/ExchangePage/Book-Form"} style={{ cursor: 'default' }}>
                <Button variant="contained" disabled={loggedUser.status==2}>
                   <MenuBookIcon style={{ marginRight: "6px" }} />
                   Add book

@@ -14,8 +14,8 @@ function MyProfile() {
    
    useEffect(() => {
       if(loggedUser.status==2){
-         toast("Your profile is DEACTIVATED.",{type:"warning"});
-         toast("Your actions are restricted.",{type:"warning"});
+         toast("Your profile is DEACTIVATED.",{type:"warning",autoClose:3000});
+         toast("Your actions are restricted.",{type:"warning",autoClose:3000});
          toast.clearWaitingQueue();
       }
    }, [loggedUser]);
@@ -26,8 +26,8 @@ function MyProfile() {
          <MyProfileCard loggedUser={loggedUser}/>
          <h1>My books for exchange:</h1>
          <div className={styles.addBookBtnContainer}>
-            <Link to="/ExchangePage/Book-Form">
-               <Button variant="contained" size="small" color="success">
+            <Link to={loggedUser.status==2 ? '#':'/ExchangePage/Book-Form'} style={{ cursor: 'default' }}>
+               <Button variant="contained" size="small" color="success" disabled={loggedUser.status==2}  >
                   <MenuBookIcon style={{ marginRight: "6px" }} />
                   Add a book to the exchange page
                </Button>
